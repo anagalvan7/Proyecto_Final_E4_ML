@@ -1,6 +1,6 @@
 """Ensamble por competencia local y por clase (ECLC).
 
-Modelo original del Entregable 3. Combina M clasificadores base ya existentes con una
+Modelo original del proyecto. Combina M clasificadores base ya existentes con una
 regla de ponderacion propia: para cada observacion nueva x y cada clase c, el peso del
 modelo m depende de su perdida logaritmica binaria (clase c contra el resto) en los k
 vecinos mas cercanos de x dentro de un conjunto de referencia con predicciones fuera de
