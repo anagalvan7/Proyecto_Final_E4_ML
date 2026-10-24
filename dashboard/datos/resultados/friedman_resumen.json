@@ -1,0 +1,8 @@
+{
+  "estadistico_friedman": 316.6895005741167,
+  "p_valor": 1.306585130403167e-22,
+  "grados_libertad": 107,
+  "n_combinaciones": 108,
+  "n_pliegues": 3,
+  "diferencia_critica_nemenyi": 110.90079795988656
+}

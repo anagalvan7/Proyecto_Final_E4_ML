@@ -1,0 +1,11 @@
+                              variable  importancia_media_abs
+0                            Elevation               2.094158
+12                 Elevation_Minus_VDH               1.800820
+4      Horizontal_Distance_To_Roadways               0.599894
+13                   Wilderness_Area_1               0.554318
+16                   Wilderness_Area_4               0.506029
+8   Horizontal_Distance_To_Fire_Points               0.396285
+11               Dist_Hydrology_Euclid               0.162364
+3       Vertical_Distance_To_Hydrology               0.148459
+10                          Aspect_cos               0.144812
+2     Horizontal_Distance_To_Hydrology               0.136365

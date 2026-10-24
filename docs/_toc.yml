@@ -1,0 +1,31 @@
+format: jb-book
+root: intro
+parts:
+  - caption: "Parte I. Datos, análisis exploratorio y modelo base"
+    chapters:
+      - file: 01_base_datos
+      - file: 02_eda
+        sections:
+          - file: 02b_fuga_estructura
+          - file: 02c_preprocesamiento
+      - file: 03_modelo_base
+      - file: 04_conclusiones
+  - caption: "Parte II. Benchmark, optimización y evaluación"
+    chapters:
+      - file: 06_benchmark_modelos
+      - file: 07_optimizacion
+      - file: 08_comparacion_estadistica
+      - file: 09_interpretabilidad
+      - file: 10_conclusiones_finales
+  - caption: "Parte III. Modelo original"
+    chapters:
+      - file: e3_04_literatura
+      - file: e3_05_modelo_original
+      - file: e3_06_validacion
+      - file: e3_08_conclusiones
+      - file: e3_09_reproducibilidad
+  - caption: "Apéndices"
+    chapters:
+      - file: 05_apendice
+      - file: e3_01_correcciones
+      - file: bibliografia

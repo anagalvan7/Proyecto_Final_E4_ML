@@ -1,0 +1,25 @@
+Finalista: XGB ninguno {'n_estimators': 200, 'max_depth': 8, 'learning_rate': 0.2}
+                             modelo  Accuracy  ...  AUC OvR macro  Log loss
+0               XGBoost (finalista)  0.939959  ...       0.996560  0.177227
+1  Regresión logística (referencia)  0.724104  ...       0.937286  0.627611
+
+[2 rows x 9 columns]
+Matriz de confusión y curvas ROC/PR guardadas.
+Calibración: {'brier_multiclase_finalista': 0.09693808231197912, 'brier_multiclase_referencia': 0.3808675394707101, 'ece_por_clase_finalista': {1: 0.03779785365134759, 2: 0.04449293132481502, 3: 0.00033607577223860994, 4: 0.00018032399506315286, 5: 0.0007883296564978236, 6: 0.00039195693395468865, 7: 0.0003916486497795801}, 'ece_medio_finalista': 0.012054159997670925}
+Delta de Cliff (F1 macro, finalista vs referencia): 1.0000
+                             modelo   métrica     media  IC95 inf  IC95 sup
+0               XGBoost (finalista)  F1 macro  0.927054  0.923200  0.930595
+1  Regresión logística (referencia)  F1 macro  0.556473  0.549779  0.563602
+2               XGBoost (finalista)  Accuracy  0.939987  0.938674  0.941327
+3  Regresión logística (referencia)  Accuracy  0.724128  0.721563  0.726657
+SHAP local + LIME guardados para 2 casos.
+Perfilamiento: {'versión': 'estándar (sin ajustar)', 'tiempo_entrenamiento_s': 180.79305386543274, 'tiempo_inferencia_s': 3.820535898208618, 'memoria_pico_entrenamiento_MB': 639.637045, 'memoria_pico_inferencia_MB': 374.729548, 'F1_macro_prueba': 0.8664296888250881} {'versión': 'optimizado (finalista)', 'tiempo_entrenamiento_s': 919.6403946876526, 'tiempo_inferencia_s': 6.206652879714966, 'memoria_pico_entrenamiento_MB': 639.628608, 'memoria_pico_inferencia_MB': 374.710112, 'F1_macro_prueba': 0.927050423191012}
+Sensibilidad a la semilla (con subsample=0.8 para introducir aleatoriedad real):
+   semilla  F1_macro
+0        0  0.930994
+1        1  0.928466
+2        2  0.928330
+3        3  0.929901
+4        4  0.930382
+Media: 0.9296 · DE: 0.0012
+TODO LISTO.

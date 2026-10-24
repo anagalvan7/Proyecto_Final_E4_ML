@@ -1,0 +1,38 @@
+{
+ "mejor_benchmark": "Random Forest",
+ "f1_eclc": 0.7908319738928591,
+ "f1_mejor_benchmark": 0.785729930807136,
+ "condicion_1_media_mejor_que_los_7": true,
+ "pruebas_vs_mejor": {
+  "Friedman (global)": true,
+  "Nemenyi (rango ECLC vs mejor benchmark > CD)": false,
+  "Wilcoxon-Holm": true,
+  "t corregida Nadeau-Bengio (Holm)": false,
+  "McNemar en prueba reservada (Holm)": false,
+  "Bayesiana (P(ECLC mejor) > 0,95)": false
+ },
+ "condicion_2_tres_pruebas": false,
+ "condicion_3_efecto_no_despreciable": true,
+ "cliff_vs_mejor": 0.38222222222222224,
+ "R3": false,
+ "n_comparaciones_por_prueba": 8,
+ "n_pliegues": 30,
+ "friedman": {
+  "estadistico": 236.9422222222222,
+  "p_valor": 1.0054938483712078e-46,
+  "k": 9,
+  "N": 30,
+  "cd": 2.1932643886319108,
+  "rangos": {
+   "ECLC (original)": 2.1,
+   "KNN": 4.6,
+   "Naive Bayes": 9.0,
+   "Reg. logística": 8.0,
+   "Árbol de decisión": 5.967,
+   "Random Forest": 2.9,
+   "XGBoost": 4.433,
+   "SVM": 7.0,
+   "HistGradientBoosting": 1.0
+  }
+ }
+}

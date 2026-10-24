@@ -1,0 +1,95 @@
+{
+  "correcta": {
+    "indice_prueba": 61368,
+    "clase_real": 3,
+    "clase_predicha": 3,
+    "probabilidad": 0.9999979734420776,
+    "probabilidad_clase_real": 0.9999979734420776,
+    "top_contribuciones": {
+      "Elevation_Minus_VDH": 3.3196001052856445,
+      "Hillshade_9am": 1.5981999635696411,
+      "Horizontal_Distance_To_Fire_Points": 1.4967000484466553,
+      "Elevation": 0.8167999982833862,
+      "Hillshade_3pm": 0.7699999809265137,
+      "Vertical_Distance_To_Hydrology": 0.3037000000476837,
+      "Dist_Hydrology_Euclid": 0.17749999463558197,
+      "Wilderness_Area_1": 0.1565999984741211
+    },
+    "lime_pesos": {
+      "Soil_Type_9": -0.15926429396842406,
+      "Elevation_Minus_VDH": 0.05538327245454972,
+      "Elevation": 0.032075251493736516,
+      "Wilderness_Area_1": 0.025743388525728505,
+      "Soil_Type_14": 0.023916136499547668,
+      "Soil_Type_19": -0.023311403525076164,
+      "Soil_Type_3": -0.021178636175917954,
+      "Soil_Type_2": -0.01958959428060805,
+      "Soil_Type_6": -0.01940913065693131,
+      "Soil_Type_21": 0.016741964055427376
+    },
+    "lime_r2_local": 0.11464160049228878,
+    "top5_shap": [
+      "Elevation_Minus_VDH",
+      "Hillshade_9am",
+      "Horizontal_Distance_To_Fire_Points",
+      "Elevation",
+      "Hillshade_3pm"
+    ],
+    "top5_lime": [
+      "Soil_Type_9",
+      "Elevation_Minus_VDH",
+      "Elevation",
+      "Wilderness_Area_1",
+      "Soil_Type_14"
+    ],
+    "comunes_top5": [
+      "Elevation",
+      "Elevation_Minus_VDH"
+    ]
+  },
+  "error": {
+    "indice_prueba": 115051,
+    "clase_real": 2,
+    "clase_predicha": 1,
+    "probabilidad": 0.9934170246124268,
+    "probabilidad_clase_real": 0.0065819029696285725,
+    "top_contribuciones": {
+      "Elevation_Minus_VDH": 0.7372999787330627,
+      "Soil_Type_24": 0.6424000263214111,
+      "Horizontal_Distance_To_Roadways": 0.4180999994277954,
+      "Hillshade_9am": 0.21780000627040863,
+      "Aspect_cos": 0.2084999978542328,
+      "Elevation": 0.12690000236034393,
+      "Horizontal_Distance_To_Hydrology": 0.10170000046491623,
+      "Hillshade_Noon": 0.0885000005364418
+    },
+    "lime_pesos": {
+      "Soil_Type_27": -0.42619407762365985,
+      "Soil_Type_7": 0.27053954066001157,
+      "Soil_Type_21": -0.2402535512181663,
+      "Soil_Type_2": 0.23349840557082496,
+      "Soil_Type_3": 0.22738242268450032,
+      "Soil_Type_26": 0.21555130383063917,
+      "Soil_Type_1": -0.20714163656117174,
+      "Soil_Type_35": -0.20342814440553203,
+      "Elevation_Minus_VDH": 0.19805697457311924,
+      "Soil_Type_37": 0.15798576729077712
+    },
+    "lime_r2_local": 0.07536969366754254,
+    "top5_shap": [
+      "Elevation_Minus_VDH",
+      "Soil_Type_24",
+      "Horizontal_Distance_To_Roadways",
+      "Hillshade_9am",
+      "Aspect_cos"
+    ],
+    "top5_lime": [
+      "Soil_Type_27",
+      "Soil_Type_7",
+      "Soil_Type_21",
+      "Soil_Type_2",
+      "Soil_Type_3"
+    ],
+    "comunes_top5": []
+  }
+}

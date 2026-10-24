@@ -1,0 +1,8 @@
+﻿modelo,fase_medida,exponente_empirico
+Naive Bayes,fit,0.9965550161998953
+Regresión logística (L-BFGS),fit,0.9252755169950903
+Árbol de decisión,fit,1.0607246902798655
+Random Forest (100 árboles),fit,1.045388214459266
+XGBoost hist (100 árboles),fit,0.7727229681112119
+SVM RBF,fit,1.872118243193654
+"KNN (fuerza bruta, 5.000 consultas)",predict,0.58215120389712

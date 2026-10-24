@@ -1,0 +1,3 @@
+﻿versión,tiempo_entrenamiento_s,tiempo_inferencia_s,memoria_pico_entrenamiento_MB,memoria_pico_inferencia_MB,F1_macro_prueba
+estándar (sin ajustar),180.79305386543274,3.820535898208618,639.637045,374.729548,0.8664296888250881
+optimizado (finalista),919.6403946876526,6.206652879714966,639.628608,374.710112,0.927050423191012

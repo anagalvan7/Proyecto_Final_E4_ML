@@ -1,0 +1,179 @@
+﻿Running Jupyter-Book v0.15.1
+Source Folder: C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs
+Config Path: C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\_config.yml
+Output Path: C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\_build\html
+jupyter-book.exe : [sphinxcontrib-bibtex] Beware that docutils versions 0.18 and 0.19 (you are running 0.18.1) are 
+known to generate invalid html for citations. If this issue affects you, please use docutils<0.18 (or >=0.20 once 
+released) instead. For more details, see https://sourceforge.net/p/docutils/patches/195/
+En línea: 1 Carácter: 393
++ ... NG="utf-8"; & C:\Users\ProyectoSGR\envs\covertype\Scripts\jupyter-boo ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([sphinxcontrib-...ls/patches/195/:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[01mRunning Sphinx v5.0.2[39;49;00m
+[01mloading translations [es]... [39;49;00mdone
+[etoc] Changing master_doc to 'intro'
+[etoc] Excluded 1 extra file(s) not in toc
+[01mloading pickled environment... [39;49;00mchecking bibtex cache... up to date
+done
+[01mmyst v0.18.1:[39;49;00m MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=['dollarmath', 'amsmath', 'colon_fence'], disable_syntax=[], all_links_external=False, url_schemes=['mailto', 'http', 'https'], ref_domains=None, highlight_code_blocks=True, number_code_blocks=[], title_to_header=False, heading_anchors=None, heading_slug_func=None, footnote_transition=True, words_per_minute=200, sub_delimiters=('{', '}'), linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area')
+[01mmyst-nb v0.17.2:[39;49;00m NbParserConfig(custom_formats={}, metadata_key='mystnb', cell_metadata_key='mystnb', kernel_rgx_aliases={}, execution_mode='cache', execution_cache_path='', execution_excludepatterns=[], execution_timeout=3600, execution_in_temp=False, execution_allow_errors=False, execution_raise_on_error=False, execution_show_tb=False, merge_streams=False, render_plugin='default', remove_code_source=False, remove_code_outputs=False, code_prompt_show='Mostrar código', code_prompt_hide='Ocultar código', number_source_lines=False, output_stderr='remove', render_text_lexer='myst-ansi', render_error_lexer='ipythontb', render_image_options={}, render_figure_options={}, render_markdown_format='commonmark', output_folder='build', append_css=True, metadata_to_fm=False)
+Using jupyter-cache at: C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\_build\.jupyter_cache
+[01mbuilding [mo]: [39;49;00mtargets for 0 po files that are out of date
+[01mbuilding [html]: [39;49;00mtargets for 12 source files that are out of date
+[01mupdating environment: [39;49;00m[config changed ('exclude_patterns')] 20 added, 1 changed, 1 removed
+[01mreading sources... [39;49;00m[  5%] [35m01_base_datos[39;49;00m                                        
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\01_base_datos.md: Using cached notebook: ID=1 [mystnb]
+[01mreading sources... [39;49;00m[ 10%] [35m02_eda[39;49;00m                                               
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\02_eda.md: Using cached notebook: ID=2 [mystnb]
+[01mreading sources... [39;49;00m[ 15%] [35m02b_fuga_estructura[39;49;00m                                  
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\02b_fuga_estructura.md: Using cached notebook: ID=3 [mystnb]
+[01mreading sources... [39;49;00m[ 20%] [35m02c_preprocesamiento[39;49;00m                                 
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\02c_preprocesamiento.md: Using cached notebook: ID=4 [mystnb]
+[01mreading sources... [39;49;00m[ 25%] [35m03_modelo_base[39;49;00m                                       
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\03_modelo_base.md: Using cached notebook: ID=5 [mystnb]
+[01mreading sources... [39;49;00m[ 30%] [35m04_conclusiones[39;49;00m                                      
+[01mreading sources... [39;49;00m[ 35%] [35m05_apendice[39;49;00m                                          
+[01mreading sources... [39;49;00m[ 40%] [35m06_benchmark_modelos[39;49;00m                                 
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\06_benchmark_modelos.md: Using cached notebook: ID=12 [mystnb]
+[01mreading sources... [39;49;00m[ 45%] [35m07_optimizacion[39;49;00m                                      
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\07_optimizacion.md: Using cached notebook: ID=7 [mystnb]
+[01mreading sources... [39;49;00m[ 50%] [35m08_comparacion_estadistica[39;49;00m                           
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\08_comparacion_estadistica.md: Using cached notebook: ID=13 [mystnb]
+[01mreading sources... [39;49;00m[ 55%] [35m09_interpretabilidad[39;49;00m                                 
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\09_interpretabilidad.md: Using cached notebook: ID=9 [mystnb]
+[01mreading sources... [39;49;00m[ 60%] [35m10_conclusiones_finales[39;49;00m                              
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\10_conclusiones_finales.md: Using cached notebook: ID=10 [mystnb]
+[01mreading sources... [39;49;00m[ 65%] [35mbibliografia[39;49;00m                                         
+[01mreading sources... [39;49;00m[ 70%] [35me3_01_correcciones[39;49;00m                                   
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_01_correcciones.md: Executing notebook using local CWD [mystnb]
+C:\Users\ProyectoSGR\envs\covertype\lib\site-packages\zmq\_future.py:718: RuntimeWarning: Proactor event loop does not 
+implement add_reader family of methods required for zmq. Registering an additional selector thread for add_reader 
+support via tornado. Use `asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())` to avoid this warning.
+  self._get_loop()
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) 
+is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned 
+CurveZMQ keys to enable transport encryption.
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_01_correcciones.md: Executed notebook in 3.53 seconds [mystnb]
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_01_correcciones.md: Cached executed notebook: ID=22 [mystnb]
+[01mreading sources... [39;49;00m[ 75%] [35me3_04_literatura[39;49;00m                                     
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_04_literatura.md: Using cached notebook: ID=15 [mystnb]
+[01mreading sources... [39;49;00m[ 80%] [35me3_05_modelo_original[39;49;00m                                
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_05_modelo_original.md: Using cached notebook: ID=16 [mystnb]
+[01mreading sources... [39;49;00m[ 85%] [35me3_06_validacion[39;49;00m                                     
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_06_validacion.md: Executing notebook using local CWD [mystnb]
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) 
+is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned 
+CurveZMQ keys to enable transport encryption.
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_06_validacion.md: Executed notebook in 3.33 seconds [mystnb]
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_06_validacion.md: Cached executed notebook: ID=23 [mystnb]
+[01mreading sources... [39;49;00m[ 90%] [35me3_08_conclusiones[39;49;00m                                   
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_08_conclusiones.md: Executing notebook using local CWD [mystnb]
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) 
+is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned 
+CurveZMQ keys to enable transport encryption.
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_08_conclusiones.md: Executed notebook in 4.14 seconds [mystnb]
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_08_conclusiones.md: Cached executed notebook: ID=24 [mystnb]
+[01mreading sources... [39;49;00m[ 95%] [35me3_09_reproducibilidad[39;49;00m                               
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_09_reproducibilidad.md: Executing notebook using local CWD [mystnb]
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) 
+is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned 
+CurveZMQ keys to enable transport encryption.
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_09_reproducibilidad.md: Executed notebook in 2.00 seconds [mystnb]
+C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\e3_09_reproducibilidad.md: Cached executed notebook: ID=25 [mystnb]
+[01mreading sources... [39;49;00m[100%] [35mintro[39;49;00m                                                
+
+[01mlooking for now-outdated files... [39;49;00mnone found
+[01mpickling environment... [39;49;00mdone
+[01mchecking consistency... [39;49;00mdone
+[01mpreparing documents... [39;49;00mdone
+[01mwriting output... [39;49;00m[  5%] [32m01_base_datos[39;49;00m                                         
+[01mwriting output... [39;49;00m[ 10%] [32m02_eda[39;49;00m                                                
+[01mwriting output... [39;49;00m[ 15%] [32m02b_fuga_estructura[39;49;00m                                   
+[01mwriting output... [39;49;00m[ 20%] [32m02c_preprocesamiento[39;49;00m                                  
+[01mwriting output... [39;49;00m[ 25%] [32m03_modelo_base[39;49;00m                                        
+[01mwriting output... [39;49;00m[ 30%] [32m04_conclusiones[39;49;00m                                       
+[01mwriting output... [39;49;00m[ 35%] [32m05_apendice[39;49;00m                                           
+[01mwriting output... [39;49;00m[ 40%] [32m06_benchmark_modelos[39;49;00m                                  
+[01mwriting output... [39;49;00m[ 45%] [32m07_optimizacion[39;49;00m                                       
+[01mwriting output... [39;49;00m[ 50%] [32m08_comparacion_estadistica[39;49;00m                            
+[01mwriting output... [39;49;00m[ 55%] [32m09_interpretabilidad[39;49;00m                                  
+[01mwriting output... [39;49;00m[ 60%] [32m10_conclusiones_finales[39;49;00m                               
+[01mwriting output... [39;49;00m[ 65%] [32mbibliografia[39;49;00m                                          
+[01mwriting output... [39;49;00m[ 70%] [32me3_01_correcciones[39;49;00m                                    
+[01mwriting output... [39;49;00m[ 75%] [32me3_04_literatura[39;49;00m                                      
+[01mwriting output... [39;49;00m[ 80%] [32me3_05_modelo_original[39;49;00m                                 
+[01mwriting output... [39;49;00m[ 85%] [32me3_06_validacion[39;49;00m                                      
+[01mwriting output... [39;49;00m[ 90%] [32me3_08_conclusiones[39;49;00m                                    
+[01mwriting output... [39;49;00m[ 95%] [32me3_09_reproducibilidad[39;49;00m                                
+[01mwriting output... [39;49;00m[100%] [32mintro[39;49;00m                                                 
+
+[01mgenerating indices... [39;49;00mgenindex done
+[01mwriting additional pages... [39;49;00msearch done
+[01mcopying images... [39;49;00m[  2%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/a0fc1f9d98e80cf8e7db67a057bd49ee81ee54d0062a88e25e97bbd6e1df9f15.png[39;49;00m
+[01mcopying images... [39;49;00m[  4%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/34260bbd26e0c0be5370daaecea9c33a1ec53742a0c4c5f55405fd2f724e3aff.png[39;49;00m
+[01mcopying images... [39;49;00m[  6%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/7038654575d1ca2231c24f511d86035bf4d417da8b0131e4048f3564751e16ee.png[39;49;00m
+[01mcopying images... [39;49;00m[  8%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/9cd9e5a7705e465014df783aae0d5e8a90da7dae92d666d40df7a300de6ec4ec.png[39;49;00m
+[01mcopying images... [39;49;00m[ 11%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/856474771d427223d0120424da8076e8df291452eebec101d19f4cd23ba0e908.png[39;49;00m
+[01mcopying images... [39;49;00m[ 13%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/924bd26561afd2935ffb4950d8e60f55e34c1396d3a097c33dd156d965d501bd.png[39;49;00m
+[01mcopying images... [39;49;00m[ 15%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/7cfee738ee0728e5a3ea8b1bb8590c0e8f1b897cc9e19c5eab54c0931af3e941.png[39;49;00m
+[01mcopying images... [39;49;00m[ 17%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/3115634d0e7dfe9c3df912ae18d283cf55027162fda4dcd4aa65ad7534258abd.png[39;49;00m
+[01mcopying images... [39;49;00m[ 20%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/a4d6157f7f2f6a0a727faa35a2bcac7fe24537230720a259caa728a4f0c26f26.png[39;49;00m
+[01mcopying images... [39;49;00m[ 22%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/2483e042300e65ecc776b6debcc4d95e96df36560894fb7f3fe113e6742cf6d8.png[39;49;00m
+[01mcopying images... [39;49;00m[ 24%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/bbf6858f42b01d363f891d0a40633f422f8b6ad33a1ba396d0dcb0caf24964de.png[39;49;00m
+[01mcopying images... [39;49;00m[ 26%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/e34908ecdd2130bbd3253dd7000379d56f7aaa0dad24ef888396d45f7ff53536.png[39;49;00m
+[01mcopying images... [39;49;00m[ 28%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/706b5ce6f62750598f486de4059cbdf224549b1c1bd5bbfda401dffe4a2f18f9.png[39;49;00m
+[01mcopying images... [39;49;00m[ 31%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/14f9c944dd2581be40f6f031d276fadf14456d30809e1f4957546f6265d12bfa.png[39;49;00m
+[01mcopying images... [39;49;00m[ 33%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/3509d1450c95a04c17cf1bc10d6a7f78ba883f3b59d0b675bbd1b53a6c9fb9e3.png[39;49;00m
+[01mcopying images... [39;49;00m[ 35%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/2191e8c4e136c0400a7e6e13fbb29347dbdc0d3f17a7d25bd9a5deea83da36b2.png[39;49;00m
+[01mcopying images... [39;49;00m[ 37%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/da85e7ef12d5f730d33836b1041bb5f46e36d0564804c603c4637845f447a3a9.png[39;49;00m
+[01mcopying images... [39;49;00m[ 40%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/56fd2e7ad78cc24a6d266e8412a3b3eb6db206811a25464c61b6dc89d1f7563a.png[39;49;00m
+[01mcopying images... [39;49;00m[ 42%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/4790c795ccfbc5be777923f82c98d014ef05ca275c2f857e25c98f64b44d407f.png[39;49;00m
+[01mcopying images... [39;49;00m[ 44%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/0cbf1e81ce8f40d8d576deedcf5372bb0471e971813f160c0976943d67e00ea2.png[39;49;00m
+[01mcopying images... [39;49;00m[ 46%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/a7971743e6909e153d1800dd1f60c4fa05b22e5c253424c944314bff73707b4e.png[39;49;00m
+[01mcopying images... [39;49;00m[ 48%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/c1b81d6b5f02515893acb634ca81500bc76dddfc2f4b031fdaba524f12f85785.png[39;49;00m
+[01mcopying images... [39;49;00m[ 51%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/3f295ebaab48bf88b018af6eed125ea2d279ed2ea51902b79d0817c10d568440.png[39;49;00m
+[01mcopying images... [39;49;00m[ 53%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/019e4efc2116dff2c09db4d3ae60368bc25a5ac1a00171a5558826ad47668432.png[39;49;00m
+[01mcopying images... [39;49;00m[ 55%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/73f35e1635cfa8ca9e7de5a2f3340db322cc3f224557d757136469572726ec48.png[39;49;00m
+[01mcopying images... [39;49;00m[ 57%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/44dc758d440b147b49d06152e9ddacf00f13c08c998468ab16844c2450085a5f.png[39;49;00m
+[01mcopying images... [39;49;00m[ 60%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/fd72ce9bcc6e05fbb0fb99eec5e651a865242736dc4b1611ebd4f73a97ea7f23.png[39;49;00m
+[01mcopying images... [39;49;00m[ 62%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/48391fc27d1604704cc05a9d265da8f52aef8ec4fbe36def71010369819d54e9.png[39;49;00m
+[01mcopying images... [39;49;00m[ 64%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/1a88e6e2d302ff9037f84de725c5b7cbc4ffb09928866d53d18ccde9a7ecbda6.png[39;49;00m
+[01mcopying images... [39;49;00m[ 66%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/e81bd716f35b605683bc585dd44909c6c08966f681c911742f5fdd7605268d59.png[39;49;00m
+[01mcopying images... [39;49;00m[ 68%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/91e72e96e7ac332834fc66e4147d559288329c042e51442a10c0ac133e9eb1b9.png[39;49;00m
+[01mcopying images... [39;49;00m[ 71%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/9de89cd14437c14ee8da09fe6c20327ca23d50c57058daca6acd1c664c78a2b2.png[39;49;00m
+[01mcopying images... [39;49;00m[ 73%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/c4d10a35ea05c43e772193dcac936f49592dedf5fdd3aa39c5f815c67763e502.png[39;49;00m
+[01mcopying images... [39;49;00m[ 75%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/a99666375dec2de54e595da133e887f94f7f146050a4a36476432aa406314a2f.png[39;49;00m
+[01mcopying images... [39;49;00m[ 77%] [33mfiguras/shap_importancia_por_clase.png[39;49;00m                
+[01mcopying images... [39;49;00m[ 80%] [33mfiguras/shap_beeswarm_lodgepole.png[39;49;00m                   
+[01mcopying images... [39;49;00m[ 82%] [33mfiguras/shap_beeswarm_abeto_picea.png[39;49;00m                 
+[01mcopying images... [39;49;00m[ 84%] [33mfiguras/shap_waterfall_correcta.png[39;49;00m                   
+[01mcopying images... [39;49;00m[ 86%] [33mfiguras/shap_waterfall_error.png[39;49;00m                      
+[01mcopying images... [39;49;00m[ 88%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/b3e2ea27552ad299896446c98963f5fdd581f659b57541e533db32700fc7f4d0.png[39;49;00m
+[01mcopying images... [39;49;00m[ 91%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/9be5a9d6195f045b8eb04e8d049af2c462aaf7742aa39d44b44b1ccb4e82a57c.png[39;49;00m
+[01mcopying images... [39;49;00m[ 93%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/fef3cae25942a44a06369ca68337afe185a0899c2135c3ac44160c4bd9d79f31.png[39;49;00m
+[01mcopying images... [39;49;00m[ 95%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/ab0de9975633c8bf5f22625755353ad0ee1bbf8aea72657c1f8f6f07ab159ac0.png[39;49;00m
+[01mcopying images... [39;49;00m[ 97%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/63f2e0fefa720a0292d3169a9b3e5f2610ad4722bf8dc22adf5ec94a7eec303d.png[39;49;00m
+[01mcopying images... [39;49;00m[100%] [33mC:/proyecto-final-covertype/proyecto-final-covertype-E3/docs/_build/jupyter_execute/5c47dd412b47d25417b9905e638fc7778eb4bf715f0613acd9547ff0bef90282.png[39;49;00m
+
+[01mcopying static files... [39;49;00mdone
+[01mcopying extra files... [39;49;00mdone
+[01mdumping search index in Spanish (code: es)... [39;49;00mdone
+[01mdumping object inventory... [39;49;00mdone
+[01mbuild succeeded.[39;49;00m
+
+The HTML pages are in docs\_build\html.
+
+[92m===============================================================================[0m
+
+Finished generating HTML for book.
+Your book's HTML pages are here:
+    docs\_build\html\
+You can look at your book by opening this file in a browser:
+    docs\_build\html\index.html
+Or paste this line directly into your browser bar:
+    file://C:\proyecto-final-covertype\proyecto-final-covertype-E3\docs\_build\html\index.html            
+
+[92m===============================================================================[0m
+

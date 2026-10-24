@@ -1,0 +1,36 @@
+{
+  "correcta": {
+    "indice_prueba": 17948,
+    "clase_real": 7,
+    "clase_predicha": 7,
+    "probabilidad": 0.9987884163856506,
+    "probabilidad_clase_real": 0.9987884163856506,
+    "top_contribuciones": {
+      "Elevation": 3.408900022506714,
+      "Horizontal_Distance_To_Fire_Points": 1.0051000118255615,
+      "Wilderness_Area_3": 0.6735000014305115,
+      "Elevation_Minus_VDH": 0.5478000044822693,
+      "Soil_Type_40": 0.5228000283241272,
+      "Horizontal_Distance_To_Roadways": 0.3741999864578247,
+      "Vertical_Distance_To_Hydrology": 0.2551000118255615,
+      "Wilderness_Area_2": 0.11840000003576279
+    }
+  },
+  "error": {
+    "indice_prueba": 10790,
+    "clase_real": 1,
+    "clase_predicha": 2,
+    "probabilidad": 0.9764800667762756,
+    "probabilidad_clase_real": 0.022039039060473442,
+    "top_contribuciones": {
+      "Elevation_Minus_VDH": 0.4514000117778778,
+      "Soil_Type_12": 0.26570001244544983,
+      "Elevation": 0.21660000085830688,
+      "Horizontal_Distance_To_Fire_Points": 0.07779999822378159,
+      "Wilderness_Area_1": 0.06340000033378601,
+      "Horizontal_Distance_To_Hydrology": 0.06279999762773514,
+      "Hillshade_Noon": -0.03889999911189079,
+      "Dist_Hydrology_Euclid": 0.03669999912381172
+    }
+  }
+}

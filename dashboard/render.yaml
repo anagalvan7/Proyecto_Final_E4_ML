@@ -1,0 +1,10 @@
+﻿services:
+  - type: web                    # aplicacion web
+    name: dashboard-covertype-e3 # nombre del servicio en Render
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:server --workers 1 --threads 2 --timeout 120
+    envVars:
+      - key: PYTHON_VERSION      # misma version menor del ambiente de entrenamiento
+        value: 3.10.16

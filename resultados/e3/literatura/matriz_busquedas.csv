@@ -1,0 +1,54 @@
+﻿id,base,cadena,idioma,componentes,fecha,resultados,error
+C1,OpenAlex,"""dynamic ensemble selection"" covertype",en,familia + problema,2026-10-23,12.0,
+C1,Semantic Scholar,"""dynamic ensemble selection"" covertype",en,familia + problema,2026-10-23,,HTTP Error 429: 
+C1,arXiv,"""dynamic ensemble selection"" covertype",en,familia + problema,2026-10-23,0.0,
+C2,OpenAlex,"""dynamic ensemble selection"" ""forest cover type""",en,familia + problema (sinonimo),2026-10-23,8.0,
+C2,Semantic Scholar,"""dynamic ensemble selection"" ""forest cover type""",en,familia + problema (sinonimo),2026-10-23,,HTTP Error 429: 
+C2,arXiv,"""dynamic ensemble selection"" ""forest cover type""",en,familia + problema (sinonimo),2026-10-23,0.0,
+C3,OpenAlex,"""dynamic classifier selection"" covtype",en,familia + nombre del conjunto,2026-10-23,5.0,
+C3,Semantic Scholar,"""dynamic classifier selection"" covtype",en,familia + nombre del conjunto,2026-10-23,4571.0,
+C3,arXiv,"""dynamic classifier selection"" covtype",en,familia + nombre del conjunto,2026-10-23,0.0,
+C4,OpenAlex,"""local competence"" ensemble ""cover type""",en,mecanismo + problema,2026-10-23,1.0,
+C4,Semantic Scholar,"""local competence"" ensemble ""cover type""",en,mecanismo + problema,2026-10-23,260.0,
+C4,arXiv,"""local competence"" ensemble ""cover type""",en,mecanismo + problema,2026-10-23,0.0,
+C5,OpenAlex,"""dynamic weighting"" ensemble ""forest cover""",en,mecanismo + problema,2026-10-23,20.0,
+C5,Semantic Scholar,"""dynamic weighting"" ensemble ""forest cover""",en,mecanismo + problema,2026-10-23,,HTTP Error 429: 
+C5,arXiv,"""dynamic weighting"" ensemble ""forest cover""",en,mecanismo + problema,2026-10-23,0.0,
+C6,OpenAlex,KNORA covertype,en,metodo afin + problema,2026-10-23,1.0,
+C6,Semantic Scholar,KNORA covertype,en,metodo afin + problema,2026-10-23,,HTTP Error 429: 
+C6,arXiv,KNORA covertype,en,metodo afin + problema,2026-10-23,0.0,
+C7,OpenAlex,"""META-DES"" covertype",en,metodo afin + problema,2026-10-23,1.0,
+C7,Semantic Scholar,"""META-DES"" covertype",en,metodo afin + problema,2026-10-23,,HTTP Error 429: 
+C7,arXiv,"""META-DES"" covertype",en,metodo afin + problema,2026-10-23,0.0,
+C8,OpenAlex,"""local log loss"" ensemble weighting nearest neighbors",en,mecanismo (cualquier aplicacion),2026-10-23,1.0,
+C8,Semantic Scholar,"""local log loss"" ensemble weighting nearest neighbors",en,mecanismo (cualquier aplicacion),2026-10-23,96.0,
+C8,arXiv,"""local log loss"" ensemble weighting nearest neighbors",en,mecanismo (cualquier aplicacion),2026-10-23,0.0,
+C9,OpenAlex,"""class-specific"" ""dynamic weighting"" ensemble classifiers",en,mecanismo (cualquier aplicacion),2026-10-23,148.0,
+C9,Semantic Scholar,"""class-specific"" ""dynamic weighting"" ensemble classifiers",en,mecanismo (cualquier aplicacion),2026-10-23,,HTTP Error 429: 
+C9,arXiv,"""class-specific"" ""dynamic weighting"" ensemble classifiers",en,mecanismo (cualquier aplicacion),2026-10-23,0.0,
+C10,OpenAlex,"ensamble ""competencia local"" ""cobertura forestal""",es,familia + problema (espanol),2026-10-23,0.0,
+C10,Semantic Scholar,"ensamble ""competencia local"" ""cobertura forestal""",es,familia + problema (espanol),2026-10-23,,HTTP Error 429: 
+C10,arXiv,"ensamble ""competencia local"" ""cobertura forestal""",es,familia + problema (espanol),2026-10-23,0.0,
+C11,OpenAlex,seleccion dinamica de clasificadores cobertura vegetal,es,familia + problema (espanol),2026-10-23,0.0,
+C11,Semantic Scholar,seleccion dinamica de clasificadores cobertura vegetal,es,familia + problema (espanol),2026-10-23,1115.0,
+C11,arXiv,seleccion dinamica de clasificadores cobertura vegetal,es,familia + problema (espanol),2026-10-23,0.0,
+C12,OpenAlex,stacking covertype,en,familia (stacking) + nombre del conjunto,2026-10-23,228.0,
+C12,arXiv,stacking covertype,en,familia (stacking) + nombre del conjunto,2026-10-23,0.0,
+C13,OpenAlex,"""stacked generalization"" ""forest cover type""",en,familia + problema,2026-10-23,16.0,
+C13,arXiv,"""stacked generalization"" ""forest cover type""",en,familia + problema,2026-10-23,0.0,
+C14,OpenAlex,"""clustered stacking"" OR ""cluster-based stacking"" OR ""regional stacking""",en,mecanismo (cualquier aplicacion),2026-10-23,888.0,
+C14,arXiv,"""clustered stacking"" OR ""cluster-based stacking"" OR ""regional stacking""",en,mecanismo (cualquier aplicacion),2026-10-23,,HTTP Error 400: Bad Request
+C15,OpenAlex,"""local stacking"" OR ""locally weighted stacking"" ensemble",en,mecanismo (cualquier aplicacion),2026-10-23,2342425.0,
+C15,arXiv,"""local stacking"" OR ""locally weighted stacking"" ensemble",en,mecanismo (cualquier aplicacion),2026-10-23,,HTTP Error 400: Bad Request
+C16,OpenAlex,"""mixture of experts"" covertype",en,familia afin + nombre del conjunto,2026-10-23,18.0,
+C16,arXiv,"""mixture of experts"" covertype",en,familia afin + nombre del conjunto,2026-10-23,1.0,
+C17,OpenAlex,"""hierarchical shrinkage"" stacking ensemble",en,mecanismo (cualquier aplicacion),2026-10-23,32.0,
+C17,arXiv,"""hierarchical shrinkage"" stacking ensemble",en,mecanismo (cualquier aplicacion),2026-10-23,0.0,
+C18,OpenAlex,"""logistic model tree"" covertype",en,finalista 2 + problema,2026-10-23,8.0,
+C18,arXiv,"""logistic model tree"" covertype",en,finalista 2 + problema,2026-10-23,0.0,
+C19,OpenAlex,"""functional trees"" OR ""LMT"" ""forest cover type""",en,finalista 2 + problema,2026-10-23,10010.0,
+C19,arXiv,"""functional trees"" OR ""LMT"" ""forest cover type""",en,finalista 2 + problema,2026-10-23,,HTTP Error 400: Bad Request
+C20,OpenAlex,"""fuzzy k-nearest neighbor"" covertype",en,finalista 3 + problema,2026-10-23,0.0,
+C20,arXiv,"""fuzzy k-nearest neighbor"" covertype",en,finalista 3 + problema,2026-10-23,0.0,
+C21,OpenAlex,"stacking ""cobertura forestal"" OR ""cobertura vegetal"" ensamble",es,familia + problema (espanol),2026-10-23,644.0,
+C21,arXiv,"stacking ""cobertura forestal"" OR ""cobertura vegetal"" ensamble",es,familia + problema (espanol),2026-10-23,,HTTP Error 400: Bad Request

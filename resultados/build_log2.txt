@@ -1,0 +1,51 @@
+Running Jupyter-Book v0.15.1
+Source Folder: C:\Users\NITRO\Documents\ML_UN202330\proyecto-final-covertype\docs
+Config Path: C:\Users\NITRO\Documents\ML_UN202330\proyecto-final-covertype\docs\_config.yml
+Output Path: C:\Users\NITRO\Documents\ML_UN202330\proyecto-final-covertype\docs\_build\html
+[sphinxcontrib-bibtex] Beware that docutils versions 0.18 and 0.19 (you are running 0.18.1) are known to generate invalid html for citations. If this issue affects you, please use docutils<0.18 (or >=0.20 once released) instead. For more details, see https://sourceforge.net/p/docutils/patches/195/
+[01mRunning Sphinx v5.0.2[39;49;00m
+[01mloading translations [es]... [39;49;00mdone
+[etoc] Changing master_doc to 'intro'
+[01mloading pickled environment... [39;49;00mchecking bibtex cache... up to date
+done
+[01mmyst v0.18.1:[39;49;00m MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=['dollarmath', 'amsmath', 'colon_fence'], disable_syntax=[], all_links_external=False, url_schemes=['mailto', 'http', 'https'], ref_domains=None, highlight_code_blocks=True, number_code_blocks=[], title_to_header=False, heading_anchors=None, heading_slug_func=None, footnote_transition=True, words_per_minute=200, sub_delimiters=('{', '}'), linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area')
+[01mmyst-nb v0.17.2:[39;49;00m NbParserConfig(custom_formats={}, metadata_key='mystnb', cell_metadata_key='mystnb', kernel_rgx_aliases={}, execution_mode='cache', execution_cache_path='', execution_excludepatterns=[], execution_timeout=3600, execution_in_temp=False, execution_allow_errors=False, execution_raise_on_error=False, execution_show_tb=False, merge_streams=False, render_plugin='default', remove_code_source=False, remove_code_outputs=False, code_prompt_show='Show code cell {type}', code_prompt_hide='Hide code cell {type}', number_source_lines=False, output_stderr='remove', render_text_lexer='myst-ansi', render_error_lexer='ipythontb', render_image_options={}, render_figure_options={}, render_markdown_format='commonmark', output_folder='build', append_css=True, metadata_to_fm=False)
+Using jupyter-cache at: C:\Users\NITRO\Documents\ML_UN202330\proyecto-final-covertype\docs\_build\.jupyter_cache
+[01mbuilding [mo]: [39;49;00mtargets for 0 po files that are out of date
+[01mbuilding [html]: [39;49;00mtargets for 1 source files that are out of date
+[01mupdating environment: [39;49;00m0 added, 1 changed, 0 removed
+[01mreading sources... [39;49;00m[100%] [35m07_optimizacion[39;49;00m                                      C:\Users\NITRO\Documents\ML_UN202330\proyecto-final-covertype\docs\07_optimizacion.md: Executing notebook using local CWD [mystnb]
+C:\Users\NITRO\miniconda3\envs\ml_tareas\lib\site-packages\zmq\_future.py:718: RuntimeWarning: Proactor event loop does not implement add_reader family of methods required for zmq. Registering an additional selector thread for add_reader support via tornado. Use `asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())` to avoid this warning.
+  self._get_loop()
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+C:\Users\NITRO\Documents\ML_UN202330\proyecto-final-covertype\docs\07_optimizacion.md: Executed notebook in 8.58 seconds [mystnb]
+C:\Users\NITRO\Documents\ML_UN202330\proyecto-final-covertype\docs\07_optimizacion.md: Cached executed notebook: ID=13 [mystnb]
+
+[01mlooking for now-outdated files... [39;49;00mnone found
+[01mpickling environment... [39;49;00mdone
+[01mchecking consistency... [39;49;00mdone
+[01mpreparing documents... [39;49;00mdone
+[01mwriting output... [39;49;00m[ 50%] [32m07_optimizacion[39;49;00m                                       [01mwriting output... [39;49;00m[100%] [32mintro[39;49;00m                                                 
+[01mgenerating indices... [39;49;00mgenindex done
+[01mwriting additional pages... [39;49;00msearch done
+[01mcopying images... [39;49;00m[ 50%] [33mC:/Users/NITRO/Documents/ML_UN202330/proyecto-final-covertype/docs/_build/jupyter_execute/f1c1ef93124521820f47f8a7494612928e1cb6e619cf9397223979df0e68a6fb.png[39;49;00m[01mcopying images... [39;49;00m[100%] [33mC:/Users/NITRO/Documents/ML_UN202330/proyecto-final-covertype/docs/_build/jupyter_execute/df7d3f09c5847824a143dd1a033d7f35c8ea72f099bd23646de85d9356e79b03.png[39;49;00m
+[01mcopying static files... [39;49;00mdone
+[01mcopying extra files... [39;49;00mdone
+[01mdumping search index in Spanish (code: es)... [39;49;00mdone
+[01mdumping object inventory... [39;49;00mdone
+[01mbuild succeeded.[39;49;00m
+
+The HTML pages are in _build\html.
+
+[92m===============================================================================[0m
+
+Finished generating HTML for book.
+Your book's HTML pages are here:
+    _build\html\
+You can look at your book by opening this file in a browser:
+    _build\html\index.html
+Or paste this line directly into your browser bar:
+    file://C:\Users\NITRO\Documents\ML_UN202330\proyecto-final-covertype\docs\_build\html\index.html            
+
+[92m===============================================================================[0m
+

@@ -1,0 +1,17 @@
+﻿# Versiones exactas del ambiente en que se entrenaron y serializaron los artefactos
+# (Python 3.10). xgboost-cpu es el paquete oficial de XGBoost sin soporte CUDA: la misma
+# version 2.1.4 con mucha menos memoria, necesario para el plan gratuito de Render (512 MB).
+dash==2.18.2
+dash-bootstrap-components==1.6.0
+dash-iconify==0.1.2
+plotly==5.24.1
+Flask==3.0.3
+pandas==2.1.0
+numpy==1.25.2
+scipy==1.15.3
+scikit-learn==1.7.2
+imbalanced-learn==0.14.2
+xgboost-cpu==2.1.4
+joblib==1.6.0
+threadpoolctl==3.7.0
+gunicorn==23.0.0

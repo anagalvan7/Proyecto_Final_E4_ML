@@ -1,0 +1,39 @@
+{
+ "protocolo": "datos completos, 5 x 2 pliegues + prueba reservada",
+ "mejor_benchmark": "Árbol de decisión",
+ "f1_eclc": 0.906657693095571,
+ "f1_mejor_benchmark": 0.8970943406192269,
+ "f1_eclc_prueba_reservada": 0.9151134887812933,
+ "condicion_1_media_mejor_que_los_7": true,
+ "pruebas_vs_mejor": {
+  "Friedman (global)": true,
+  "Nemenyi (rango ECLC vs mejor benchmark > CD)": false,
+  "Wilcoxon-Holm": true,
+  "t corregida Nadeau-Bengio (Holm)": true,
+  "McNemar en prueba reservada (Holm)": false,
+  "Bayesiana (P(ECLC mejor) > 0,95)": false
+ },
+ "condicion_2_tres_pruebas": true,
+ "condicion_3_efecto_no_despreciable": true,
+ "cliff_vs_mejor": 1.0,
+ "n_pliegues": 10,
+ "friedman": {
+  "estadistico": 79.57333333333338,
+  "p_valor": 5.95756610877173e-14,
+  "k": 9,
+  "N": 10,
+  "cd": 3.7988453555419603,
+  "rangos": {
+   "ECLC (original)": 2.0,
+   "KNN": 3.8,
+   "Naive Bayes": 9.0,
+   "Reg. logística": 8.0,
+   "Árbol de decisión": 3.2,
+   "Random Forest": 5.0,
+   "XGBoost": 6.0,
+   "SVM": 7.0,
+   "HistGradientBoosting": 1.0
+  }
+ },
+ "R3": true
+}

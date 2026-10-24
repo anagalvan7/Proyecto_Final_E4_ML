@@ -1,0 +1,388 @@
+{
+ "modelo": "RF",
+ "nombre": "Random Forest",
+ "balanceo": "smote",
+ "optimizacion": "grid",
+ "hiperparametros_finales": {
+  "max_depth": 20,
+  "n_estimators": 200
+ },
+ "semilla": 42,
+ "versiones": {
+  "python": "3.10.22",
+  "scikit-learn": "1.7.2",
+  "xgboost": "2.1.4",
+  "imbalanced-learn": "0.14.2",
+  "numpy": "1.25.2",
+  "pandas": "2.1.0"
+ },
+ "datos_entrenamiento": "submuestra estratificada de 40000 filas del entrenamiento",
+ "esquema_entrada": [
+  {
+   "nombre": "Elevation",
+   "tipo": "entera",
+   "min": 1859,
+   "max": 3849
+  },
+  {
+   "nombre": "Aspect",
+   "tipo": "entera",
+   "min": 0,
+   "max": 360
+  },
+  {
+   "nombre": "Slope",
+   "tipo": "entera",
+   "min": 0,
+   "max": 61
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Hydrology",
+   "tipo": "entera",
+   "min": 0,
+   "max": 1390
+  },
+  {
+   "nombre": "Vertical_Distance_To_Hydrology",
+   "tipo": "entera",
+   "min": -173,
+   "max": 598
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Roadways",
+   "tipo": "entera",
+   "min": 0,
+   "max": 7112
+  },
+  {
+   "nombre": "Hillshade_9am",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Hillshade_Noon",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Hillshade_3pm",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Fire_Points",
+   "tipo": "entera",
+   "min": 0,
+   "max": 7173
+  },
+  {
+   "nombre": "Wilderness_Area_1",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_2",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_3",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_4",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_1",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_2",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_3",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_4",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_5",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_6",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_7",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_8",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_9",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_10",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_11",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_12",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_13",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_14",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_15",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 0
+  },
+  {
+   "nombre": "Soil_Type_16",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_17",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_18",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_19",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_20",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_21",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_22",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_23",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_24",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_25",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_26",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_27",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_28",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_29",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_30",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_31",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_32",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_33",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_34",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_35",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_36",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_37",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_38",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_39",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_40",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  }
+ ],
+ "clases": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "metricas_bucle_externo": {
+  "f1_macro_media": 0.7830814563013021,
+  "f1_macro_sd": 0.0044696703072443,
+  "f1_macro_pliegues": [
+   0.7853422448514261,
+   0.7779330302936397,
+   0.7859690937588402
+  ]
+ },
+ "metricas_prueba_reservada": {
+  "f1_macro": 0.7934306529231107,
+  "accuracy": 0.8511139987780005,
+  "exactitud_balanceada": 0.8353458134493789,
+  "log_loss": 0.42617065284722006,
+  "f1_por_clase": [
+   0.8524574646820795,
+   0.8679303186208142,
+   0.8630383973288814,
+   0.7893772893772893,
+   0.5678048780487804,
+   0.7351206434316354,
+   0.8782855789722945
+  ]
+ },
+ "ida_y_vuelta_ok": true,
+ "despliegue": {
+  "arboles": 80,
+  "arboles_modelo_evaluado": 200,
+  "f1_macro_prueba_reservada_200": 0.7934306529231107,
+  "f1_macro_prueba_reservada_80": 0.7931914950465231,
+  "ida_y_vuelta_ok": true,
+  "motivo": "memoria del plan gratuito de Render (512 MB); reduccion equivalente en desempeno"
+ }
+}

@@ -1,0 +1,11 @@
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+docs/_build/
+env/
+*.npz
+!resultados/e3/holdout_probas.npz
+*.out
+*.err
+*.log
+~$*

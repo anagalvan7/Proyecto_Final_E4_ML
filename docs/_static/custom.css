@@ -1,0 +1,64 @@
+/* ------------------------------------------------------------------
+   Botones para desplegar el código de las celdas (myst-nb)
+   Mayor contraste y legibilidad en los temas claro y oscuro.
+   ------------------------------------------------------------------ */
+
+div.cell details.hide > summary {
+  cursor: pointer;
+  padding-top: 0.35em;
+  padding-bottom: 0.35em;
+  border-left: 4px solid #2d6a4f !important;
+  background-color: #eef6f1 !important;
+  transition: background-color 0.15s ease-in-out;
+}
+
+div.cell details.hide > summary:hover {
+  background-color: #d8eee0 !important;
+}
+
+div.cell details.hide > summary > span {
+  opacity: 1 !important;
+  color: #1b4332 !important;
+  font-weight: 600;
+  font-size: 0.92em;
+  letter-spacing: 0.01em;
+}
+
+/* Etiqueta específica para las salidas plegadas (tablas largas). */
+div.cell details.hide.below-input > summary > span.collapsed,
+div.cell details.hide.below-input > summary > span.expanded {
+  font-size: 0;
+}
+div.cell details.hide.below-input > summary > span.collapsed::after {
+  content: "Mostrar tabla";
+  font-size: 0.92rem;
+}
+div.cell details.hide.below-input > summary > span.expanded::after {
+  content: "Ocultar tabla";
+  font-size: 0.92rem;
+}
+
+/* Tema oscuro */
+html[data-theme="dark"] div.cell details.hide > summary {
+  border-left-color: #74c69d !important;
+  background-color: #1e2b25 !important;
+  border-color: #3a4a42 !important;
+}
+html[data-theme="dark"] div.cell details.hide > summary:hover {
+  background-color: #27392f !important;
+}
+html[data-theme="dark"] div.cell details.hide > summary > span {
+  color: #d8f3dc !important;
+}
+html[data-theme="dark"] div.cell details.above-input div.cell_input {
+  border-top-color: #3a4a42 !important;
+}
+
+/* Primera columna de las tablas (antes índice): en negrita y alineada a la izquierda */
+.cell_output table tbody td:first-child {
+  font-weight: 600 !important;
+  text-align: left !important;
+}
+.cell_output table thead th:first-child {
+  text-align: left !important;
+}

@@ -1,0 +1,12 @@
+{
+  "finalista": "XGB_ninguno",
+  "hiperparametros": {
+    "n_estimators": 200,
+    "max_depth": 8,
+    "learning_rate": 0.2
+  },
+  "f1_macro_finalista": 0.927050423191012,
+  "f1_macro_referencia": 0.5564073302215813,
+  "ganancia_absoluta": 0.37064309296943077,
+  "remuestreo_omitido": false
+}

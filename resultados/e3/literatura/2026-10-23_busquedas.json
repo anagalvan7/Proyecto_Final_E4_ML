@@ -1,0 +1,2443 @@
+[
+ {
+  "id": "C1",
+  "base": "OpenAlex",
+  "cadena": "\"dynamic ensemble selection\" covertype",
+  "idioma": "en",
+  "componentes": "familia + problema",
+  "fecha": "2026-10-23",
+  "resultados": 12,
+  "titulos": [
+   [
+    "A Decision-Based Dynamic Ensemble Selection Method for Concept Drift",
+    2019,
+    "https://doi.org/10.1109/ictai.2019.00158"
+   ],
+   [
+    "An Adaptive Heterogeneous Online Learning Ensemble Classifier for Nonstationary Environments",
+    2021,
+    "https://doi.org/10.1155/2021/6669706"
+   ],
+   [
+    "A comprehensive active learning method for multiclass imbalanced data streams with concept drift",
+    2021,
+    "https://doi.org/10.1016/j.knosys.2021.106778"
+   ],
+   [
+    "ADES: A New Ensemble Diversity-Based Approach for Handling Concept Drift",
+    2021,
+    "https://doi.org/10.1155/2021/5549300"
+   ],
+   [
+    "Online K-d tree for approximate neighborhood search in data streams",
+    2026,
+    "https://doi.org/10.48550/arxiv.2606.02752"
+   ],
+   [
+    "DynaQ: online learning from imbalanced multi-class streams through dynamic sampling",
+    2023,
+    "https://doi.org/10.1007/s10489-023-04886-w"
+   ],
+   [
+    "DyS: A Framework for Mixture Models in Quantification",
+    2019,
+    "https://doi.org/10.1609/aaai.v33i01.33014552"
+   ],
+   [
+    "Dynamic Ensemble Member Selection for Data Stream Classification",
+    2025,
+    "https://doi.org/10.1145/3746252.3761072"
+   ],
+   [
+    "Adaptive Hybrid Ensemble Method for Accelerate Adaptation of Concept Drift",
+    2023,
+    "https://doi.org/10.21203/rs.3.rs-3101864/v1"
+   ],
+   [
+    "Adaptive Ensemble Learning for Data Streams with Concept Drift via Large Language Model",
+    2026,
+    "https://doi.org/10.2139/ssrn.7227600"
+   ],
+   [
+    "Boosting methods for multi-class imbalanced data classification: an experimental review",
+    2020,
+    "https://doi.org/10.1186/s40537-020-00349-y"
+   ],
+   [
+    "Pekiştirmeli öğrenme kullanarak artımsal sezgisel üst-öğrenme",
+    2026,
+    null
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C1",
+  "base": "Semantic Scholar",
+  "cadena": "\"dynamic ensemble selection\" covertype",
+  "idioma": "en",
+  "componentes": "familia + problema",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 429: "
+ },
+ {
+  "id": "C1",
+  "base": "arXiv",
+  "cadena": "\"dynamic ensemble selection\" covertype",
+  "idioma": "en",
+  "componentes": "familia + problema",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C2",
+  "base": "OpenAlex",
+  "cadena": "\"dynamic ensemble selection\" \"forest cover type\"",
+  "idioma": "en",
+  "componentes": "familia + problema (sinonimo)",
+  "fecha": "2026-10-23",
+  "resultados": 8,
+  "titulos": [
+   [
+    "AD-DES: An adaptive dual dynamic ensemble selection for imbalanced data streams",
+    2025,
+    "https://doi.org/10.3934/era.2025291"
+   ],
+   [
+    "Pekiştirmeli öğrenme kullanarak artımsal sezgisel üst-öğrenme",
+    2026,
+    null
+   ],
+   [
+    "ADES: A New Ensemble Diversity-Based Approach for Handling Concept Drift",
+    2021,
+    "https://doi.org/10.1155/2021/5549300"
+   ],
+   [
+    "DynaQ: online learning from imbalanced multi-class streams through dynamic sampling",
+    2023,
+    "https://doi.org/10.1007/s10489-023-04886-w"
+   ],
+   [
+    "Hellinger Distance Weighted Ensemble for imbalanced data stream classification",
+    2021,
+    "https://doi.org/10.1016/j.jocs.2021.101314"
+   ],
+   [
+    "A Comprehensive Review of Machine Learning Advances on Data Change: A Cross-Field Perspective",
+    2024,
+    "https://doi.org/10.48550/arxiv.2402.12627"
+   ],
+   [
+    "Self-Confidence Measures of a Decision Support System Based on Bayesian Networks",
+    2019,
+    null
+   ],
+   [
+    "Process-Oriented Stream Classification Pipeline: A Literature Review",
+    2022,
+    "https://doi.org/10.3390/app12189094"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C2",
+  "base": "Semantic Scholar",
+  "cadena": "\"dynamic ensemble selection\" \"forest cover type\"",
+  "idioma": "en",
+  "componentes": "familia + problema (sinonimo)",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 429: "
+ },
+ {
+  "id": "C2",
+  "base": "arXiv",
+  "cadena": "\"dynamic ensemble selection\" \"forest cover type\"",
+  "idioma": "en",
+  "componentes": "familia + problema (sinonimo)",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C3",
+  "base": "OpenAlex",
+  "cadena": "\"dynamic classifier selection\" covtype",
+  "idioma": "en",
+  "componentes": "familia + nombre del conjunto",
+  "fecha": "2026-10-23",
+  "resultados": 5,
+  "titulos": [
+   [
+    "On-the-Fly Ensemble Pruning in Evolving Data Streams",
+    2021,
+    "https://doi.org/10.48550/arxiv.2109.07611"
+   ],
+   [
+    "Handling Learnwares Developed from Heterogeneous Feature Spaces without Auxiliary Data",
+    2023,
+    "https://doi.org/10.24963/ijcai.2023/471"
+   ],
+   [
+    "AD-DES: An adaptive dual dynamic ensemble selection for imbalanced data streams",
+    2025,
+    "https://doi.org/10.3934/era.2025291"
+   ],
+   [
+    "Employing Two-Dimensional Word Embedding for Difficult Tabular Data Stream Classification",
+    2024,
+    "https://doi.org/10.1007/978-3-031-70371-3_5"
+   ],
+   [
+    "Lift what you can: green online learning with heterogeneous ensembles",
+    2026,
+    "https://doi.org/10.1007/s10618-026-01200-3"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C3",
+  "base": "Semantic Scholar",
+  "cadena": "\"dynamic classifier selection\" covtype",
+  "idioma": "en",
+  "componentes": "familia + nombre del conjunto",
+  "fecha": "2026-10-23",
+  "resultados": 4571,
+  "titulos": [
+   [
+    "Predictive modeling of pediatric drug-induced liver injury: Dynamic classifier selection with clustering analysis",
+    2025,
+    "10.1177/20552076251330078"
+   ],
+   [
+    "Imbalanced malware classification: an approach based on dynamic classifier selection",
+    2025,
+    "10.1109/CISDBCompanion65092.2025.11010722"
+   ],
+   [
+    "Semi-supervised learning with dynamic classifier selection for PMI estimation: An animal study.",
+    2025,
+    "10.1016/j.jflm.2025.103051"
+   ],
+   [
+    "Predicting Complications of Cirrhosis using Synthetic Data Generation Enhanced Dynamic Classifier Selection",
+    2024,
+    "10.1109/MedAI62885.2024.00040"
+   ],
+   [
+    "A new dynamic classifier selection method for text classification",
+    2024,
+    "10.55730/1300-0632.4092"
+   ],
+   [
+    "Predicting Unplanned Readmission Risk in Patients With Cirrhosis: Complication-Aware Dynamic Classifier Selection Approach",
+    2024,
+    "10.2196/63581"
+   ],
+   [
+    "Robustness Quantification for Discriminative Models: a New Robustness Metric and its Application to Dynamic Classifier Selection",
+    2026,
+    "10.48550/arXiv.2603.23318"
+   ],
+   [
+    "Long-term traffic pattern forecasting using dynamic classifier selection",
+    2023,
+    "10.3233/JIFS-220759"
+   ],
+   [
+    "Multi-Modal Music Mood Classification with Dynamic Classifier Selection",
+    2023,
+    "10.1109/IWSSIP58668.2023.10180235"
+   ],
+   [
+    "Real-Time Adaptive Neural Network on FPGA: Enhancing Adaptability through Dynamic Classifier Selection",
+    2023,
+    "10.48550/arXiv.2311.09516"
+   ],
+   [
+    "A Novel Semi-Supervised Dynamic Classifier Selection Method for HSI Classification Based on SP Segmentation",
+    2023,
+    "10.1109/ACCESS.2023.3314694"
+   ],
+   [
+    "Dynamic classifier selection: Recent advances and perspectives",
+    2018,
+    "10.1016/j.inffus.2017.09.010"
+   ],
+   [
+    "A Robust Dynamic Classifier Selection Approach for Hyperspectral Images with Imprecise Label Information",
+    2020,
+    "10.3390/s20185262"
+   ],
+   [
+    "A drift detection method based on dynamic classifier selection",
+    2019,
+    "10.1007/s10618-019-00656-w"
+   ],
+   [
+    "Semi-Supervised Hyperspectral Band Selection Based on Dynamic Classifier Selection",
+    2019,
+    "10.1109/JSTARS.2019.2899157"
+   ],
+   [
+    "Adapting dynamic classifier selection for concept drift",
+    2018,
+    "10.1016/j.eswa.2018.03.021"
+   ],
+   [
+    "Cost-sensitive Hierarchical Clustering for Dynamic Classifier Selection",
+    2020,
+    "10.1109/ICMLA55696.2022.00040"
+   ],
+   [
+    "Dynamic Classifier Selection for Data with Skewed Class Distribution Using Imbalance Ratio and Euclidean Distance",
+    2020,
+    "10.1007/978-3-030-50423-6_5"
+   ],
+   [
+    "A framework for dynamic classifier selection oriented by the classification problem difficulty",
+    2018,
+    "10.1016/j.patcog.2017.10.038"
+   ],
+   [
+    "Dynamic Hybrid Ensemble Learning for Arabic Sentiment Analysis: A Statistically Validated Multi-Dataset Approach Using OLA-Based Classifier Selection",
+    2026,
+    "10.1109/IBI68858.2026.11604057"
+   ],
+   [
+    "Robust Dynamic Classifier Selection for Remote Sensing Image Classification",
+    2019,
+    "10.1109/SIPROCESS.2019.8868599"
+   ],
+   [
+    "Generative Data-Driven Dynamic Deep-Learning Classifier Selection for Hyperspectral Image Classification",
+    2026,
+    "10.1109/JSTARS.2025.3646066"
+   ],
+   [
+    "Online local pool generation for dynamic classifier selection: an extended version",
+    2018,
+    "10.1016/J.PATCOG.2018.08.004"
+   ],
+   [
+    "Human Pose and Path Estimation from Aerial Video Using Dynamic Classifier Selection",
+    2018,
+    "10.1007/s12559-018-9577-6"
+   ],
+   [
+    "Enhancing dynamic ensemble selection: combining self-generating prototypes and meta-classifier for data classification",
+    2024,
+    "10.1007/s00521-024-10237-8"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C3",
+  "base": "arXiv",
+  "cadena": "\"dynamic classifier selection\" covtype",
+  "idioma": "en",
+  "componentes": "familia + nombre del conjunto",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C4",
+  "base": "OpenAlex",
+  "cadena": "\"local competence\" ensemble \"cover type\"",
+  "idioma": "en",
+  "componentes": "mecanismo + problema",
+  "fecha": "2026-10-23",
+  "resultados": 1,
+  "titulos": [
+   [
+    "Application of satellite imagery and Artificial Intelligence (AI) for PFAS Contamination Mapping in African Aquatic Systems: Advancing Data-Driven Environmental and Public Health Risk Assessment",
+    2025,
+    "https://doi.org/10.30574/wjbphs.2025.23.1.0696"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C4",
+  "base": "Semantic Scholar",
+  "cadena": "\"local competence\" ensemble \"cover type\"",
+  "idioma": "en",
+  "componentes": "mecanismo + problema",
+  "fecha": "2026-10-23",
+  "resultados": 260,
+  "titulos": [
+   [
+    "ASTER GDEM Correction Based on Stacked Ensemble Learning and ICEsat-2/ATL08: A Case Study from the Qilian Mountains",
+    2025,
+    "10.3390/rs17111839"
+   ],
+   [
+    "On the definition of the competence of local self-government in the new Federal Law on Local Self-Government",
+    2026,
+    "10.52468/2542-1514.2026.10(1).25-35"
+   ],
+   [
+    "Dual-Graph Knowledge Distillation Meets Multiscale CNN: A Novel Ensemble Approach for Few-Shot Hyperspectral Image Classification",
+    2025,
+    "10.1109/TGRS.2025.3627204"
+   ],
+   [
+    "Ensemble of Local Decision Trees for Anomaly Detection in Mixed Data",
+    2021,
+    "10.1007/978-3-030-86486-6_42"
+   ],
+   [
+    "Groundwater potential assessment using GIS-based ensemble learning models in Guanzhong Basin, China",
+    2023,
+    "10.1007/s10661-023-11388-2"
+   ],
+   [
+    "Monitoring the invasion of Campuloclinium macrocephalum (less) DC plants using a novel MaxEnt and machine learning ensemble in the Cradle Nature Reserve, South Africa",
+    2024,
+    "10.1186/s40068-024-00351-w"
+   ],
+   [
+    "A unified ensemble-allosteric framework reconciles gain- and loss-of-function disease mutations in the IP3 receptor",
+    2026,
+    "10.64898/2026.05.22.727127"
+   ],
+   [
+    "Comprehensive comparison of local effect model IV predictions with the particle irradiation data ensemble",
+    2021,
+    "10.1002/mp.15343"
+   ],
+   [
+    "Sampling based approximate spectral clustering ensemble for unsupervised land cover identification",
+    2015,
+    "10.1109/IGARSS.2015.7326294"
+   ],
+   [
+    "IMPROVE Floodeye: Integrated Mobile System for Predictive Routing and Optimized Vehicle Navigation Using Ensemble Algorithm",
+    2025,
+    "10.38124/ijisrt/25jul1687"
+   ],
+   [
+    "Land Cover Classification Using Random Forest, Landsat Spectral Indices Combined Topographical Factors: A case study of Phu Giao, Binh Duong province, Vietnam",
+    2026,
+    "10.1088/1755-1315/1633/1/012011"
+   ],
+   [
+    "DDES: A Distribution-Based Dynamic Ensemble Selection Framework",
+    2021,
+    "10.1109/ACCESS.2021.3063254"
+   ],
+   [
+    "High-resolution land use and land cover dataset for regional climate modelling: historical and future changes in Europe",
+    2023,
+    "10.5194/essd-15-3819-2023"
+   ],
+   [
+    "Dynamic self-paced ensemble for imbalance-aware learning",
+    2026,
+    "10.1007/s10044-026-01645-8"
+   ],
+   [
+    "Flood susceptibility mapping using a novel ensemble weights-of-evidence and support vector machine models in GIS",
+    2014,
+    "10.1016/J.JHYDROL.2014.03.008"
+   ],
+   [
+    "Land Usage Identification with Fusion of Thepade SBTC and Sauvola Thresholding Features of Aerial Images Using Ensemble of Machine Learning Algorithms",
+    2020,
+    "10.1080/08839514.2020.1842627"
+   ],
+   [
+    "Génération de colonnes en nombres entiers pour les problèmes de type partitionnement d’ensemble",
+    2019,
+    null
+   ],
+   [
+    "Predicting Equatorial Spread F at JICAMARCA Sector Via Supervised Machine Learning",
+    2025,
+    "10.1029/2024SW004214"
+   ],
+   [
+    "Competence of the Nurse in Emergencies of Burn Injuries",
+    2020,
+    "10.33422/2nd.wcfeducation.2020.09.181"
+   ],
+   [
+    "Zooming In: Assessing the Transferability of SDMs From Large to Small Spatial Extents",
+    2025,
+    "10.1002/ece3.72419"
+   ],
+   [
+    "Improving Parcel-Level Mapping of Smallholder Crops from VHSR Imagery: An Ensemble Machine-Learning-Based Framework",
+    2021,
+    "10.3390/rs13112146"
+   ],
+   [
+    "Modeling Global-Local Subtopic Distribution with Hypergraph to Diversify Search Results",
+    2023,
+    "10.1109/IJCNN54540.2023.10191529"
+   ],
+   [
+    "An Ensemble Pruning Method Based on Class and Inter-Class Competences for Computer-Aided Medical Decisions",
+    2018,
+    "10.1109/CISP-BMEI.2018.8633169"
+   ],
+   [
+    "Domains of competence of the semi-naive Bayesian network classifiers",
+    2014,
+    "10.1016/j.ins.2013.10.007"
+   ],
+   [
+    "Disentangling the effects of host resources, local, and landscape variables on the occurrence pattern of the dusky large blue butterfly (Phengaris nausithous) in upland grasslands",
+    2019,
+    "10.1007/s10841-019-00204-3"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C4",
+  "base": "arXiv",
+  "cadena": "\"local competence\" ensemble \"cover type\"",
+  "idioma": "en",
+  "componentes": "mecanismo + problema",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C5",
+  "base": "OpenAlex",
+  "cadena": "\"dynamic weighting\" ensemble \"forest cover\"",
+  "idioma": "en",
+  "componentes": "mecanismo + problema",
+  "fecha": "2026-10-23",
+  "resultados": 20,
+  "titulos": [
+   [
+    "Evapotranspiration Estimation in the Sahel Using a New Ensemble-Contextual Method",
+    2020,
+    "https://doi.org/10.3390/rs12030380"
+   ],
+   [
+    "Vegetation Mapping in Heterogeneous Forest–Shrub–Grass Ecosystems Using Fused High-Resolution Optical and SAR Data",
+    2026,
+    "https://doi.org/10.3390/rs18091373"
+   ],
+   [
+    "Ensemble based on Accuracy and Diversity Weighting for Evolving Data Streams",
+    2021,
+    "https://doi.org/10.34028/iajit/19/1/11"
+   ],
+   [
+    "ADES: A New Ensemble Diversity-Based Approach for Handling Concept Drift",
+    2021,
+    "https://doi.org/10.1155/2021/5549300"
+   ],
+   [
+    "Peer Review #1 of \"Classification of the drifting data streams using heterogeneous diversified dynamic class-weighted ensemble (v0.1)\"",
+    2021,
+    "https://doi.org/10.7287/peerj-cs.459v0.1/reviews/1"
+   ],
+   [
+    "Survey of State-of-the-Art Mixed Data Clustering Algorithms",
+    2019,
+    "https://doi.org/10.1109/access.2019.2903568"
+   ],
+   [
+    "Enhancing Image Classification using Graph Attention Networks",
+    2025,
+    "https://doi.org/10.25195/ijci.v51i2.548"
+   ],
+   [
+    "Analysis of Persistent Bias and Suggested Improvements in Forecasting Temperature Patterns over Canaan Valley in West Virginia with the National Blend of Models (NBM)",
+    2026,
+    "https://doi.org/10.15191/nwajom.2026.1408"
+   ],
+   [
+    "Cost-sensitive sparse group online learning for imbalanced data streams",
+    2023,
+    "https://doi.org/10.1007/s10994-023-06403-z"
+   ],
+   [
+    "Concept Drift Adaptation Methods under the Deep Learning Framework: A Literature Review",
+    2023,
+    "https://doi.org/10.3390/app13116515"
+   ],
+   [
+    "A Study on Advancing Runoff Prediction Through Peak Protection Selective Learning in U.S. CAMELS Basins",
+    2026,
+    "https://doi.org/10.3390/w18151832"
+   ],
+   [
+    "Composite degradation index reveals type-specific drivers of forest decline on Qinghai-Tibet Plateau",
+    2026,
+    "https://doi.org/10.1016/j.indic.2026.101500"
+   ],
+   [
+    "Solving the challenges of concept drift in data stream classification.",
+    2022,
+    "https://doi.org/10.18297/etd/3947"
+   ],
+   [
+    "DFS: A Feature–Sample Collaborative Optimization Framework for Machine Learning-Based Forest Aboveground Biomass Estimation Using Multi-Source Remote Sensing",
+    2026,
+    "https://doi.org/10.3390/plants15152387"
+   ],
+   [
+    "Variance Feedback Drift Detection Method for Evolving Data Streams Mining",
+    2024,
+    "https://doi.org/10.3390/app14167157"
+   ],
+   [
+    "A hybrid deep learning framework for robust and efficient streamflow prediction under varying data availability",
+    2026,
+    "https://doi.org/10.1038/s41598-026-66197-7"
+   ],
+   [
+    "WSSGCN: Hyperspectral Forest Image Classification via Watershed Superpixel Segmentation and Sparse Graph Convolutional Networks",
+    2025,
+    "https://doi.org/10.3390/f16050827"
+   ],
+   [
+    "A study of combination of autoencoders and boosted Big-Bang crunch theory architectures for Land-Use classification using remotely sensed imagery",
+    2025,
+    "https://doi.org/10.1038/s41598-025-99436-4"
+   ],
+   [
+    "Revealing urban–rural sustainability dynamics based on multi-source data and machine learning: spatio-temporal hotspots, driving mechanisms, and non-linear thresholds in Suzhou, China",
+    2026,
+    "https://doi.org/10.3389/fenvs.2025.1712246"
+   ],
+   [
+    "Deep Learning-Based Extraction of Urban Blue–Green Spaces and Identification of Influencing Factors of Ecosystem Services: A Case Study of Guilin, China",
+    2026,
+    "https://doi.org/10.3390/rs18101530"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C5",
+  "base": "Semantic Scholar",
+  "cadena": "\"dynamic weighting\" ensemble \"forest cover\"",
+  "idioma": "en",
+  "componentes": "mecanismo + problema",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 429: "
+ },
+ {
+  "id": "C5",
+  "base": "arXiv",
+  "cadena": "\"dynamic weighting\" ensemble \"forest cover\"",
+  "idioma": "en",
+  "componentes": "mecanismo + problema",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C6",
+  "base": "OpenAlex",
+  "cadena": "KNORA covertype",
+  "idioma": "en",
+  "componentes": "metodo afin + problema",
+  "fecha": "2026-10-23",
+  "resultados": 1,
+  "titulos": [
+   [
+    "Pekiştirmeli öğrenme kullanarak artımsal sezgisel üst-öğrenme",
+    2026,
+    null
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C6",
+  "base": "Semantic Scholar",
+  "cadena": "KNORA covertype",
+  "idioma": "en",
+  "componentes": "metodo afin + problema",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 429: "
+ },
+ {
+  "id": "C6",
+  "base": "arXiv",
+  "cadena": "KNORA covertype",
+  "idioma": "en",
+  "componentes": "metodo afin + problema",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C7",
+  "base": "OpenAlex",
+  "cadena": "\"META-DES\" covertype",
+  "idioma": "en",
+  "componentes": "metodo afin + problema",
+  "fecha": "2026-10-23",
+  "resultados": 1,
+  "titulos": [
+   [
+    "Quantitative Profiling of Tabular Biomedical Benchmark Datasets: A Meta-Learning Perspective for Algorithm Selection",
+    2026,
+    "https://doi.org/10.32604/cmes.2026.082841"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C7",
+  "base": "Semantic Scholar",
+  "cadena": "\"META-DES\" covertype",
+  "idioma": "en",
+  "componentes": "metodo afin + problema",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 429: "
+ },
+ {
+  "id": "C7",
+  "base": "arXiv",
+  "cadena": "\"META-DES\" covertype",
+  "idioma": "en",
+  "componentes": "metodo afin + problema",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C8",
+  "base": "OpenAlex",
+  "cadena": "\"local log loss\" ensemble weighting nearest neighbors",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": 1,
+  "titulos": [
+   [
+    "Information from coincidences",
+    2026,
+    "https://doi.org/10.48550/arxiv.2606.25042"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C8",
+  "base": "Semantic Scholar",
+  "cadena": "\"local log loss\" ensemble weighting nearest neighbors",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": 96,
+  "titulos": [
+   [
+    "Interpretable Predictions for Crime Categories Using Log Loss Approach for Imbalanced Target Feature",
+    2024,
+    "10.1109/InC460750.2024.10649054"
+   ],
+   [
+    "CS-MLAkNN: A Cost-Sensitive Adaptive k-Nearest Neighbors Algorithm for Imbalanced Multi-Label Learning",
+    2026,
+    "10.3390/sym18030448"
+   ],
+   [
+    "Comparative Analysis of Inductive Learning Methods with Local-Sensitive Hashing for Diagnostic Modeling",
+    2026,
+    "10.15407/jai2026.02.055"
+   ],
+   [
+    "A Stacking Ensemble Learning Model for Monthly Rainfall Prediction in the Taihu Basin, China",
+    2022,
+    null
+   ],
+   [
+    "Ensemble Machine Learning and Explainable AI for Defect Prediction in Safety-Critical Aerospace Software",
+    2026,
+    "10.1007/s42979-026-05185-0"
+   ],
+   [
+    "LOF weighted KNN regression ensemble and its application to a die manufacturing company",
+    2023,
+    "10.1007/s12046-023-02283-0"
+   ],
+   [
+    "Improved Pointwise Ensemble Surrogate Modelling for Assembly Deviation Analysis of Thin-Walled Parts",
+    2026,
+    "10.3390/modelling7050221"
+   ],
+   [
+    "Validation-Conditioned Dynamic Ensemble Regression with Applications in Biomedical Data",
+    2026,
+    "10.1109/ICAD69378.2026.11608383"
+   ],
+   [
+    "Imbalance Data Classification Using Local Mahalanobis Distance Learning Based on Nearest Neighbor",
+    2020,
+    "10.1007/s42979-020-0085-x"
+   ],
+   [
+    "EYE-GDM: Clinically Validated, Explainable Ensemble Learning for Gestational Diabetes",
+    2025,
+    "10.14569/ijacsa.2025.0161037"
+   ],
+   [
+    "Predicting Students’ Performance Using an Attention-Based Long Short-Term Memory with Conditional Variation Autoencoders and Ensemble Model",
+    2025,
+    "10.51244/ijrsi.2025.120700007"
+   ],
+   [
+    "Vocal features based Parkinson’s detection: An ensemble learning approach",
+    2025,
+    "10.1016/j.mex.2025.103662"
+   ],
+   [
+    "Ensemble and temporal feature-based framework for rainfall classification in Bangladesh",
+    2026,
+    "10.1371/journal.pone.0342646"
+   ],
+   [
+    "AN INTELLIGENT CREDIT CARD FRAUD DETECTION SYSTEM BASED ON GEOSPATIAL FEATURES AND ENSEMBLE MACHINE LEARNING",
+    2026,
+    "10.64751/ajaccm.2026.v6.n3.774"
+   ],
+   [
+    "Improving Cardiovascular Disease Prediction through Stratified Machine Learning Models and Combined Datasets",
+    2025,
+    "10.21928/uhdjst.v9n1y2025.pp149-168"
+   ],
+   [
+    "Intrusion Detection in IoT Systems Using Ensemble Machine Learning Techniques",
+    2023,
+    "10.1109/INDISCON58499.2023.10270505"
+   ],
+   [
+    "Enhancing IoT Security: A Machine Learning-Based Intrusion Detection System for Real-Time Threat Detection and Mitigation",
+    2025,
+    "10.33899/jes.v34i4.49257"
+   ],
+   [
+    "Predictive diagnostics of computer systems logs using natural language processing techniques",
+    2025,
+    "10.22363/2658-4670-2025-33-2-172-183"
+   ],
+   [
+    "Machine Learning Model for Predicting Antibiotic Resistance Patterns from Protein Sequences",
+    2026,
+    "10.1051/e3sconf/202673504003"
+   ],
+   [
+    "Lost circulation intensity characterization in drilling operations: Leveraging machine learning and well log data",
+    2024,
+    "10.1016/j.heliyon.2024.e41059"
+   ],
+   [
+    "Adaptive weighted ensemble classifier for improving breast tumors classification based on ultrasound RF data",
+    2023,
+    "10.1145/3611450.3611461"
+   ],
+   [
+    "Ensemble Learning With Manifold-Based Data Splitting for Noisy Label Correction",
+    2021,
+    "10.1109/tmm.2021.3119861"
+   ],
+   [
+    "Topology-Enhanced Alignment for Large Language Models: Trajectory Topology Loss and Topological Preference Optimization",
+    2026,
+    "10.18653/v1/2026.findings-acl.1242"
+   ],
+   [
+    "An enhanced Predictive heterogeneous ensemble model for breast cancer prediction",
+    2022,
+    "10.1016/j.bspc.2021.103279"
+   ],
+   [
+    "Identification of pharming in communication networks using ensemble learning",
+    2022,
+    "10.4314/njtd.v19i2.10"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C8",
+  "base": "arXiv",
+  "cadena": "\"local log loss\" ensemble weighting nearest neighbors",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C9",
+  "base": "OpenAlex",
+  "cadena": "\"class-specific\" \"dynamic weighting\" ensemble classifiers",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": 148,
+  "titulos": [
+   [
+    "A feature-level ensemble machine learning approach for attack detection in IoT networks",
+    2025,
+    "https://doi.org/10.1007/s43926-025-00185-7"
+   ],
+   [
+    "Multi-Label Sentiment Analysis on 100 Languages With Dynamic Weighting for Label Imbalance",
+    2021,
+    "https://doi.org/10.1109/tnnls.2021.3094304"
+   ],
+   [
+    "Deep Ensemble Classifier for Robust Fetal Monitoring: A Multimodal Approach to Prenatal Health Assessment",
+    2026,
+    "https://doi.org/10.64091/atihl.2026.000304"
+   ],
+   [
+    "Fetal Health Diagnosis Based on Adaptive Dynamic Weighting with Main-Auxiliary Correction Network",
+    2025,
+    "https://doi.org/10.3390/biotech14030057"
+   ],
+   [
+    "Class-Discrepancy Dynamic Weighting for Cross-Domain Few-Shot Hyperspectral Image Classification",
+    2025,
+    "https://doi.org/10.3390/rs17152605"
+   ],
+   [
+    "A dynamic weighting-based adaptive modality fusion approach for Arabic Multimodal Sentiment Analysis",
+    2026,
+    "https://doi.org/10.1016/j.array.2026.101201"
+   ],
+   [
+    "An interpretable dynamic ensemble selection multiclass imbalance approach with ensemble imbalance learning for predicting road crash injury severity",
+    2025,
+    "https://doi.org/10.1038/s41598-025-08935-x"
+   ],
+   [
+    "Class-Adaptive Ensemble-Vote Consistency for Semi-Supervised Text Classification with Imbalanced Data",
+    2026,
+    "https://doi.org/10.20944/preprints202601.2265.v1"
+   ],
+   [
+    "Efficient residuals pre-processing for diagnosing multi-class faults in a doubly fed induction generator, under missing data scenarios",
+    2014,
+    "https://doi.org/10.1016/j.eswa.2014.03.056"
+   ],
+   [
+    "Dynamic Ensemble Learning with Gradient-Weighted Class Activation Mapping for Enhanced Gastrointestinal Disease Classification",
+    2025,
+    "https://doi.org/10.3390/electronics14020305"
+   ],
+   [
+    "Crowd-Certain: Label Aggregation in Crowdsourced and Ensemble Learning Classification",
+    2023,
+    "https://doi.org/10.21203/rs.3.rs-3488150/v1"
+   ],
+   [
+    "Adaptive Confidence-Gated Hybrid Ensemble Framework for Speech Emotion Recognition",
+    2026,
+    "https://doi.org/10.3390/electronics15091931"
+   ],
+   [
+    "MobileNetV2 Ensemble for Cervical Precancerous Lesions Classification",
+    2020,
+    "https://doi.org/10.3390/pr8050595"
+   ],
+   [
+    "Optimized deep learning ensemble using Fast Osprey algorithm for accurate lymphoblastic leukemia detection",
+    2026,
+    "https://doi.org/10.3389/fmed.2026.1812486"
+   ],
+   [
+    "Dynamic Ensemble Learning With Multi-View Kernel Collaborative Subspace Clustering for Hyperspectral Image Classification",
+    2022,
+    "https://doi.org/10.1109/jstars.2022.3158761"
+   ],
+   [
+    "FUSEPOP: A Multi-Modal Fusion with Mutual Information Weighting and Stacked Ensemble for Social Media Popularity Prediction",
+    2026,
+    "https://doi.org/10.3390/app16094160"
+   ],
+   [
+    "Dynamic weight adaptation in soft voting for emotion detection using neural networks",
+    2026,
+    "https://doi.org/10.11591/eei.v15i1.10628"
+   ],
+   [
+    "Efficient Parkinson’s disease classification from speech with filter-based feature selection and Genetic Algorithm–Bayesian Optimization ensemble integration",
+    2025,
+    "https://doi.org/10.7717/peerj-cs.3430"
+   ],
+   [
+    "A survey on learning from imbalanced data streams: taxonomy, challenges, empirical study, and reproducible experimental framework",
+    2023,
+    "https://doi.org/10.1007/s10994-023-06353-6"
+   ],
+   [
+    "Enhancing encrypted HTTPS traffic classification based on stacked deep ensembles models",
+    2025,
+    "https://doi.org/10.1038/s41598-025-21261-6"
+   ],
+   [
+    "Generative Ensemble Learning for Robust Anomaly Detection in IIoT Financial Monitoring",
+    2022,
+    "https://doi.org/10.63519/ijcserd_12_01_011"
+   ],
+   [
+    "GAN-Augmented Ensemble Models for Wildlife Image Recognition on Caltech‑256 Dataset",
+    2025,
+    null
+   ],
+   [
+    "BreastEnsemNet: Transformer and BiLSTM-Based Hybrid Ensemble Deep Learning for Mammogram Classification",
+    2025,
+    "https://doi.org/10.31449/inf.v49i31.8501"
+   ],
+   [
+    "A Quantum-Inspired Ensemble Learning Framework for Multi-Class Respiratory Disease Diagnosis",
+    2026,
+    "https://doi.org/10.21203/rs.3.rs-10708277/v1"
+   ],
+   [
+    "CardioSyncNet: A Scalogram-Driven Ensemble of CNN, BiLSTM, and Transformer for Robust ECG Arrhythmia Classification",
+    2026,
+    "https://doi.org/10.1016/j.procs.2026.06.420"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C9",
+  "base": "Semantic Scholar",
+  "cadena": "\"class-specific\" \"dynamic weighting\" ensemble classifiers",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 429: "
+ },
+ {
+  "id": "C9",
+  "base": "arXiv",
+  "cadena": "\"class-specific\" \"dynamic weighting\" ensemble classifiers",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C10",
+  "base": "OpenAlex",
+  "cadena": "ensamble \"competencia local\" \"cobertura forestal\"",
+  "idioma": "es",
+  "componentes": "familia + problema (espanol)",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C10",
+  "base": "Semantic Scholar",
+  "cadena": "ensamble \"competencia local\" \"cobertura forestal\"",
+  "idioma": "es",
+  "componentes": "familia + problema (espanol)",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 429: "
+ },
+ {
+  "id": "C10",
+  "base": "arXiv",
+  "cadena": "ensamble \"competencia local\" \"cobertura forestal\"",
+  "idioma": "es",
+  "componentes": "familia + problema (espanol)",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C11",
+  "base": "OpenAlex",
+  "cadena": "seleccion dinamica de clasificadores cobertura vegetal",
+  "idioma": "es",
+  "componentes": "familia + problema (espanol)",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C11",
+  "base": "Semantic Scholar",
+  "cadena": "seleccion dinamica de clasificadores cobertura vegetal",
+  "idioma": "es",
+  "componentes": "familia + problema (espanol)",
+  "fecha": "2026-10-23",
+  "resultados": 1115,
+  "titulos": [
+   [
+    "Evaluación Morfométrica y Dinámica de la Cobertura Vegetal en la Microcuenca del Río Guineal, Ecuador",
+    2025,
+    "10.37811/cl_rcm.v9i1.16561"
+   ],
+   [
+    "Dinámica de la cobertura vegetal (1986–2018) en el pn-anmi serranía del iñao",
+    2025,
+    "10.56469/rcti.v23i35.1604"
+   ],
+   [
+    "Dinámica Espacio-Temporal de la Cobertura Vegetal, Período 1990-2022, Provincia de Sucumbíos",
+    2025,
+    "10.37811/cl_rcm.v9i5.20694"
+   ],
+   [
+    "Índice de Transformação Antrópica (Ita) e a dinâmica do uso da terra e cobertura vegetal na Bacia Hidrográfica do Rio Santo Antônio-MS",
+    2025,
+    "10.5007/2177-5230.2025.e101068"
+   ],
+   [
+    "DINÂMICA DA COBERTURA VEGETAL NA LAGOA ENCANTADA DE VILA VELHA - ES",
+    2025,
+    "10.61164/m4gjma24"
+   ],
+   [
+    "Dinámica de cambio: Análisis de la cobertura vegetal y el uso de la tierra en la Faja Petrolífera del Orinoco",
+    2026,
+    "10.30827/cuadgeo.v65i1.34732"
+   ],
+   [
+    "Dinámica del cambio de uso de suelo y cobertura vegetal en una microcuenca del río Pantepec, Hidalgo, México",
+    2024,
+    "10.5154/r.rchscfa.2024.03.005"
+   ],
+   [
+    "Análise da dinâmica temporal da cobertura vegetal na microrregião de Umarizal (2000 a 2022), semiárido do Rio Grande do Norte, Brasil",
+    2024,
+    "10.5212/terraplural.v.18.2423142.015"
+   ],
+   [
+    "ANÁLISE DA DINÂMICA ESPAÇO-TEMPORAL DA COBERTURA VEGETAL NA ÁREA DE PROTEÇÃO AMBIENTAL BONFIM-GUARAÍRA/RN",
+    2024,
+    "10.21680/2177-8396.2023v35n3id32530"
+   ],
+   [
+    "Diversidad Florística y Dinámica de Cobertura Vegetal en los Humedales del Parque Ecológico de Nigua, República Dominicana",
+    2026,
+    "10.64678/ey4cpp04"
+   ],
+   [
+    "Dinâmica temporal da cobertura vegetal na comunidade Água Fria, reserva de desenvolvimento sustentável de Alcobaça, Tucuruí, Pará, Brasil",
+    2026,
+    "10.55905/revconv.19n.5-039"
+   ],
+   [
+    "ANÁLISE DA DINÂMICA DA COBERTURA VEGETAL EM UMA ÁREA DE INFLUÊNCIA SOB O RIO TRACUATEUA, TRACUATEUA-PA, ATRAVÉS DE IMAGENS ORBITAIS",
+    2023,
+    "10.47820/recima21.v4i4.2930"
+   ],
+   [
+    "DINÂMICA DA COBERTURA VEGETAL NO SEMIÁRIDO BAIANO: UM ESTUDO DE CASO DA BACIA HIDROGRÁFICA DO RIO DAS RÃS",
+    2023,
+    "10.14393/rcg249162327"
+   ],
+   [
+    "Variabilidade espaço-temporal da dinâmica da cobertura vegetal na área urbana central do município de Cabo Verde – MG",
+    2023,
+    "10.17271/23178604112920233523"
+   ],
+   [
+    "Análisis multitemporal de la dinámica de uso de suelo y cobertura vegetal en la microcuenca del Río Illangama",
+    2022,
+    "10.33789/talentos.9.2.173"
+   ],
+   [
+    "NDVI aplicado à análise da dinâmica temporal da cobertura vegetal da terra da bacia do rio Pedreira–Amapá, Brasil",
+    2025,
+    "10.18817/26755122.29.2.2025.4223"
+   ],
+   [
+    "Evaluación del Impacto de la Cobertura Vegetal de las Lomas de Tacahuay Mediante Imágenes Satelitales Landsat",
+    2025,
+    "10.37811/cl_rcm.v8i6.15605"
+   ],
+   [
+    "Evaluación multitemporal de la cobertura vegetal del municipio de Aipe, Huila, Colombia, y sus reservas naturales de la sociedad civil durante los últimos 30 años",
+    2025,
+    "10.22490/21456453.9874"
+   ],
+   [
+    "Efeito da cobertura vegetal e da rotação de culturas na incidência de plantas espontâneas em soja orgânica",
+    2025,
+    "10.55905/revconv.18n.1-131"
+   ],
+   [
+    "DINÂMICA DA COBERTURA VEGETAL E MUDANÇAS NO USO DA TERRA NO ESTADO DO PARÁ AO LONGO DE TRÊS DÉCADAS",
+    2022,
+    "10.18542/ragros.v14i1.11595"
+   ],
+   [
+    "ANÁLISE DA COBERTURA VEGETAL DO MUNICÍPIO DE IRAUÇUBA – CE, COM USO DE ÍNDICES ESPECTRAIS DE VEGETAÇÃO NOS ANOS DE 2001, 2014 E 2020",
+    2025,
+    "10.4025/geoinga.v17i0.71320"
+   ],
+   [
+    "A importância da caracterização do uso da terra e cobertura vegetal dos municípios da região centro-este do estado de Mato Grosso do Sul, ecótono Cerrado-Pantanal",
+    2025,
+    "10.18817/26755122.29.4.2025.4369"
+   ],
+   [
+    "Ciudad refugio en clima árido: evolución de la cobertura vegetal en barrios habitados por personas mayores, Mendoza, Argentina",
+    2025,
+    "10.22320/07183607.2025.28.52.06"
+   ],
+   [
+    "Dinâmica multitemporal da cobertura vegetal do estado da Paraíba",
+    2025,
+    "10.26848/rbgf.v18.1.p622-632"
+   ],
+   [
+    "Efeitos da cobertura vegetal na evolução de voçorocas: um estudo de detalhe das variações sazonais",
+    2025,
+    "10.5216/ag.v19i3.81145"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C11",
+  "base": "arXiv",
+  "cadena": "seleccion dinamica de clasificadores cobertura vegetal",
+  "idioma": "es",
+  "componentes": "familia + problema (espanol)",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C12",
+  "base": "OpenAlex",
+  "cadena": "stacking covertype",
+  "idioma": "en",
+  "componentes": "familia (stacking) + nombre del conjunto",
+  "fecha": "2026-10-23",
+  "resultados": 228,
+  "titulos": [
+   [
+    "Personalized Federated Learning via Stacking",
+    2024,
+    "https://doi.org/10.48550/arxiv.2404.10957"
+   ],
+   [
+    "Reservoir of diverse adaptive learners and stacking fast hoeffding drift detection methods for evolving data streams",
+    2018,
+    "https://doi.org/10.1007/s10994-018-5719-z"
+   ],
+   [
+    "AutoGluon-Tabular: Robust and Accurate AutoML for Structured Data",
+    2020,
+    "https://doi.org/10.48550/arxiv.2003.06505"
+   ],
+   [
+    "Ensembles of Restricted Hoeffding Trees",
+    2012,
+    "https://doi.org/10.1145/2089094.2089106"
+   ],
+   [
+    "Marginal Deep Architecture: Stacking Feature Learning Modules to Build Deep Learning Models",
+    2019,
+    "https://doi.org/10.1109/access.2019.2902631"
+   ],
+   [
+    "Ensembling Tabular Foundation Models - A Diversity Ceiling And A Calibration Trap",
+    2026,
+    "https://doi.org/10.48550/arxiv.2605.18696"
+   ],
+   [
+    "TWO-PHASE STACKING ENSEMBLE TO EFFECTIVELY HANDLE DATA IMBALANCES IN CLASSIFICATION PROBLEMS",
+    2018,
+    "https://doi.org/10.26483/ijarcs.v9i1.5495"
+   ],
+   [
+    "Adaptive Sketch-based Stream Clustering for High-dimensional Data Streams under Representation Drift",
+    2026,
+    "https://doi.org/10.22266/ijies2026.1031.44"
+   ],
+   [
+    "Global Layers: Non-IID Tabular Federated Learning",
+    2023,
+    "https://doi.org/10.48550/arxiv.2305.19290"
+   ],
+   [
+    "Cascade Progressive Distilled Networks for Heterogeneous Tabular Data Classification",
+    2026,
+    "https://doi.org/10.21203/rs.3.rs-10138461/v1"
+   ],
+   [
+    "Practical Quantum-Classical Feature Fusion for complex data Classification",
+    2025,
+    "https://doi.org/10.48550/arxiv.2512.19180"
+   ],
+   [
+    "BRANCH-MoE: Balance-Aware Tree Routing for Large Embedding Models",
+    2026,
+    "https://doi.org/10.48550/arxiv.2610.06725"
+   ],
+   [
+    "Deep & Cross Network for Ad Click Predictions",
+    2017,
+    "https://doi.org/10.1145/3124749.3124754"
+   ],
+   [
+    "An autoencoder-based fast online clustering algorithm for evolving data stream",
+    2023,
+    "https://doi.org/10.1145/3590003.3590020"
+   ],
+   [
+    "Fast Gradient Boosting Decision Trees with Bit-Level Data Structures",
+    2020,
+    "https://doi.org/10.1007/978-3-030-46150-8_35"
+   ],
+   [
+    "McDiarmid Drift Detection Methods for Evolving Data Streams",
+    2018,
+    "https://doi.org/10.1109/ijcnn.2018.8489260"
+   ],
+   [
+    "Ultra-Scalable Spectral Clustering and Ensemble Clustering",
+    2019,
+    "https://doi.org/10.1109/tkde.2019.2903410"
+   ],
+   [
+    "Data Stream Learning Evaluation: Experimenting with Prequential Approach Over Real Data Streams",
+    2025,
+    "https://doi.org/10.52783/jisem.v10i9s.1206"
+   ],
+   [
+    "Applying AI for and on Hardware: Cross-Layer Approaches for Security and Efficiency",
+    2025,
+    "https://doi.org/10.1109/icm66518.2025.11322515"
+   ],
+   [
+    "AgEBO-tabular",
+    2021,
+    "https://doi.org/10.1145/3458817.3476203"
+   ],
+   [
+    "RADE: resource-efficient supervised anomaly detection using decision tree-based ensemble methods",
+    2021,
+    "https://doi.org/10.1007/s10994-021-06047-x"
+   ],
+   [
+    "Deep Weighted Averaging Classifiers",
+    2019,
+    "https://doi.org/10.1145/3287560.3287595"
+   ],
+   [
+    "Weighted Incremental–Decremental Support Vector Machines for concept drift with shifting window",
+    2022,
+    "https://doi.org/10.1016/j.neunet.2022.05.018"
+   ],
+   [
+    "Concept Drift Adaptation with Incremental–Decremental SVM",
+    2021,
+    "https://doi.org/10.3390/app11209644"
+   ],
+   [
+    "Facilitating the Deployment of Irregular Applications on Parallel Manycore Architecture by Identifying Irregular Patterns.",
+    2021,
+    null
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C12",
+  "base": "arXiv",
+  "cadena": "stacking covertype",
+  "idioma": "en",
+  "componentes": "familia (stacking) + nombre del conjunto",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C13",
+  "base": "OpenAlex",
+  "cadena": "\"stacked generalization\" \"forest cover type\"",
+  "idioma": "en",
+  "componentes": "familia + problema",
+  "fecha": "2026-10-23",
+  "resultados": 16,
+  "titulos": [
+   [
+    "Vegetation Cover Type Classification Using Cartographic Data for Prediction of Wildfire Behaviour",
+    2023,
+    "https://doi.org/10.3390/fire6020076"
+   ],
+   [
+    "A Daily Tourist Flow Prediction Model for Scenic Spots Based on Stacking Ensemble Learning Algorithm",
+    2026,
+    "https://doi.org/10.1007/978-981-95-6946-5_56"
+   ],
+   [
+    "Tabular data: Deep learning is not all you need",
+    2021,
+    "https://doi.org/10.1016/j.inffus.2021.11.011"
+   ],
+   [
+    "Pekiştirmeli öğrenme kullanarak artımsal sezgisel üst-öğrenme",
+    2026,
+    null
+   ],
+   [
+    "Multiple Imputation Ensembles (MIE) for Dealing with Missing Data",
+    2020,
+    "https://doi.org/10.1007/s42979-020-00131-0"
+   ],
+   [
+    "A heterogeneous online learning ensemble for non-stationary environments",
+    2019,
+    "https://doi.org/10.1016/j.knosys.2019.104983"
+   ],
+   [
+    "RADE: resource-efficient supervised anomaly detection using decision tree-based ensemble methods",
+    2021,
+    "https://doi.org/10.1007/s10994-021-06047-x"
+   ],
+   [
+    "Complementarity In Data Mining",
+    2015,
+    null
+   ],
+   [
+    "Ensembles of Restricted Hoeffding Trees",
+    2012,
+    "https://doi.org/10.1145/2089094.2089106"
+   ],
+   [
+    "Older forests used by northern spotted owls functioned as fire refugia during large wildfires, 1987–2017",
+    2021,
+    "https://doi.org/10.21203/rs.3.rs-280175/v1"
+   ],
+   [
+    "Kolb-Based Experiential Learning for Generalist Agents with Human-Level Kaggle Data Science Performance",
+    2025,
+    "https://doi.org/10.21203/rs.3.rs-7472642/v1"
+   ],
+   [
+    "Range‐wide sources of variation in reproductive rates of northern spotted owls",
+    2022,
+    "https://doi.org/10.1002/eap.2726"
+   ],
+   [
+    "Aboveground biomass estimation using multimodal remote sensing observations and machine learning in mixed temperate forest",
+    2025,
+    "https://doi.org/10.1038/s41598-025-15585-6"
+   ],
+   [
+    "Distributed classification based on distances between probability distributions in feature space",
+    2018,
+    "https://doi.org/10.1016/j.ins.2018.12.044"
+   ],
+   [
+    "Ormancılıkta makine öğrenmesi kullanımı",
+    2023,
+    "https://doi.org/10.18182/tjf.1282768"
+   ],
+   [
+    "ADBench: Anomaly Detection Benchmark",
+    2022,
+    "https://doi.org/10.48550/arxiv.2206.09426"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C13",
+  "base": "arXiv",
+  "cadena": "\"stacked generalization\" \"forest cover type\"",
+  "idioma": "en",
+  "componentes": "familia + problema",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C14",
+  "base": "OpenAlex",
+  "cadena": "\"clustered stacking\" OR \"cluster-based stacking\" OR \"regional stacking\"",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": 888,
+  "titulos": [
+   [
+    "Production of diamondlike carbon films through random compact cluster stacking",
+    1994,
+    "https://doi.org/10.1103/physrevb.49.11433"
+   ],
+   [
+    "Joint planning of berth and yard allocation in transshipment terminals using multi-cluster stacking strategy",
+    2015,
+    "https://doi.org/10.1016/j.tre.2015.08.005"
+   ],
+   [
+    "A Cluster-Stacking-Based Approach to Forecasting Seasonal Chlorophyll-a Concentration in Coastal Waters",
+    2020,
+    "https://doi.org/10.1109/access.2020.2990288"
+   ],
+   [
+    "Late Miocene alkenone unsaturation data, age models, and regional stacks of alkenones",
+    2018,
+    "https://doi.org/10.1594/pangaea.885390"
+   ],
+   [
+    "γ -rays from annihilating dark matter in galaxy clusters: stacking versus single source analysis",
+    2012,
+    "https://doi.org/10.1111/j.1365-2966.2012.21484.x"
+   ],
+   [
+    "Galaxy-cluster-stacked Fermi-LAT III: substructure and radio-relic counterparts",
+    2025,
+    "https://doi.org/10.48550/arxiv.2503.09687"
+   ],
+   [
+    "The Atacama Cosmology Telescope: An SZ Cluster Stacking Analysis Using Multifrequency Data",
+    2010,
+    null
+   ],
+   [
+    "Deploying HpC Clusters using platform open Cluster staCk - Dell eDition",
+    2008,
+    null
+   ],
+   [
+    "Galaxy-cluster-stacked Fermi-LAT. Part II. Extended central hadronic signal",
+    2025,
+    "https://doi.org/10.1088/1475-7516/2025/10/016"
+   ],
+   [
+    "(Table S5) Regional stacks of SST estimates as a function of age, Region 3 tropics",
+    2018,
+    "https://doi.org/10.1594/pangaea.885622"
+   ],
+   [
+    "A sequential optimization method for joint allocation of berth and yard with cluster stacking strategy in container terminals",
+    2025,
+    "https://doi.org/10.1016/j.oceaneng.2025.122484"
+   ],
+   [
+    "New Insights on Clusters Stacking Mechanism within Medium Range in Fe-Al Amorphous Alloys",
+    2024,
+    "https://doi.org/10.2139/ssrn.4681162"
+   ],
+   [
+    "(Table S5) Regional stacks of SST estimates as a function of age, Region 1 Mid NH",
+    2018,
+    "https://doi.org/10.1594/pangaea.885620"
+   ],
+   [
+    "New insights on clusters stacking mechanism within medium range in Fe-Al amorphous alloys",
+    2024,
+    "https://doi.org/10.1016/j.jnoncrysol.2024.123016"
+   ],
+   [
+    "New Insights on Clusters Stacking Mechanism within Medium Range in Fe-Al Amorphous Alloys",
+    2023,
+    "https://doi.org/10.2139/ssrn.4646202"
+   ],
+   [
+    "Clustered, Stacked and Imbricated Large Coastal Rock Clasts on Ludao Island, Southeast Taiwan, and Their Application to Palaeotyphoon Intensity Assessment",
+    2021,
+    "https://doi.org/10.3389/feart.2021.792369"
+   ],
+   [
+    "Laser Vaporization Cluster Source combined to a PLD process Microstructure roles on VO2 thin films and cluster stack properties",
+    2018,
+    null
+   ],
+   [
+    "Ligand‐Induced Formation of an Adamantanoid Hexanuclear (π‐Allyl)PdII(μ3‐Hydroxo) Cluster Stacked as Hydrogen‐Bonded Double Strands",
+    2005,
+    "https://doi.org/10.1002/anie.200500750"
+   ],
+   [
+    "Regional Stacking in Supramolecular Architecture of Two New Coordination Compounds of 2-propyl-4,5- imidazoledicarboxylate Acid: Synthesis, Structure and Characterization",
+    2013,
+    "https://doi.org/10.1080/15533174.2013.776591"
+   ],
+   [
+    "Ligand‐Induced Formation of an Adamantanoid Hexanuclear (π‐Allyl)PdII(μ3‐Hydroxo) Cluster Stacked as Hydrogen‐Bonded Double Strands",
+    2005,
+    "https://doi.org/10.1002/ange.200500750"
+   ],
+   [
+    "Extract Common-Mode Error in Middle-Scale GPS Network Using Principal Component Analysis",
+    2016,
+    "https://doi.org/10.1007/978-981-10-0934-1_33"
+   ],
+   [
+    "Seismic Observations of Splitting of the Mid-Transition Zone Discontinuity in Earth's Mantle",
+    2001,
+    "https://doi.org/10.1126/science.1063524"
+   ],
+   [
+    "Limitations in correlation of regional relative geomagnetic paleointensity",
+    2006,
+    "https://doi.org/10.1029/2006gc001350"
+   ],
+   [
+    "A Spatio-Temporally Adaptive Clustering Protocol for wireless microsensor networks",
+    2009,
+    "https://doi.org/10.1109/ictel.2009.5158640"
+   ],
+   [
+    "Stacking warm-season temperatures in Northeast China spanning the last 20 ka BP",
+    2026,
+    "https://doi.org/10.17632/jtvy6vwkp9"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C14",
+  "base": "arXiv",
+  "cadena": "\"clustered stacking\" OR \"cluster-based stacking\" OR \"regional stacking\"",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 400: Bad Request"
+ },
+ {
+  "id": "C15",
+  "base": "OpenAlex",
+  "cadena": "\"local stacking\" OR \"locally weighted stacking\" ensemble",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": 2342425,
+  "titulos": [
+   [
+    "ENSEMBLE",
+    1915,
+    "https://doi.org/10.1093/mq/i.1.83"
+   ],
+   [
+    "Ensemble",
+    2001,
+    "https://doi.org/10.1093/gmo/9781561592630.article.08853"
+   ],
+   [
+    "Ensemble",
+    2019,
+    "https://doi.org/10.4135/9781483317731.n250"
+   ],
+   [
+    "Ensembles and finales",
+    2009,
+    "https://doi.org/10.1017/ccol9780521873581.004"
+   ],
+   [
+    "New Ensembles",
+    1993,
+    "https://doi.org/10.2307/3398448"
+   ],
+   [
+    "Ensemble (ansambl’)",
+    2018,
+    "https://doi.org/10.7788/9783412510091.306"
+   ],
+   [
+    "Ensembles for everyone",
+    1968,
+    null
+   ],
+   [
+    "The Future Belongs to Ensembles",
+    2012,
+    "https://doi.org/10.1002/9781118531914.ch15"
+   ],
+   [
+    "Ensembles in Nagoya and Owari",
+    2025,
+    "https://doi.org/10.7765/9789198557879.00013"
+   ],
+   [
+    "Orchestra vs ensemble",
+    2025,
+    "https://doi.org/10.4324/9781003598190-4"
+   ],
+   [
+    "Statistical Ensembles of Complex, Quaternion, and Real Matrices",
+    1965,
+    "https://doi.org/10.1063/1.1704292"
+   ],
+   [
+    "7.2 Ensembles als Versuchslabore",
+    2022,
+    "https://doi.org/10.1515/9783839461679-066"
+   ],
+   [
+    "3. Ensemble and Freedom: Orchestras",
+    2017,
+    "https://doi.org/10.12987/9780300161526-005"
+   ],
+   [
+    "Chapter 22 Individualists and New Ensembles",
+    2021,
+    "https://doi.org/10.1515/9783110749878-022"
+   ],
+   [
+    "El \"ensemble\", instrumento de vanguardia",
+    2006,
+    null
+   ],
+   [
+    "Das Ensemble und sein Direktor",
+    2023,
+    "https://doi.org/10.7767/9783205216957.80"
+   ],
+   [
+    "Chapter 9. The African Ensemble in America Contradictions and Possibilities",
+    2019,
+    "https://doi.org/10.1525/9780520937178-011"
+   ],
+   [
+    "Ensemble of wind and Percussion Instruments and Its Origin",
+    2004,
+    null
+   ],
+   [
+    "Présentation du groupe Orchestres et ensembles",
+    2017,
+    null
+   ],
+   [
+    "François De Singly, “Libres ensembles : l‚individualism...",
+    2015,
+    null
+   ],
+   [
+    "3 Ensembles, 3 Uraufführungen, 3 Städte – viele Klangwelten",
+    2014,
+    "https://doi.org/10.7788/omz-2014-0136"
+   ],
+   [
+    "Ensemble tout est possible ! / Sylvaine Jaoui ; illustré par Nathalie Jomard",
+    2016,
+    null
+   ],
+   [
+    "Statistical Theory of the Energy Levels of Complex Systems. I",
+    1962,
+    "https://doi.org/10.1063/1.1703773"
+   ],
+   [
+    "The Handover Band",
+    2024,
+    "https://doi.org/10.4324/9781003454151-10"
+   ],
+   [
+    "Regional climate modeling on European scales: a joint standard evaluation of the EURO-CORDEX RCM ensemble",
+    2014,
+    "https://doi.org/10.5194/gmd-7-1297-2014"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C15",
+  "base": "arXiv",
+  "cadena": "\"local stacking\" OR \"locally weighted stacking\" ensemble",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 400: Bad Request"
+ },
+ {
+  "id": "C16",
+  "base": "OpenAlex",
+  "cadena": "\"mixture of experts\" covertype",
+  "idioma": "en",
+  "componentes": "familia afin + nombre del conjunto",
+  "fecha": "2026-10-23",
+  "resultados": 18,
+  "titulos": [
+   [
+    "BRANCH-MoE: Balance-Aware Tree Routing for Large Embedding Models",
+    2026,
+    "https://doi.org/10.48550/arxiv.2610.06725"
+   ],
+   [
+    "Designing mixture of deep experts",
+    2017,
+    null
+   ],
+   [
+    "Mixture of Online and Offline Experts for Non-Stationary Time Series",
+    2025,
+    "https://doi.org/10.1609/aaai.v39i21.34448"
+   ],
+   [
+    "SuperCluster: Learning Prediction Prototypes via Target-Guided Cross-Attention Clustering",
+    2026,
+    "https://doi.org/10.21203/rs.3.rs-9163443/v1"
+   ],
+   [
+    "Global Layers: Non-IID Tabular Federated Learning",
+    2023,
+    "https://doi.org/10.48550/arxiv.2305.19290"
+   ],
+   [
+    "Learning When Training Data are Costly: The Effect of Class Distribution on Tree Induction",
+    2003,
+    "https://doi.org/10.1613/jair.1199"
+   ],
+   [
+    "Blockwise Feature Interaction in Recommendation Systems",
+    2023,
+    "https://doi.org/10.48550/arxiv.2306.15881"
+   ],
+   [
+    "CO2 Forest: Improved Random Forest by Continuous Optimization of Oblique Splits",
+    2015,
+    "https://doi.org/10.48550/arxiv.1506.06155"
+   ],
+   [
+    "Linear Mode Connectivity in Differentiable Tree Ensembles",
+    2024,
+    "https://doi.org/10.48550/arxiv.2405.14596"
+   ],
+   [
+    "Stochastic Optimization with Laggard Data Pipelines",
+    2020,
+    "https://doi.org/10.48550/arxiv.2010.13639"
+   ],
+   [
+    "Understanding Tree Ensembles Through Deep Learning Theory(深層学習理論を用いた決定木アンサンブルの解析)",
+    null,
+    null
+   ],
+   [
+    "Clustering to Improve One-Class Classifier Performance in Data Streams",
+    2018,
+    "https://doi.org/10.20381/ruor-22285"
+   ],
+   [
+    "Online deep learning’s role in conquering the challenges of streaming data: a survey",
+    2025,
+    "https://doi.org/10.1007/s10115-025-02351-3"
+   ],
+   [
+    "Learning Human Proxy Functions to Optimize Machine Learning Systems for Sociotechnical Context",
+    2023,
+    null
+   ],
+   [
+    "Soft Hoeffding Tree: A Transparent and Differentiable Model on Data Streams",
+    2025,
+    "https://doi.org/10.1007/978-3-031-78977-9_11"
+   ],
+   [
+    "Distributed classification in P2P networks",
+    2015,
+    "https://doi.org/10.32657/10356/62190"
+   ],
+   [
+    "Geometric Mixture Classifier A Discriminative Per-Class Mixture of Hyperplanes for Fast, Transparent Classification",
+    2025,
+    "https://doi.org/10.21203/rs.3.rs-7734425/v1"
+   ],
+   [
+    "Large Scale Machine Learning",
+    2004,
+    null
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C16",
+  "base": "arXiv",
+  "cadena": "\"mixture of experts\" covertype",
+  "idioma": "en",
+  "componentes": "familia afin + nombre del conjunto",
+  "fecha": "2026-10-23",
+  "resultados": 1,
+  "titulos": [
+   [
+    "BRANCH-MoE: Balance-Aware Tree Routing for Large Embedding Models",
+    "2026",
+    "http://arxiv.org/abs/2610.06725v1"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C17",
+  "base": "OpenAlex",
+  "cadena": "\"hierarchical shrinkage\" stacking ensemble",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": 32,
+  "titulos": [
+   [
+    "Bayesian Hierarchical Stacking: Some Models Are (Somewhere) Useful",
+    2021,
+    "https://doi.org/10.1214/21-ba1287"
+   ],
+   [
+    "Error Reduction from Stacked Regressions",
+    2023,
+    "https://doi.org/10.48550/arxiv.2309.09880"
+   ],
+   [
+    "Kernel of Partition Paths: A Unified Representation for Tree Ensembles",
+    2026,
+    "https://doi.org/10.48550/arxiv.2606.18853"
+   ],
+   [
+    "Application of stacked bidirectional LSTM neural networks in reservoir porosity prediction",
+    2025,
+    "https://doi.org/10.1038/s41598-025-23095-8"
+   ],
+   [
+    "Extracting Interpretable Models from Tree Ensembles: Computational and Statistical Perspectives",
+    2026,
+    "https://doi.org/10.1080/01621459.2026.2657609"
+   ],
+   [
+    "Distribution-free flash-flood human-impact forecasting under temporal covariate shift",
+    2026,
+    "https://doi.org/10.21203/rs.3.rs-8194686/v1"
+   ],
+   [
+    "Cybersecurity Talent Gap Prediction Models for Financial Infrastructure Protection",
+    2026,
+    "https://doi.org/10.59543/jidmis.v3.2202"
+   ],
+   [
+    "Computational approaches for RNA energy parameter estimation",
+    2010,
+    "https://doi.org/10.1261/rna.1950510"
+   ],
+   [
+    "Comparison of sub-daily precipitation extremes in observed data and regional climate model simulations",
+    2016,
+    null
+   ],
+   [
+    "On the Computational Efficiency of Bayesian Additive Regression Trees: An Asymptotic Analysis",
+    2024,
+    "https://doi.org/10.48550/arxiv.2406.19958"
+   ],
+   [
+    "Forecasting Global Volatility with Predictive Spillover Networks: A Neuro-Econometric Spatio-Temporal Transformer for Asynchronous Financial Markets",
+    2026,
+    "https://doi.org/10.48550/arxiv.2608.25369"
+   ],
+   [
+    "ADAPTIVE REGULARIZED BAYESIAN HIERARCHICAL MODELLING FOR COMPLEX MULTIVARIATE DATA ANALYSIS",
+    2025,
+    "https://doi.org/10.69980/2n38my80"
+   ],
+   [
+    "An Attention-Preserving Network-Based Method for Assisted Segmentation of Osteosarcoma MRI Images",
+    2022,
+    "https://doi.org/10.3390/math10101665"
+   ],
+   [
+    "Calibrated synthetic consumer panels for governed strategic market testing",
+    2026,
+    "https://doi.org/10.1016/j.sbr.2026.100269"
+   ],
+   [
+    "Bayesian Hierarchical Modeling for Stock Price Forecasting: Evidence from Apple Inc. (AAPL)",
+    2025,
+    "https://doi.org/10.61173/d4k3c074"
+   ],
+   [
+    "Precision Medicine and Multi-Omics Intelligence through Quantum Topological Data Analysis for Biomarker and Clinical Decision Discovery",
+    2026,
+    "https://doi.org/10.62311/nesx/rb9jy-978-81-689097-1-7"
+   ],
+   [
+    "Bayesian stochastic imputation of discontinuous paleoenvironmental proxy records: a case study from Lake Ohrid stable isotopes",
+    2026,
+    "https://doi.org/10.1007/s10651-025-00701-6"
+   ],
+   [
+    "Forecasting With Machine Learning Shadow‐Rate VARs",
+    2025,
+    "https://doi.org/10.1002/for.70041"
+   ],
+   [
+    "2021 Index IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing Vol. 14",
+    2021,
+    "https://doi.org/10.1109/jstars.2022.3143012"
+   ],
+   [
+    "Considerations and Targeted Approaches to Identifying Bad Actors in Exposure Mixtures",
+    2023,
+    "https://doi.org/10.1007/s12561-023-09409-2"
+   ],
+   [
+    "Coding LLMs Can Be Harnessed to Learn Interpretable Models from Data",
+    2026,
+    "https://doi.org/10.48550/arxiv.2610.14006"
+   ],
+   [
+    "Integrating Random Forests and Generalized Linear Models for Improved Accuracy and Interpretability",
+    2023,
+    "https://doi.org/10.48550/arxiv.2307.01932"
+   ],
+   [
+    "Uncertainty Flow Facilitates Zero-Shot Multi-Label Learning in Affective Facial Analysis",
+    2018,
+    "https://doi.org/10.3390/app8020300"
+   ],
+   [
+    "MMCAD-Net: A Multi-Scale Multi-Level Convolutional Attention Decomposition Network for Stock Price Forecasting",
+    2026,
+    "https://doi.org/10.3390/app16083716"
+   ],
+   [
+    "Mapping child health: statistical applications for high-resolution estimation of child mortality and healthcare utilization",
+    2018,
+    null
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C17",
+  "base": "arXiv",
+  "cadena": "\"hierarchical shrinkage\" stacking ensemble",
+  "idioma": "en",
+  "componentes": "mecanismo (cualquier aplicacion)",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C18",
+  "base": "OpenAlex",
+  "cadena": "\"logistic model tree\" covertype",
+  "idioma": "en",
+  "componentes": "finalista 2 + problema",
+  "fecha": "2026-10-23",
+  "resultados": 8,
+  "titulos": [
+   [
+    "Is Deep Learning on Tabular Data Enough? An Assessment",
+    2022,
+    "https://doi.org/10.14569/ijacsa.2022.0130454"
+   ],
+   [
+    "ROC Confidence Bands: An Empirical Study",
+    2005,
+    null
+   ],
+   [
+    "Fast Perceptron Decision Tree Learning from Evolving Data Streams",
+    2010,
+    "https://doi.org/10.1007/978-3-642-13672-6_30"
+   ],
+   [
+    "A New Method to Compare the Interpretability of Rule-based Algorithms",
+    2020,
+    null
+   ],
+   [
+    "A New Method to Compare the Interpretability of Rule-based Algorithms",
+    2020,
+    "https://doi.org/10.48550/arxiv.2004.01570"
+   ],
+   [
+    "Comparison of data-driven landslide susceptibility assessment using weight of evidence, information value, frequency ratio and certainly factor methods",
+    2021,
+    "https://doi.org/10.13168/agg.2021.0021"
+   ],
+   [
+    "Automatic and adaptive preprocessing for the development of predictive models",
+    2017,
+    null
+   ],
+   [
+    "Use of meta-learning for hypeparameter tuning of classification problems",
+    2018,
+    "https://doi.org/10.11606/t.55.2018.tde-15102018-092202"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C18",
+  "base": "arXiv",
+  "cadena": "\"logistic model tree\" covertype",
+  "idioma": "en",
+  "componentes": "finalista 2 + problema",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C19",
+  "base": "OpenAlex",
+  "cadena": "\"functional trees\" OR \"LMT\" \"forest cover type\"",
+  "idioma": "en",
+  "componentes": "finalista 2 + problema",
+  "fecha": "2026-10-23",
+  "resultados": 10010,
+  "titulos": [
+   [
+    "Forest cover types of the United States and Canada",
+    1980,
+    null
+   ],
+   [
+    "Forest Cover Types of the Eastern United States -- Report of the Committee on Forest Types",
+    1932,
+    "https://doi.org/10.1093/jof/30.4.451"
+   ],
+   [
+    "Seasonal changes in relative C-band backscatter of northern forest cover types",
+    1993,
+    "https://doi.org/10.1109/36.225533"
+   ],
+   [
+    "Effects of forest cover type and ratio changes on runoff and its components",
+    2022,
+    "https://doi.org/10.1016/j.iswcr.2022.01.006"
+   ],
+   [
+    "Forest cover types derived from Landsat Thematic Mapper imagery for Changbai Mountain area of China",
+    1996,
+    "https://doi.org/10.1139/x26-024"
+   ],
+   [
+    "Area changes for forest cover types in the United States, 1952 to 1997, with projections to 2050.",
+    2004,
+    "https://doi.org/10.2737/pnw-gtr-613"
+   ],
+   [
+    "A Multivariate Model of Female Black Bear Habitat Use for a Geographic Information System",
+    1993,
+    "https://doi.org/10.2307/3809276"
+   ],
+   [
+    "Aerial photo guide to New England forest cover types",
+    1995,
+    "https://doi.org/10.2737/ne-gtr-195"
+   ],
+   [
+    "Forest Cover Types of the Eastern United States",
+    1955,
+    "https://doi.org/10.5558/tfc31106-1"
+   ],
+   [
+    "Small mammal habitat associations in poletimber and sawtimber stands of four forest cover types",
+    1991,
+    "https://doi.org/10.1016/0378-1127(91)90234-m"
+   ],
+   [
+    "Forest Cover Type and Productivity as Related to Physiography",
+    2018,
+    null
+   ],
+   [
+    "Digital processing of LANDSAT MSS and topographic data to improve capabilities for computerized mapping of forest cover types",
+    1978,
+    null
+   ],
+   [
+    "Identification of Land Use and Forest Cover Types on Aerial Photographs",
+    1969,
+    null
+   ],
+   [
+    "The Classification of Forest Cover Types in the Western Areas of Mt. Jiri",
+    2013,
+    null
+   ],
+   [
+    "Forest Cover Types by Counties, Michigan, 1966",
+    1967,
+    null
+   ],
+   [
+    "Metric yield tables for the major forest cover types of Newfoundland.",
+    1976,
+    null
+   ],
+   [
+    "MULTIPLE DISTURBANCE INTERACTIONS AND DROUGHT INFLUENCE FIRE SEVERITY IN ROCKY MOUNTAIN SUBALPINE FORESTS",
+    2005,
+    "https://doi.org/10.1890/05-0011"
+   ],
+   [
+    "Sub-Pixel Classification of Forest Cover Types in East Texas",
+    2012,
+    null
+   ],
+   [
+    "Comparative Values of Certain Forest Cover Types in Accumulating and Retaining Snowfall",
+    1934,
+    "https://doi.org/10.1093/jof/32.7.760"
+   ],
+   [
+    "THE IMPACT OF FOREST FIRE ON FOREST COVER TYPES IN MONGOLIA",
+    2020,
+    "https://doi.org/10.5194/isprs-archives-xliii-b3-2020-693-2020"
+   ],
+   [
+    "Uneven-aged silviculture for loblolly and shortleaf pine forest cover types. Forest Service general technical report",
+    1996,
+    null
+   ],
+   [
+    "Comparative Gradient Structure and Forest Cover Types in Lassen Volcanic and Yosemite National Parks, California",
+    1995,
+    "https://doi.org/10.2307/2996403"
+   ],
+   [
+    "Forest cover types of Section 5, Bois Blanc Island, Michigan.",
+    1957,
+    null
+   ],
+   [
+    "Soil Properties Related to Forest Cover Type and Productivity on the Lee Forest, Snohomish County, Washington",
+    1955,
+    "https://doi.org/10.2136/sssaj1955.03615995001900030034x"
+   ],
+   [
+    "Mapping forest cover types in east Texas using multi-resolution satellite imagery",
+    2002,
+    null
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C19",
+  "base": "arXiv",
+  "cadena": "\"functional trees\" OR \"LMT\" \"forest cover type\"",
+  "idioma": "en",
+  "componentes": "finalista 2 + problema",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 400: Bad Request"
+ },
+ {
+  "id": "C20",
+  "base": "OpenAlex",
+  "cadena": "\"fuzzy k-nearest neighbor\" covertype",
+  "idioma": "en",
+  "componentes": "finalista 3 + problema",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C20",
+  "base": "arXiv",
+  "cadena": "\"fuzzy k-nearest neighbor\" covertype",
+  "idioma": "en",
+  "componentes": "finalista 3 + problema",
+  "fecha": "2026-10-23",
+  "resultados": 0,
+  "titulos": [],
+  "error": null
+ },
+ {
+  "id": "C21",
+  "base": "OpenAlex",
+  "cadena": "stacking \"cobertura forestal\" OR \"cobertura vegetal\" ensamble",
+  "idioma": "es",
+  "componentes": "familia + problema (espanol)",
+  "fecha": "2026-10-23",
+  "resultados": 644,
+  "titulos": [
+   [
+    "Análisis del rendimiento académico mediante técnicas de aprendizaje automático con métodos de ensamble",
+    2022,
+    "https://doi.org/10.36260/rbr.v10i13.1737"
+   ],
+   [
+    "Comparativa de modelos tradicionales vs machine learning para el relleno de datos faltantes en series de caudales diarios en cuencas representativas del Perú",
+    2026,
+    "https://doi.org/10.24850/j-tyca-18-02-02"
+   ],
+   [
+    "Comparative Analysis of Homogeneous and Heterogeneous Ensembles for Diabetes Classification Optimization",
+    2025,
+    "https://doi.org/10.33395/sinkron.v9i1.14439"
+   ],
+   [
+    "A critical systematic review of ensemble learning methods for predictive healthcare",
+    2026,
+    "https://doi.org/10.1007/s10791-026-10005-3"
+   ],
+   [
+    "Analisis Kinerja Algoritma Machine Learning Dalam Deteksi Anomali Jaringan",
+    2023,
+    "https://doi.org/10.59581/konstanta.v1i4.1722"
+   ],
+   [
+    "Ejercicios escolares para la predicción del rendimiento académico de estudiantes universitarios con técnicas de aprendizaje automático combinadas",
+    2026,
+    "https://doi.org/10.23913/ride.v16i32.2835"
+   ],
+   [
+    "Ética e Estética do Kitsch: subsídios para o estudo do gosto popular na experiência contemporânea",
+    2016,
+    "https://doi.org/10.15448/1980-3710.2016.2.22333"
+   ],
+   [
+    "Optimization of Accuracy Using Ensamble Stacking to Detect Android Malware",
+    2024,
+    "https://doi.org/10.1109/apwimob64015.2024.10792965"
+   ],
+   [
+    "Estimación de leyes de cobre en un yacimiento pórfido cuprífero mediante métodos de ensamble",
+    2025,
+    null
+   ],
+   [
+    "A Study on Efficacy of Ensamble Methods for Classification Learning",
+    2009,
+    null
+   ],
+   [
+    "An Ensamble Model for Detecting Intranet Threats and Possible Attacks",
+    2025,
+    "https://doi.org/10.55041/ijsrem46210"
+   ],
+   [
+    "revisión sobre la predicción del rendimiento académico mediante métodos de ensamble",
+    2022,
+    "https://doi.org/10.16925/2357-6014.2022.02.01"
+   ],
+   [
+    "Sistema de clasificación paralelo basado en un ensamble de tipo mezcla de expertos",
+    2017,
+    "https://doi.org/10.24275/uami.v118rd525"
+   ],
+   [
+    "Ensamble híbrido de métodos para la clasificación morfotaxonómica explicable de macroinvertebrados de agua dulce",
+    2024,
+    "https://doi.org/10.26507/paper.3565"
+   ],
+   [
+    "Predicción de riesgo de incendios forestales en Paraguay: un enfoque basado en stacking de modelos de machine learning con datos geoespaciales",
+    2025,
+    null
+   ],
+   [
+    "Revisión sistemática de las herramientas de inteligencia artificial explicable usadas en métodos de ensamble",
+    2024,
+    "https://doi.org/10.19053/uptc.01211129.v33.n70.2024.18078"
+   ],
+   [
+    "Estrategias electroquímicas para el diseño de ensambles de nanohíbridos bidimensionales con nanopartículas metálicas para aplicaciones avanzadas",
+    2024,
+    null
+   ],
+   [
+    "Estrategias para la promoción de diversidad en sistemas de predicción hidrológica por ensambles en un contexto probabilístico",
+    2020,
+    "https://doi.org/10.11144/javeriana.10554.13101"
+   ],
+   [
+    "Novel stacked hybrid autoencoder for imputing LISA data gaps",
+    2025,
+    "https://doi.org/10.1103/physrevd.111.024067"
+   ],
+   [
+    "Clasificación de Organismos en Reinos utilizando Frecuencia de Codones de ADN",
+    2022,
+    "https://doi.org/10.26439/interfases2022.n015.5896"
+   ],
+   [
+    "Monte Carlo Simulation of stacked Quantum Dot Arrays",
+    2006,
+    "https://doi.org/10.14279/depositonce-1433"
+   ],
+   [
+    "Influencia de factores ambientales en la distribución y la diversidad de los ensambles de aves diurnas del Bosque Atlántico argentino",
+    2026,
+    "https://doi.org/10.35537/10915/197647"
+   ],
+   [
+    "Design methodology for equipment maintenance management in port-type reach stacker",
+    2013,
+    null
+   ],
+   [
+    "Unleashing high content screening in hit detection – Benchmarking AI workflows including novelty detection",
+    2022,
+    "https://doi.org/10.1016/j.csbj.2022.09.023"
+   ],
+   [
+    "Predicción de factores clave en el aumento de la demografía en Colombia a través del ensamble de modelos de Machine Learning",
+    2022,
+    "https://doi.org/10.14483/23448350.19205"
+   ]
+  ],
+  "error": null
+ },
+ {
+  "id": "C21",
+  "base": "arXiv",
+  "cadena": "stacking \"cobertura forestal\" OR \"cobertura vegetal\" ensamble",
+  "idioma": "es",
+  "componentes": "familia + problema (espanol)",
+  "fecha": "2026-10-23",
+  "resultados": null,
+  "titulos": [],
+  "error": "HTTP Error 400: Bad Request"
+ }
+]

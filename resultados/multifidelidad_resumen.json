@@ -1,0 +1,16 @@
+{
+  "ganador": {
+    "max_depth": 20,
+    "min_samples_leaf": 1
+  },
+  "costo_successive_halving_s": 130.5299572944641,
+  "costo_grid_pleno_s": 1636.6041758060455,
+  "ahorro_relativo": 0.9202434166892085,
+  "factor_reduccion_eta": 2,
+  "presupuestos_n_estimators": [
+    20,
+    40,
+    80,
+    160
+  ]
+}

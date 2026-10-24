@@ -1,0 +1,18 @@
+   modelo_nombre            balanceo_nombre      optimizacion_nombre  rango_promedio  f1_macro_media
+0        XGBoost  Sin balanceo (línea base)            Random Search             1.5        0.808829
+1        XGBoost  Sin balanceo (línea base)              Grid Search             1.5        0.808829
+2  Random Forest                      SMOTE            Random Search             5.0        0.783081
+3  Random Forest                      SMOTE              Grid Search             5.0        0.783081
+4  Random Forest                      SMOTE  Bayesiana (Optuna, TPE)             5.0        0.783081
+5  Random Forest                     ADASYN              Grid Search             6.0        0.782686
+6  Random Forest                     ADASYN            Random Search             6.0        0.782686
+7  Random Forest                     ADASYN  Bayesiana (Optuna, TPE)             6.0        0.782686
+8  Random Forest  Sin balanceo (línea base)            Random Search            10.5        0.774583
+9  Random Forest  Sin balanceo (línea base)              Grid Search            10.5        0.774583
+---peores 5---
+             modelo_nombre                          balanceo_nombre      optimizacion_nombre  rango_promedio  f1_macro_media
+103  Naive Bayes gaussiano  class_weight / sample_weight balanceado  Bayesiana (Optuna, TPE)           104.0        0.190354
+104  Naive Bayes gaussiano                                   ADASYN              Grid Search           106.0        0.180741
+105  Naive Bayes gaussiano                                   ADASYN          Genético (DEAP)           106.0        0.180741
+106  Naive Bayes gaussiano                                   ADASYN            Random Search           106.0        0.180741
+107  Naive Bayes gaussiano                                   ADASYN  Bayesiana (Optuna, TPE)           108.0        0.177229

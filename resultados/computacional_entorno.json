@@ -1,0 +1,6 @@
+{
+  "python": "3.10.20",
+  "sistema": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+  "nucleos_logicos": 2,
+  "n_prueba": 20000
+}

@@ -1,0 +1,380 @@
+{
+ "modelo": "SVM",
+ "nombre": "SVM (núcleo RBF)",
+ "balanceo": "smote",
+ "optimizacion": "grid",
+ "hiperparametros_finales": {
+  "C": 10.0,
+  "gamma": 0.1
+ },
+ "semilla": 42,
+ "versiones": {
+  "python": "3.10.22",
+  "scikit-learn": "1.7.2",
+  "xgboost": "2.1.4",
+  "imbalanced-learn": "0.14.2",
+  "numpy": "1.25.2",
+  "pandas": "2.1.0"
+ },
+ "datos_entrenamiento": "submuestra estratificada de 40000 filas del entrenamiento (SVM: 6000 filas)",
+ "esquema_entrada": [
+  {
+   "nombre": "Elevation",
+   "tipo": "entera",
+   "min": 1859,
+   "max": 3849
+  },
+  {
+   "nombre": "Aspect",
+   "tipo": "entera",
+   "min": 0,
+   "max": 360
+  },
+  {
+   "nombre": "Slope",
+   "tipo": "entera",
+   "min": 0,
+   "max": 61
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Hydrology",
+   "tipo": "entera",
+   "min": 0,
+   "max": 1390
+  },
+  {
+   "nombre": "Vertical_Distance_To_Hydrology",
+   "tipo": "entera",
+   "min": -173,
+   "max": 598
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Roadways",
+   "tipo": "entera",
+   "min": 0,
+   "max": 7112
+  },
+  {
+   "nombre": "Hillshade_9am",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Hillshade_Noon",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Hillshade_3pm",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Fire_Points",
+   "tipo": "entera",
+   "min": 0,
+   "max": 7173
+  },
+  {
+   "nombre": "Wilderness_Area_1",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_2",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_3",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_4",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_1",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_2",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_3",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_4",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_5",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_6",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_7",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_8",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_9",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_10",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_11",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_12",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_13",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_14",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_15",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 0
+  },
+  {
+   "nombre": "Soil_Type_16",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_17",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_18",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_19",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_20",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_21",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_22",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_23",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_24",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_25",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_26",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_27",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_28",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_29",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_30",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_31",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_32",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_33",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_34",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_35",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_36",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_37",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_38",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_39",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_40",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  }
+ ],
+ "clases": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "metricas_bucle_externo": {
+  "f1_macro_media": 0.6698256198416227,
+  "f1_macro_sd": 0.0316676111403494,
+  "f1_macro_pliegues": [
+   0.6452284690888874,
+   0.7055564961394063,
+   0.6586918942965742
+  ]
+ },
+ "metricas_prueba_reservada": {
+  "f1_macro": 0.6351483559632618,
+  "accuracy": 0.7650146725988142,
+  "exactitud_balanceada": 0.5992354894845826,
+  "log_loss": 0.7090513774471142,
+  "f1_por_clase": [
+   0.7625458288516476,
+   0.8007954167177672,
+   0.7503623438470564,
+   0.6112820512820513,
+   0.3592002710945442,
+   0.47141190198366395,
+   0.6904406779661016
+  ]
+ },
+ "ida_y_vuelta_ok": true
+}

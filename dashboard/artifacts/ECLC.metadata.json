@@ -1,0 +1,379 @@
+{
+ "modelo": "ECLC",
+ "hiperparametros_finales": {
+  "k": 6,
+  "beta": 21.76624112345367,
+  "tau": 101.29197956845728
+ },
+ "semilla": 42,
+ "versiones": {
+  "python": "3.10.22",
+  "scikit-learn": "1.7.2",
+  "xgboost": "2.1.4",
+  "imbalanced-learn": "0.14.2",
+  "numpy": "1.25.2",
+  "pandas": "2.1.0"
+ },
+ "modelos_base": [
+  "KNN",
+  "NB",
+  "LR",
+  "DT",
+  "RF",
+  "XGB",
+  "SVM"
+ ],
+ "datos_entrenamiento": "probabilidades fuera de pliegue (3 pliegues) de los 7 modelos base sobre 40000 filas",
+ "esquema_entrada": [
+  {
+   "nombre": "Elevation",
+   "tipo": "entera",
+   "min": 1859,
+   "max": 3849
+  },
+  {
+   "nombre": "Aspect",
+   "tipo": "entera",
+   "min": 0,
+   "max": 360
+  },
+  {
+   "nombre": "Slope",
+   "tipo": "entera",
+   "min": 0,
+   "max": 61
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Hydrology",
+   "tipo": "entera",
+   "min": 0,
+   "max": 1390
+  },
+  {
+   "nombre": "Vertical_Distance_To_Hydrology",
+   "tipo": "entera",
+   "min": -173,
+   "max": 598
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Roadways",
+   "tipo": "entera",
+   "min": 0,
+   "max": 7112
+  },
+  {
+   "nombre": "Hillshade_9am",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Hillshade_Noon",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Hillshade_3pm",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Fire_Points",
+   "tipo": "entera",
+   "min": 0,
+   "max": 7173
+  },
+  {
+   "nombre": "Wilderness_Area_1",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_2",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_3",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_4",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_1",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_2",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_3",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_4",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_5",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_6",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_7",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_8",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_9",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_10",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_11",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_12",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_13",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_14",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_15",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 0
+  },
+  {
+   "nombre": "Soil_Type_16",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_17",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_18",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_19",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_20",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_21",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_22",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_23",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_24",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_25",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_26",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_27",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_28",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_29",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_30",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_31",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_32",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_33",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_34",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_35",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_36",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_37",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_38",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_39",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_40",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  }
+ ],
+ "clases": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "metricas_prueba_reservada": {
+  "f1_macro": 0.7958751398148161,
+  "accuracy": 0.8496596473412906,
+  "exactitud_balanceada": 0.8261448544924851,
+  "log_loss": 0.421199398029725,
+  "f1_por_clase": [
+   0.8460543030475716,
+   0.8669914629240603,
+   0.8658340048348107,
+   0.7809349220898258,
+   0.5957535387177352,
+   0.7353829261597584,
+   0.8801748209299503
+  ]
+ },
+ "ida_y_vuelta_ok": true,
+ "uso": "P = combinar(np.stack([proba de cada modelo base en el orden modelos_base]), X=X)"
+}

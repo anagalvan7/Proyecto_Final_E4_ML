@@ -1,0 +1,35 @@
+﻿modelo,n,fase_medida,tiempo_s
+Naive Bayes,5000,fit,0.006903209000029165
+Naive Bayes,10000,fit,0.01142609699991226
+Naive Bayes,20000,fit,0.023736020999876928
+Naive Bayes,40000,fit,0.04875115699996968
+Naive Bayes,80000,fit,0.10567500399997698
+Regresión logística (L-BFGS),5000,fit,1.3519037840001147
+Regresión logística (L-BFGS),10000,fit,2.570934252999905
+Regresión logística (L-BFGS),20000,fit,5.2403996259999985
+Regresión logística (L-BFGS),40000,fit,10.231989774999874
+Regresión logística (L-BFGS),80000,fit,16.73746356000015
+Árbol de decisión,5000,fit,0.0851326169999993
+Árbol de decisión,10000,fit,0.17185468999991826
+Árbol de decisión,20000,fit,0.34953181500009123
+Árbol de decisión,40000,fit,0.7380506929998774
+Árbol de decisión,80000,fit,1.622494849000077
+Random Forest (100 árboles),5000,fit,1.17684771800009
+Random Forest (100 árboles),10000,fit,2.3450924750000013
+Random Forest (100 árboles),20000,fit,4.9191403669999545
+Random Forest (100 árboles),40000,fit,10.29092834800008
+XGBoost hist (100 árboles),5000,fit,1.1511970919998475
+XGBoost hist (100 árboles),10000,fit,1.8579769430000397
+XGBoost hist (100 árboles),20000,fit,3.233868003999987
+XGBoost hist (100 árboles),40000,fit,5.415928696000037
+XGBoost hist (100 árboles),80000,fit,9.815158872999973
+SVM RBF,1000,fit,0.06306637800003045
+SVM RBF,2000,fit,0.22681419299988193
+SVM RBF,4000,fit,0.9350905600001624
+SVM RBF,8000,fit,2.933564497999896
+SVM RBF,16000,fit,11.527998617000094
+"KNN (fuerza bruta, 5.000 consultas)",5000,predict,0.31391062900002
+"KNN (fuerza bruta, 5.000 consultas)",10000,predict,0.4281526400000075
+"KNN (fuerza bruta, 5.000 consultas)",20000,predict,0.5934909850000167
+"KNN (fuerza bruta, 5.000 consultas)",40000,predict,0.9400739079999312
+"KNN (fuerza bruta, 5.000 consultas)",80000,predict,1.5931226299999253

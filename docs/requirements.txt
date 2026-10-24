@@ -1,0 +1,23 @@
+# Entorno de referencia: Python 3.10.21
+jupyter-book==0.15.1
+myst-nb==0.17.2
+sphinx-book-theme==1.0.1
+sphinxcontrib-bibtex==2.5.0
+jupyter-cache==0.6.1
+ipykernel==7.3.0
+nbformat==5.11.1
+numpy==1.25.2
+pandas==2.1.0
+scipy==1.15.3
+scikit-learn==1.7.2
+imbalanced-learn==0.14.2
+xgboost==2.1.4
+optuna==5.0.0
+deap==1.4.4
+shap==0.49.1
+lime==0.2.0.1
+scikit-posthocs==0.17.1
+statsmodels==0.14.0
+matplotlib==3.7.2
+seaborn==0.12.2
+joblib==1.6.0

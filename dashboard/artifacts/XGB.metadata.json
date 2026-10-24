@@ -1,0 +1,381 @@
+{
+ "modelo": "XGB",
+ "nombre": "XGBoost",
+ "balanceo": "ninguno",
+ "optimizacion": "random",
+ "hiperparametros_finales": {
+  "learning_rate": 0.1,
+  "max_depth": 6,
+  "n_estimators": 150
+ },
+ "semilla": 42,
+ "versiones": {
+  "python": "3.10.22",
+  "scikit-learn": "1.7.2",
+  "xgboost": "2.1.4",
+  "imbalanced-learn": "0.14.2",
+  "numpy": "1.25.2",
+  "pandas": "2.1.0"
+ },
+ "datos_entrenamiento": "submuestra estratificada de 40000 filas del entrenamiento",
+ "esquema_entrada": [
+  {
+   "nombre": "Elevation",
+   "tipo": "entera",
+   "min": 1859,
+   "max": 3849
+  },
+  {
+   "nombre": "Aspect",
+   "tipo": "entera",
+   "min": 0,
+   "max": 360
+  },
+  {
+   "nombre": "Slope",
+   "tipo": "entera",
+   "min": 0,
+   "max": 61
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Hydrology",
+   "tipo": "entera",
+   "min": 0,
+   "max": 1390
+  },
+  {
+   "nombre": "Vertical_Distance_To_Hydrology",
+   "tipo": "entera",
+   "min": -173,
+   "max": 598
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Roadways",
+   "tipo": "entera",
+   "min": 0,
+   "max": 7112
+  },
+  {
+   "nombre": "Hillshade_9am",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Hillshade_Noon",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Hillshade_3pm",
+   "tipo": "entera",
+   "min": 0,
+   "max": 254
+  },
+  {
+   "nombre": "Horizontal_Distance_To_Fire_Points",
+   "tipo": "entera",
+   "min": 0,
+   "max": 7173
+  },
+  {
+   "nombre": "Wilderness_Area_1",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_2",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_3",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Wilderness_Area_4",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_1",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_2",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_3",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_4",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_5",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_6",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_7",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_8",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_9",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_10",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_11",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_12",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_13",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_14",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_15",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 0
+  },
+  {
+   "nombre": "Soil_Type_16",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_17",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_18",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_19",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_20",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_21",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_22",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_23",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_24",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_25",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_26",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_27",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_28",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_29",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_30",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_31",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_32",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_33",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_34",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_35",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_36",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_37",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_38",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_39",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  },
+  {
+   "nombre": "Soil_Type_40",
+   "tipo": "binaria",
+   "min": 0,
+   "max": 1
+  }
+ ],
+ "clases": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "metricas_bucle_externo": {
+  "f1_macro_media": 0.7457488496516089,
+  "f1_macro_sd": 0.0082713087271998,
+  "f1_macro_pliegues": [
+   0.742708178074259,
+   0.7394282489318256,
+   0.7551101219487422
+  ]
+ },
+ "metricas_prueba_reservada": {
+  "f1_macro": 0.7519527678096657,
+  "accuracy": 0.8220097587841966,
+  "exactitud_balanceada": 0.7145459844229648,
+  "log_loss": 0.4278952653300821,
+  "f1_por_clase": [
+   0.8059123956017545,
+   0.8474712565015056,
+   0.8336070060207992,
+   0.7837582625118036,
+   0.49496080627099664,
+   0.6526015228426396,
+   0.8453581249181615
+  ]
+ },
+ "ida_y_vuelta_ok": true
+}

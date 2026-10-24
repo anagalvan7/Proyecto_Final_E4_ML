@@ -1,0 +1,11 @@
+{
+  "finalista": "RF_smote",
+  "hiperparametros": {
+    "n_estimators": 200,
+    "max_depth": 20
+  },
+  "f1_macro_finalista": 0.8655195960771139,
+  "f1_macro_referencia": 0.5572357435209934,
+  "ganancia_absoluta": 0.30828385255612056,
+  "remuestreo_omitido": false
+}
