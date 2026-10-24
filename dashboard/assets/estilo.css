@@ -204,3 +204,7 @@ body {
   .hero h1 { font-size: 1.45rem; }
   .contenido-tab { padding: 14px; border-radius: 0 0 16px 16px; }
 }
+
+/* Pestañas de navegación entre páginas: fijas al desplazarse */
+.pestanas-fijas { position: sticky; top: 0; z-index: 1020; background: var(--fondo, #eef6f1); padding-top: 6px; }
+.pestanas-fijas .nav-link { cursor: pointer; }

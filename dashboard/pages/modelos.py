@@ -497,6 +497,6 @@ def layout():
                 dbc.Tab(E2.sub_benchmark(), label="🏁 Benchmark 112 combinaciones"),
                 dbc.Tab(E2.sub_optimizacion(), label="🎛️ Optimizadores"),
                 dbc.Tab(E2.sub_eficiencia(), label="⚡ Eficiencia"),
-            ], className="subpestanas nav-pills mt-2"), label="📚 Benchmark (Entregable 2)", tab_id="e2"),
+            ], className="subpestanas nav-pills mt-2"), label="📚 Benchmark detallado", tab_id="e2"),
         ], active_tab="lideres", className="mb-3"),
     ], className="contenido-tab")

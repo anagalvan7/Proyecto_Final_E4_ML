@@ -115,7 +115,7 @@ def sub_benchmark():
                 grafica("fig-balanceo"),
                 nota("Diferencia de F1 macro de cada estrategia frente a no balancear, por algoritmo. El balanceo no afecta a los "
                      "algoritmos por igual: en Random Forest SMOTE y ADASYN suben el F1 macro en 0,033 y los pesos de clase en 0,025, "
-                     "mientras que en XGBoost las tres estrategias lo reducen entre 0,023 y 0,040 (protocolo corregido del Entregable 3).",
+                     "mientras que en XGBoost las tres estrategias lo reducen entre 0,023 y 0,040 (protocolo corregido).",
                      "06_benchmark_modelos.html", "5.4"),
             ]), lg=5, className="mb-3"),
         ]),

@@ -7,7 +7,7 @@ from src import data as D
 from src.contexto_contenido import AREAS_INFO, ESPECIES
 from src.data import COLOR, EMOJI, LARGO, LIBRO
 from src.plots import fig_composicion, fig_gradiente
-from src.ui import grafica, icono, kpi, nota, tarjeta
+from src.ui import grafica, icono, nota, tarjeta
 
 dash.register_page(__name__, path="/", name="Contexto", title="Contexto · Covertype")
 
@@ -47,54 +47,17 @@ def diagrama_pipeline():
                                      "estadística, modelo original y su validación"})
 
 
-def heroe():
-    return html.Div([
-        html.Div(dbc.Row([
-            dbc.Col([
-                html.H1("🌲 Clasificación de la cobertura forestal en el Roosevelt National Forest"),
-                html.Div("¿Qué especie domina cada celda de 30 × 30 m, sabiendo solo su cartografía?", className="subtitulo"),
-                html.Div([dbc.Badge("👩‍🔬 Ana Galván", color="light", text_color="success"),
-                          dbc.Badge("👩‍🔬 Valeria Oñate", color="light", text_color="primary"),
-                          dbc.Badge("👩‍🔬 María José Ruiz", color="light", text_color="danger")], className="mt-2"),
-            ], lg=9),
-            dbc.Col(dbc.Button([icono("mdi:book-open-variant", 20), "Jupyter Book"], href=LIBRO, target="_blank",
-                               className="boton-libro"), lg=3,
-                    className="d-flex align-items-center justify-content-lg-end mt-3 mt-lg-0"),
-        ]), className="hero mb-4"),
-        dbc.Row([
-            dbc.Col(kpi("🗺️ Celdas de 30 × 30 m", "581.012", "sin valores faltantes", 1), xs=6, md=True, className="mb-3"),
-            dbc.Col(kpi("📐 Predictoras", "54", "10 continuas + 44 indicadoras", 2), xs=6, md=True, className="mb-3"),
-            dbc.Col(kpi("🌲 Coberturas", "7", "clases a predecir", 3), xs=6, md=True, className="mb-3"),
-            dbc.Col(kpi("📚 Referencia original", "70,6 %", "exactitud de la red neuronal de Blackard y Dean (1999)", 5),
-                    xs=6, md=True, className="mb-3"),
-            dbc.Col(kpi("🧪 Modelo original (ECLC)", D.fmt(D.VEREDICTO_COMPLETO["f1_eclc_prueba_reservada"]),
-                        f"F1 macro en la prueba reservada con datos completos vs. "
-                        f"{D.fmt(D.VEREDICTO_COMPLETO['f1_mejor_benchmark'])} del mejor benchmark", 4),
-                    xs=12, md=True, className="mb-3"),
-        ], className="g-3"),
-        html.Img(src="/assets/banner_montana.svg", className="banner mb-4",
-                 alt="Ilustración de los pisos altitudinales de las Montañas Rocosas, del bosque ribereño al krummholz"),
-    ])
-
-
 def pregunta_y_datos():
     filas = [html.Tr([html.Td(html.Code(a)), html.Td(b), html.Td(c), html.Td(d)]) for a, b, c, d in DICCIONARIO]
     return dbc.Row([
         dbc.Col(tarjeta("Pregunta de investigación y objetivos", "mdi:help-circle", "cab-lago", [
             html.P(html.B("¿Puede un ensamble que pondera a cada modelo según su desempeño local y por clase superar, "
-                          "de forma estadísticamente significativa, a los mejores modelos del benchmark al predecir la "
-                          "cobertura forestal a partir de variables cartográficas?")),
+                          "de forma estadísticamente significativa, a los mejores modelos del benchmark?")),
             html.Ol([
-                html.Li("Corregir el benchmark del Entregable 2 para que las 112 combinaciones usen el mismo espacio de "
-                        "búsqueda y el mismo presupuesto de optimización."),
-                html.Li("Seleccionar con criterios estadísticos la mejor combinación de cada uno de los 7 modelos."),
-                html.Li("Diseñar, implementar y probar un modelo original (ECLC) y validarlo con al menos tres pruebas de hipótesis."),
-                html.Li("Poner los modelos a disposición de un usuario no experto en este dashboard."),
-            ]),
-            nota("Por qué importa: los inventarios forestales de campo son costosos en zonas remotas. Blackard y Dean (1999), "
-                 "quienes publicaron estos datos, mostraron que un modelo cartográfico predice la cobertura con 70,6 % de "
-                 "exactitud (red neuronal) frente a 58,4 % del análisis discriminante, lo que permite apoyar la "
-                 "planificación forestal y el manejo de incendios sin visitar cada celda.", "01_base_datos.html", "1.1"),
+                html.Li("Comparar 7 algoritmos, 4 balanceos y 4 optimizadores en igualdad de condiciones."),
+                html.Li("Diseñar un modelo original (ECLC) y validarlo con al menos tres pruebas de hipótesis."),
+                html.Li("Poner los modelos al alcance de un usuario no experto."),
+            ], className="mb-0"),
         ]), lg=5, className="mb-3"),
         dbc.Col(tarjeta("Datos y diccionario de variables", "mdi:table", "cab-azul", [
             html.P(["Fuente: ", html.B("UCI Machine Learning Repository, Covertype"), " (Blackard y Dean, 1998; CC BY 4.0). "
@@ -129,14 +92,20 @@ def territorio():
                 html.P(["Predecir la ", html.B("cobertura forestal dominante"), " de cada celda del terreno a partir solo de su ",
                         html.B("cartografía"), ": elevación, orientación, pendiente, distancias al agua, a carreteras y a puntos "
                         "de incendio, área silvestre y tipo de suelo."]),
-                html.P(["Primero se construyó un ", html.B("modelo base"), " (regresión logística); luego se compararon ",
+                html.P(["Los inventarios de campo son costosos en zonas remotas; un modelo cartográfico apoya la ",
+                        html.B("planificación forestal, la evaluación del riesgo de incendios y la conservación"),
+                        ". Blackard y Dean (1999), quienes publicaron estos datos, alcanzaron 70,6 % de exactitud con una "
+                        "red neuronal."]),
+                html.P(["Primero se construyó un ", html.B("modelo base"), " (regresión logística) y luego se compararon ",
                         html.B("7 algoritmos × 4 estrategias de balanceo × 4 métodos de optimización"),
-                        " y, finalmente, se diseñó un ", html.B("modelo original"), " que combina a los siete."]),
+                        " para elegir el mejor modelo de forma estadísticamente defendible. Finalmente se diseñó un ",
+                        html.B("modelo original (ECLC)"), " que combina a los siete."]),
                 html.Div([dbc.Badge("🎯 Clasificación multiclase", color="success", className="me-1 mb-1"),
                           dbc.Badge("⚖️ Desbalance 103 : 1", color="warning", className="me-1 mb-1"),
                           dbc.Badge("🤖 7 algoritmos · 108 combinaciones", color="info", className="me-1 mb-1"),
                           dbc.Badge(f"🏆 Mejor benchmark: {D.NOMBRE_MEJOR}", color="danger", className="me-1 mb-1"),
-                          dbc.Badge("🧪 Modelo original: ECLC", color="primary", className="me-1 mb-1")]),
+                          dbc.Badge(f"🧪 ECLC: F1 macro {D.fmt(D.VEREDICTO_COMPLETO['f1_eclc_prueba_reservada'])}",
+                                    color="primary", className="me-1 mb-1")]),
             ]), lg=4, className="mb-3"),
             dbc.Col(tarjeta("Gradiente altitudinal: cada especie en su piso", "mdi:image-filter-hdr", "cab-verde", [
                 grafica(figura=fig_gradiente()),
@@ -163,15 +132,16 @@ def metodologia_y_limites():
         tarjeta("Metodología: del dato al modelo original", "mdi:sitemap", "cab-verde", [
             diagrama_pipeline(),
             nota("Todas las combinaciones comparten la partición, la semilla (42), el preprocesamiento y los pliegues externos. "
-                 "En el Entregable 3 se repitieron 37 combinaciones que habían usado un espacio o presupuesto mayor.",
+                 "Cada combinación tuvo el mismo espacio de búsqueda y el mismo presupuesto de optimización.",
                  "06_benchmark_modelos.html", "5.1"),
         ], "mb-3"),
         tarjeta("Limitaciones, ética y sesgos", "mdi:alert-circle-outline", "cab-terracota", [
             html.Ul([
                 html.Li("Las celdas vecinas se parecen (autocorrelación espacial): la partición aleatoria es optimista; "
                         "entrenar con 3 áreas y evaluar en la cuarta reduce mucho el desempeño."),
-                html.Li("El benchmark y el modelo original se entrenan con una submuestra estratificada de 40.000 celdas "
-                        "por costo computacional; las clases raras (álamo/sauce) tienen pocas observaciones."),
+                html.Li("El benchmark se seleccionó con una submuestra estratificada de 40.000 celdas por costo computacional "
+                        "(el modelo original se validó además con el entrenamiento completo); las clases raras (álamo/sauce) "
+                        "tienen pocas observaciones."),
                 html.Li("Los datos describen un solo bosque de Colorado en una fecha: no deben usarse para decidir sobre "
                         "otros ecosistemas sin validarlos allí."),
                 html.Li("Un error en una clase rara (bosque ribereño) puede ocultar un ecosistema valioso; por eso se usa "
@@ -183,4 +153,8 @@ def metodologia_y_limites():
 
 
 def layout():
-    return html.Div([heroe(), pregunta_y_datos(), territorio(), metodologia_y_limites()], className="contenido-tab")
+    return html.Div([
+        territorio(), pregunta_y_datos(), metodologia_y_limites(),
+        html.Div(dbc.Button([icono("mdi:book-open-page-variant"), "Leer el informe completo en Jupyter Book"],
+                            href=LIBRO, target="_blank", className="boton-libro mt-2"), className="text-center"),
+    ], className="contenido-tab")

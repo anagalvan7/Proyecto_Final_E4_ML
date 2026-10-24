@@ -9,7 +9,7 @@ import dash_bootstrap_components as dbc
 from dash import Dash, html
 
 from src.data import LIBRO
-from src.ui import icono
+from src.ui import icono, kpi
 
 app = Dash(
     __name__,
@@ -22,26 +22,44 @@ app = Dash(
 )
 server = app.server
 
-VERSION = "3.0 (Entregable 3)"
-ACTUALIZADO = "23 de octubre de 2026"
+VERSION = "4.0"
+ACTUALIZADO = "24 de octubre de 2026"
 
-navbar = dbc.Navbar(
-    dbc.Container([
-        dbc.NavbarBrand("🌲 Covertype · Roosevelt National Forest", href="/", className="fw-bold"),
-        dbc.Nav([
-            dbc.NavItem(dbc.NavLink("Contexto", href="/", active="exact")),
-            dbc.NavItem(dbc.NavLink("EDA", href="/eda", active="exact")),
-            dbc.NavItem(dbc.NavLink("Modelos", href="/modelos", active="exact")),
-            dbc.NavItem(dbc.NavLink([icono("mdi:book-open-variant", 18), "Jupyter Book"], href=LIBRO,
-                                    target="_blank")),
-        ], navbar=True, className="ms-auto"),
-    ], fluid="xl"),
-    color="#1b6f5c", dark=True, sticky="top", className="mb-3 barra-nav",
-)
+
+# Encabezado, cifras clave y banner: comunes a las tres secciones (como pestañas de una sola vista)
+encabezado = html.Div(dbc.Container(dbc.Row([
+    dbc.Col([
+        html.H1("🌲 Clasificación de Cobertura Forestal - Roosevelt National Forest"),
+        html.Div("Curso Machine Learning · Proyecto final", className="subtitulo"),
+        html.Div([dbc.Badge("👩‍🔬 Ana Galván", color="light", text_color="success"),
+                  dbc.Badge("👩‍🔬 Valeria Oñate", color="light", text_color="primary"),
+                  dbc.Badge("👩‍🔬 María José Ruiz", color="light", text_color="danger")], className="mt-2"),
+    ], lg=9),
+    dbc.Col(dbc.Button([icono("mdi:book-open-variant", 20), "Jupyter Book"], href=LIBRO, target="_blank",
+                       className="boton-libro"), lg=3, className="d-flex align-items-center justify-content-lg-end mt-3 mt-lg-0"),
+]), fluid="xl"), className="hero mb-4")
+
+cifras = dbc.Row([
+    dbc.Col(kpi("🗺️ Celdas de 30 × 30 m", "581.012", "sin valores faltantes", 1), xs=6, md=True, className="mb-3"),
+    dbc.Col(kpi("📐 Predictoras", "54", "10 continuas + 44 indicadoras", 2), xs=6, md=True, className="mb-3"),
+    dbc.Col(kpi("🌲 Coberturas", "7", "clases a predecir", 3), xs=6, md=True, className="mb-3"),
+    dbc.Col(kpi("🏞️ Áreas silvestres", "4", "Roosevelt National Forest", 5), xs=6, md=True, className="mb-3"),
+    dbc.Col(kpi("🏔️ Gradiente altitudinal", "≈ 2.000 m", "de 1.859 a 3.858 m s. n. m.", 4), xs=12, md=True, className="mb-3"),
+], className="g-3")
+
+# Navegación entre las tres páginas con el aspecto de pestañas; queda fija al desplazarse
+pestanas = dbc.Nav([
+    dbc.NavItem(dbc.NavLink("🌲 Contexto y Territorio", href="/", active="exact")),
+    dbc.NavItem(dbc.NavLink("📊 Análisis Exploratorio", href="/eda", active="exact")),
+    dbc.NavItem(dbc.NavLink("🤖 Modelos de Machine Learning", href="/modelos", active="exact")),
+], className="nav-tabs pestanas-fijas")
 
 app.layout = html.Div([
-    navbar,
+    encabezado,
     dbc.Container([
+        cifras,
+        html.Img(src="/assets/banner_montana.svg", className="banner mb-4", alt="Pisos altitudinales de las Montañas Rocosas"),
+        pestanas,
         dash.page_container,
         html.Div([
             "Datos: Covertype, UCI Machine Learning Repository (Blackard y Dean, 1998; CC BY 4.0) · ",
