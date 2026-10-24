@@ -8,7 +8,8 @@ validación estadística, y un dashboard en Dash desplegable en Render.
 **Autoras:** Ana Galván, Valeria Oñate, María José Ruiz. **Semilla global:** 42.
 
 - **Jupyter Book publicado:** https://anagalvan7.github.io/Proyecto_Final_E4_ML/
-- **Dashboard (Render):** se despliega con `render.yaml` (raíz del repositorio, `rootDir: dashboard`).
+- **Dashboard (Render):** https://dashboard-covertype.onrender.com (plan gratuito: si estuvo inactivo, tarda
+  cerca de un minuto en despertar)
 
 ## Estructura
 

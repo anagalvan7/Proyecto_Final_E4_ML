@@ -14,7 +14,7 @@ import plotly.io as pio
 DATOS = Path(__file__).resolve().parents[1] / "datos"
 ARTEFACTOS = Path(__file__).resolve().parents[1] / "artifacts"
 RES = DATOS / "resultados"
-LIBRO = "https://Maria856578.github.io/MachineLearning/"
+LIBRO = "https://anagalvan7.github.io/Proyecto_Final_E4_ML/"
 
 # ------------------------------------------------------------------ constantes
 CLASES = list(range(1, 8))
