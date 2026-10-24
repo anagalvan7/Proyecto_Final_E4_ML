@@ -1,0 +1,625 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>13. Conclusiones &#8212; Clasificación de la cobertura forestal (Covertype)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'e3_08_conclusiones';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="14. Reproducibilidad" href="e3_09_reproducibilidad.html" />
+    <link rel="prev" title="12. Validación estadística del modelo original" href="e3_06_validacion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_bosque.jpg" class="logo__image only-light" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>
+    <script>document.write(`<img src="_static/logo_bosque.jpg" class="logo__image only-dark" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Clasificación de la cobertura forestal a partir de variables cartográficas
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I. Datos, análisis exploratorio y modelo base</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_base_datos.html">1. Base de datos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="02b_fuga_estructura.html">2.5–2.8 Fuga de información y estructura de los datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c_preprocesamiento.html">2.9 Preprocesamiento</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_conclusiones.html">4. Conclusiones de la Parte I</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II. Benchmark, optimización y evaluación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_modelos.html">5. Benchmark combinatorio de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_optimizacion.html">6. Comparación de los métodos de optimización de hiperparámetros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_comparacion_estadistica.html">7. Comparación estadística de los modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_interpretabilidad.html">8. Interpretabilidad de XGBoost: SHAP frente a LIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_conclusiones_finales.html">9. Eficiencia computacional, reproducibilidad y conclusiones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III. Modelo original</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="e3_04_literatura.html">10. Revisión de literatura y evidencia de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_05_modelo_original.html">11. Modelo original: ensamble por competencia local y por clase (ECLC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_06_validacion.html">12. Validación estadística del modelo original</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_09_reproducibilidad.html">14. Reproducibilidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_apendice.html">Apéndice A. Reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_01_correcciones.html">Apéndice B. Registro de cambios del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliografia.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/e3_08_conclusiones.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>13. Conclusiones</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hallazgos">13.1 Hallazgos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#novedad-implementacion-y-superioridad-del-modelo-original">13.2 Novedad, implementación y superioridad del modelo original</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">13.3 Limitaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trabajo-futuro">13.4 Trabajo futuro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-de-autoria-y-uso-de-herramientas">13.5 Declaración de autoría y uso de herramientas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="conclusiones">
+<h1>13. Conclusiones<a class="headerlink" href="#conclusiones" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="n">E3</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"resultados"</span> <span class="o">/</span> <span class="s2">"e3"</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="s2">"estadistica_veredicto.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">))</span>
+<span class="n">vc</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="s2">"completo"</span> <span class="o">/</span> <span class="s2">"estadistica_veredicto_completo.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Submuestra de 40.000 celdas: ECLC </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="s1">'f1_eclc'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> · mejor benchmark (</span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="s1">'mejor_benchmark'</span><span class="p">]</span><span class="si">}</span><span class="s2">) "</span>
+      <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="s1">'f1_mejor_benchmark'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> · superioridad estadística = </span><span class="si">{</span><span class="n">v</span><span class="p">[</span><span class="s1">'R3'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Entrenamiento completo: ECLC </span><span class="si">{</span><span class="n">vc</span><span class="p">[</span><span class="s1">'f1_eclc'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (prueba reservada </span><span class="si">{</span><span class="n">vc</span><span class="p">[</span><span class="s1">'f1_eclc_prueba_reservada'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">) · "</span>
+      <span class="sa">f</span><span class="s2">"mejor benchmark (</span><span class="si">{</span><span class="n">vc</span><span class="p">[</span><span class="s1">'mejor_benchmark'</span><span class="p">]</span><span class="si">}</span><span class="s2">) </span><span class="si">{</span><span class="n">vc</span><span class="p">[</span><span class="s1">'f1_mejor_benchmark'</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> · superioridad estadística = </span><span class="si">{</span><span class="n">vc</span><span class="p">[</span><span class="s1">'R3'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submuestra de 40.000 celdas: ECLC 0.7908 · mejor benchmark (Random Forest) 0.7857 · superioridad estadística = False
+Entrenamiento completo: ECLC 0.9067 (prueba reservada 0.9151) · mejor benchmark (Arbol) 0.8971 · superioridad estadística = True
+</pre></div>
+</div>
+</div>
+</div>
+<section id="hallazgos">
+<h2>13.1 Hallazgos<a class="headerlink" href="#hallazgos" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Las variables cartográficas permiten predecir la cobertura forestal con alta precisión dentro de las áreas
+muestreadas.</strong> Con todo el conjunto de entrenamiento, el modelo original alcanza un F1 macro de 0,915 en la
+prueba reservada, frente a 0,557 de la regresión logística de referencia.</p></li>
+<li><p><strong>Con el mismo espacio de búsqueda y el mismo presupuesto para las 112 combinaciones del benchmark</strong>, Random
+Forest con SMOTE es la mejor combinación sobre la submuestra de 40.000 celdas (0,783), seguido de K vecinos
+y XGBoost (0,746). El efecto del balanceo depende del algoritmo: mejora a Random Forest y empeora a XGBoost.</p></li>
+<li><p><strong>El orden de los modelos depende del tamaño del entrenamiento.</strong> Con el conjunto completo, el árbol de
+decisión (0,897) y K vecinos (0,893) superan a Random Forest con SMOTE (0,865) y a XGBoost (0,786), cuyos
+hiperparámetros se eligieron con la submuestra.</p></li>
+<li><p><strong>El modelo original supera a los siete modelos benchmark.</strong> Con el entrenamiento completo obtiene
+0,907 ± 0,002 en 10 pliegues y 0,915 en la prueba reservada, y gana al mejor benchmark (árbol de decisión) en
+los 10 pliegues (<span class="math notranslate nohighlight">\(\delta\)</span> de Cliff = 1). Friedman, Wilcoxon con Holm y la t corregida de Nadeau-Bengio
+confirman la diferencia. Con la submuestra de 40.000 celdas también supera en promedio a los siete
+(0,791 frente a 0,786 de Random Forest; gana en 27 de 30 pliegues), aunque allí la diferencia solo es
+significativa en dos de las tres pruebas.</p></li>
+<li><p><strong>El modelo original cambia exactitud por equilibrio entre clases.</strong> Mejora sobre todo el F1 de las clases
+raras (álamo/sauce y álamo temblón), a costa de una exactitud global algo menor que la del mejor benchmark.
+Por eso la prueba de McNemar, que compara aciertos, no lo favorece.</p></li>
+<li><p><strong>El mecanismo funciona fuera de Covertype.</strong> En dígitos manuscritos y cáncer de mama, dos problemas de
+naturaleza distinta, obtiene el mayor F1 macro de los métodos evaluados; en vinos queda por debajo de Random
+Forest.</p></li>
+<li><p><strong>Hay combinadores más potentes.</strong> El <em>stacking</em> lineal y HistGradientBoosting obtienen un F1 macro mayor que
+el modelo original en ambos tamaños de entrenamiento. Con el entrenamiento completo, reglas más simples (pesos
+por error global y KNORA-E) también lo superan, y no todos sus componentes aportan. El modelo original mejora
+a los modelos que combina, pero no es el mejor clasificador posible para este problema.</p></li>
+<li><p><strong>La elevación es el determinante principal de la cobertura</strong> en todos los modelos analizados, seguida del
+tipo de suelo, el área silvestre y las distancias a carreteras y a puntos de incendio.</p></li>
+</ol>
+</section>
+<section id="novedad-implementacion-y-superioridad-del-modelo-original">
+<h2>13.2 Novedad, implementación y superioridad del modelo original<a class="headerlink" href="#novedad-implementacion-y-superioridad-del-modelo-original" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Criterio</p></th>
+<th class="head"><p>Resultado</p></th>
+<th class="head"><p>Evidencia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Novedad</strong></p></td>
+<td><p>No se encontró el mecanismo del ECLC (pesos por clase en forma cerrada sobre la pérdida logarítmica binaria local, con contracción y balanceo de vecinos) aplicado a Covertype ni a la cobertura forestal</p></td>
+<td><p>Capítulo 10</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Implementación propia</strong></p></td>
+<td><p>Clase compatible con scikit-learn; la búsqueda de vecinos, las pérdidas, la contracción, la regla de pesos y la combinación están programadas con numpy. La regla se deriva de un objetivo explícito y tiene propiedades demostradas</p></td>
+<td><p>Capítulo 11</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Superioridad estadística</strong></p></td>
+<td><p>Con el entrenamiento completo: sí (tres pruebas frente al mejor benchmark, efecto grande). Con la submuestra de 40.000 celdas: dos de tres pruebas</p></td>
+<td><p>Capítulo 12</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="limitaciones">
+<h2>13.3 Limitaciones<a class="headerlink" href="#limitaciones" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Magnitud de la mejora.</strong> La ventaja sobre el mejor benchmark es de alrededor de una centésima de F1 macro con
+el entrenamiento completo y de media centésima con la submuestra.</p></li>
+<li><p><strong>Hiperparámetros de los benchmarks.</strong> Se eligieron con la submuestra de 40.000 celdas y un espacio de búsqueda
+acotado, y se mantuvieron fijos con el entrenamiento completo para todos los modelos por igual. Una búsqueda más
+amplia podría mejorar a cualquiera de ellos.</p></li>
+<li><p><strong>Dependencia entre pliegues.</strong> Los pliegues de la validación repetida comparten datos de entrenamiento. La t
+corregida de Nadeau-Bengio lo compensa, pero las pruebas de rangos pueden ser algo optimistas.</p></li>
+<li><p><strong>Generalización geográfica.</strong> Los modelos están validados dentro de las cuatro áreas silvestres muestreadas,
+no en áreas nuevas.</p></li>
+<li><p><strong>Cobertura de la revisión de literatura.</strong> El cribado se hizo por título y resumen, con texto completo solo
+donde OpenAlex lo indexa.</p></li>
+</ul>
+</section>
+<section id="trabajo-futuro">
+<h2>13.4 Trabajo futuro<a class="headerlink" href="#trabajo-futuro" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Usar los pesos locales del modelo original como entrada de un combinador lineal regularizado, para capturar
+las correcciones entre clases que hoy logra el <em>stacking</em>.</p></li>
+<li><p>Repetir el benchmark con un espacio de búsqueda más amplio, común a todos los algoritmos, y reoptimizar los
+hiperparámetros con el conjunto completo.</p></li>
+<li><p>Evaluar el modelo con validación por área silvestre y en escenarios de flujo de datos.</p></li>
+<li><p>Usar un índice de vecinos aproximados para reducir el costo de inferencia con conjuntos de referencia grandes.</p></li>
+</ol>
+</section>
+<section id="declaracion-de-autoria-y-uso-de-herramientas">
+<h2>13.5 Declaración de autoría y uso de herramientas<a class="headerlink" href="#declaracion-de-autoria-y-uso-de-herramientas" title="Permalink to this heading">#</a></h2>
+<p>Ana Galván, Valeria Oñate y María José Ruiz son las autoras de este trabajo. El análisis se realizó con
+scikit-learn, imbalanced-learn, XGBoost, Optuna, DEAP, SHAP, LIME, statsmodels, scikit-posthocs y Jupyter Book.
+Se utilizó Claude (Anthropic) como herramienta de asistencia en la programación de los experimentos y en la
+redacción del documento.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="e3_06_validacion.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">12. Validación estadística del modelo original</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="e3_09_reproducibilidad.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">14. Reproducibilidad</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hallazgos">13.1 Hallazgos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#novedad-implementacion-y-superioridad-del-modelo-original">13.2 Novedad, implementación y superioridad del modelo original</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">13.3 Limitaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trabajo-futuro">13.4 Trabajo futuro</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#declaracion-de-autoria-y-uso-de-herramientas">13.5 Declaración de autoría y uso de herramientas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Ana Galván, Valeria Oñate y María José Ruiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1120 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Apéndice B. Registro de cambios del benchmark &#8212; Clasificación de la cobertura forestal (Covertype)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'e3_01_correcciones';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Bibliografía" href="bibliografia.html" />
+    <link rel="prev" title="Apéndice A. Reproducibilidad" href="05_apendice.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_bosque.jpg" class="logo__image only-light" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>
+    <script>document.write(`<img src="_static/logo_bosque.jpg" class="logo__image only-dark" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Clasificación de la cobertura forestal a partir de variables cartográficas
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I. Datos, análisis exploratorio y modelo base</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_base_datos.html">1. Base de datos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="02b_fuga_estructura.html">2.5–2.8 Fuga de información y estructura de los datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c_preprocesamiento.html">2.9 Preprocesamiento</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_conclusiones.html">4. Conclusiones de la Parte I</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II. Benchmark, optimización y evaluación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_modelos.html">5. Benchmark combinatorio de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_optimizacion.html">6. Comparación de los métodos de optimización de hiperparámetros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_comparacion_estadistica.html">7. Comparación estadística de los modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_interpretabilidad.html">8. Interpretabilidad de XGBoost: SHAP frente a LIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_conclusiones_finales.html">9. Eficiencia computacional, reproducibilidad y conclusiones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III. Modelo original</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="e3_04_literatura.html">10. Revisión de literatura y evidencia de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_05_modelo_original.html">11. Modelo original: ensamble por competencia local y por clase (ECLC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_06_validacion.html">12. Validación estadística del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_08_conclusiones.html">13. Conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_09_reproducibilidad.html">14. Reproducibilidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndices</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_apendice.html">Apéndice A. Reproducibilidad</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Apéndice B. Registro de cambios del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliografia.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/e3_01_correcciones.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Apéndice B. Registro de cambios del benchmark</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-1-cambios-realizados">B.1 Cambios realizados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-2-combinaciones-repetidas">B.2 Combinaciones repetidas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-3-presupuesto-por-metodo">B.3 Presupuesto por método</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-4-efecto-en-el-ranking">B.4 Efecto en el ranking</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apendice-b-registro-de-cambios-del-benchmark">
+<h1>Apéndice B. Registro de cambios del benchmark<a class="headerlink" href="#apendice-b-registro-de-cambios-del-benchmark" title="Permalink to this heading">#</a></h1>
+<p>Este apéndice documenta los ajustes hechos sobre una ejecución previa del benchmark y su efecto en los
+resultados. Su objetivo es que las cifras de la Parte II puedan rastrearse hasta los registros originales.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">RAIZ</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"scripts"</span><span class="p">))</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">_utils3</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u3</span>
+
+<span class="n">RES</span> <span class="o">=</span> <span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"resultados"</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cargar</span><span class="p">(</span><span class="n">carpeta</span><span class="p">):</span>
+    <span class="n">filas</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">u3</span><span class="o">.</span><span class="n">MODELOS</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">carpeta</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"benchmark_log_</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">.jsonl"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">):</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+            <span class="n">filas</span><span class="p">[</span><span class="n">r</span><span class="p">[</span><span class="s2">"clave"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="k">return</span> <span class="n">filas</span>
+
+
+<span class="n">antes</span> <span class="o">=</span> <span class="n">cargar</span><span class="p">(</span><span class="n">RES</span> <span class="o">/</span> <span class="s2">"entregable2_original"</span><span class="p">)</span>
+<span class="n">despues</span> <span class="o">=</span> <span class="n">cargar</span><span class="p">(</span><span class="n">RES</span><span class="p">)</span>
+<span class="n">repetidas</span> <span class="o">=</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">RES</span> <span class="o">/</span> <span class="s2">"combinaciones_a_repetir.txt"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="b-1-cambios-realizados">
+<h2>B.1 Cambios realizados<a class="headerlink" href="#b-1-cambios-realizados" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Situación detectada</p></th>
+<th class="head"><p>Acción</p></th>
+<th class="head"><p>Ubicación</p></th>
+<th class="head"><p>Evidencia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>En una ejecución previa, XGBoost sin balanceo (Grid y Random Search) se optimizó con un espacio mayor ({100, 200} × {4, 6, 8} × {0,05; 0,1; 0,2}) que las demás variantes de XGBoost</p></td>
+<td><p>Las 112 combinaciones se igualaron al mismo espacio por algoritmo y se repitieron las afectadas con la misma submuestra, pliegues y semilla</p></td>
+<td><p>Secciones 5.2 y 9.3</p></td>
+<td><p>Tabla B.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Lo mismo en Random Forest sin balanceo ({100, 200, 300} × {10, 20, sin límite})</p></td>
+<td><p>Igual que en la fila 1</p></td>
+<td><p>Sección 5.2</p></td>
+<td><p>Tabla B.2 (filas RF)</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Presupuestos distintos entre combinaciones (Random Search con 8 o 6 iteraciones, Bayesiana con 10 o 6 ensayos, Genético con 6 × 3 o 4 × 2)</p></td>
+<td><p>Todas se repitieron con el presupuesto común (6, 6 y 4 × 2)</p></td>
+<td><p>Secciones 5.2 y 6.2</p></td>
+<td><p>Tabla B.2 y conteos de B.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Resultados que dependían de la ejecución previa (ranking, finalista, comparación estadística)</p></td>
+<td><p>Recalculados con el benchmark homogéneo</p></td>
+<td><p>Capítulos 5 a 9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tabla_maestra.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">friedman_resumen.json</span></code>, <code class="docutils literal notranslate"><span class="pre">resumen_finalista.json</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>En la prueba de Friedman, los pliegues del SVM (submuestra de 9.000 celdas) se emparejaban con pliegues de otra submuestra (40.000)</p></td>
+<td><p>Toda comparación del modelo original usa los mismos pliegues de la submuestra de 40.000 celdas para todos los modelos</p></td>
+<td><p>Sección 12.1</p></td>
+<td><p>Resultados por pliegue</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Año de publicación de Blackard y Dean</p></td>
+<td><p>Corregido a 1999</p></td>
+<td><p>Bibliografía</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">references.bib</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="b-2-combinaciones-repetidas">
+<h2>B.2 Combinaciones repetidas<a class="headerlink" href="#b-2-combinaciones-repetidas" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">clave</span> <span class="ow">in</span> <span class="n">repetidas</span><span class="p">:</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">antes</span><span class="p">[</span><span class="n">clave</span><span class="p">],</span> <span class="n">despues</span><span class="p">[</span><span class="n">clave</span><span class="p">]</span>
+    <span class="n">filas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">"Combinación"</span><span class="p">:</span> <span class="n">clave</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"|"</span><span class="p">,</span> <span class="s2">" · "</span><span class="p">),</span>
+        <span class="s2">"Evaluaciones por pliegue (previa)"</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="s2">"evaluaciones_por_pliegue"</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">"Evaluaciones por pliegue (homogénea)"</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s2">"evaluaciones_por_pliegue"</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">"F1 macro previa"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">"f1_macro_outer"</span><span class="p">]),</span>
+        <span class="s2">"F1 macro homogénea"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"f1_macro_outer"</span><span class="p">]),</span>
+        <span class="s2">"Cambio"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"f1_macro_outer"</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="s2">"f1_macro_outer"</span><span class="p">]),</span>
+    <span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Combinaciones repetidas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">filas</span><span class="p">)</span><span class="si">}</span><span class="s2"> de 112"</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filas</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Combinaciones repetidas: 37 de 112
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Combinación</th>
+      <th>Evaluaciones por pliegue (previa)</th>
+      <th>Evaluaciones por pliegue (homogénea)</th>
+      <th>F1 macro previa</th>
+      <th>F1 macro homogénea</th>
+      <th>Cambio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>KNN · ninguno · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.7463</td>
+      <td>0.7463</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>KNN · ninguno · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.7463</td>
+      <td>0.7463</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>KNN · ninguno · genetico</td>
+      <td>19</td>
+      <td>7</td>
+      <td>0.7463</td>
+      <td>0.7162</td>
+      <td>-0.0301</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>KNN · smote · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.7156</td>
+      <td>0.7156</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>KNN · smote · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.7156</td>
+      <td>0.7156</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NB · ninguno · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.2021</td>
+      <td>0.2021</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>NB · ninguno · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.1972</td>
+      <td>0.1972</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>NB · ninguno · genetico</td>
+      <td>14</td>
+      <td>8</td>
+      <td>0.2021</td>
+      <td>0.1635</td>
+      <td>-0.0387</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NB · smote · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.2242</td>
+      <td>0.2242</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>NB · smote · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.2210</td>
+      <td>0.2210</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>NB · smote · genetico</td>
+      <td>14</td>
+      <td>8</td>
+      <td>0.2242</td>
+      <td>0.1963</td>
+      <td>-0.0279</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>NB · adasyn · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.1807</td>
+      <td>0.1807</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>NB · adasyn · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.1772</td>
+      <td>0.1772</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>NB · adasyn · genetico</td>
+      <td>14</td>
+      <td>8</td>
+      <td>0.1807</td>
+      <td>0.1333</td>
+      <td>-0.0474</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>NB · balanced · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.1955</td>
+      <td>0.1955</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>NB · balanced · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.1904</td>
+      <td>0.1904</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>NB · balanced · genetico</td>
+      <td>14</td>
+      <td>8</td>
+      <td>0.1955</td>
+      <td>0.1613</td>
+      <td>-0.0342</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>LR · ninguno · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.5621</td>
+      <td>0.5621</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>LR · ninguno · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.5631</td>
+      <td>0.5631</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>LR · ninguno · genetico</td>
+      <td>14</td>
+      <td>8</td>
+      <td>0.5636</td>
+      <td>0.5635</td>
+      <td>-0.0001</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>LR · smote · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.5283</td>
+      <td>0.5283</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>LR · smote · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.5286</td>
+      <td>0.5285</td>
+      <td>-0.0001</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>DT · ninguno · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.6818</td>
+      <td>0.6818</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>DT · ninguno · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.7221</td>
+      <td>0.7221</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>DT · ninguno · genetico</td>
+      <td>18</td>
+      <td>7</td>
+      <td>0.7210</td>
+      <td>0.7148</td>
+      <td>-0.0062</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>DT · smote · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.6674</td>
+      <td>0.6674</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>DT · smote · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.7071</td>
+      <td>0.7071</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>DT · smote · genetico</td>
+      <td>18</td>
+      <td>7</td>
+      <td>0.7071</td>
+      <td>0.6846</td>
+      <td>-0.0225</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>DT · adasyn · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.6528</td>
+      <td>0.6528</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>RF · ninguno · grid</td>
+      <td>9</td>
+      <td>4</td>
+      <td>0.7746</td>
+      <td>0.7497</td>
+      <td>-0.0249</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>RF · ninguno · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.7746</td>
+      <td>0.7497</td>
+      <td>-0.0249</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>XGB · ninguno · grid</td>
+      <td>18</td>
+      <td>8</td>
+      <td>0.8088</td>
+      <td>0.7457</td>
+      <td>-0.0631</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>XGB · ninguno · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.8088</td>
+      <td>0.7457</td>
+      <td>-0.0631</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>SVM · ninguno · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.6676</td>
+      <td>0.5641</td>
+      <td>-0.1035</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>SVM · ninguno · bayes</td>
+      <td>10</td>
+      <td>6</td>
+      <td>0.6572</td>
+      <td>0.6572</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>SVM · ninguno · genetico</td>
+      <td>19</td>
+      <td>7</td>
+      <td>0.6690</td>
+      <td>0.6674</td>
+      <td>-0.0016</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>SVM · smote · random</td>
+      <td>8</td>
+      <td>6</td>
+      <td>0.6700</td>
+      <td>0.6488</td>
+      <td>-0.0212</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La tabla compara, para las combinaciones repetidas, el número de evaluaciones del optimizador por pliegue
+externo y el F1 macro medio del bucle externo en la ejecución previa y en la homogénea. Todo lo demás se mantuvo
+fijo. Muchas combinaciones de Random y Bayes no cambian, porque con la misma semilla sus primeras 6
+configuraciones coinciden con las de la ejecución previa.</p>
+</section>
+<section id="b-3-presupuesto-por-metodo">
+<h2>B.3 Presupuesto por método<a class="headerlink" href="#b-3-presupuesto-por-metodo" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">presupuesto</span><span class="p">(</span><span class="n">filas</span><span class="p">,</span> <span class="n">metodo</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">({</span><span class="n">r</span><span class="p">[</span><span class="s2">"evaluaciones_por_pliegue"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">filas</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+                   <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"aplicable"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="ow">and</span> <span class="n">r</span><span class="p">[</span><span class="s2">"optimizacion"</span><span class="p">]</span> <span class="o">==</span> <span class="n">metodo</span><span class="p">})</span>
+
+<span class="k">for</span> <span class="n">metodo</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"grid"</span><span class="p">,</span> <span class="s2">"random"</span><span class="p">,</span> <span class="s2">"bayes"</span><span class="p">,</span> <span class="s2">"genetico"</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">metodo</span><span class="si">:</span><span class="s2">9s</span><span class="si">}</span><span class="s2"> evaluaciones por pliegue  previa: </span><span class="si">{</span><span class="n">presupuesto</span><span class="p">(</span><span class="n">antes</span><span class="p">,</span><span class="w"> </span><span class="n">metodo</span><span class="p">)</span><span class="si">}</span><span class="s2">   homogénea: </span><span class="si">{</span><span class="n">presupuesto</span><span class="p">(</span><span class="n">despues</span><span class="p">,</span><span class="w"> </span><span class="n">metodo</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>grid      evaluaciones por pliegue  previa: [4, 5, 6, 8, 9, 12, 18]   homogénea: [4, 5, 6, 8, 9, 12]
+random    evaluaciones por pliegue  previa: [6, 8]   homogénea: [6]
+bayes     evaluaciones por pliegue  previa: [6, 10]   homogénea: [6]
+genetico  evaluaciones por pliegue  previa: [7, 8, 9, 14, 18, 19]   homogénea: [7, 8, 9]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="b-4-efecto-en-el-ranking">
+<h2>B.4 Efecto en el ranking<a class="headerlink" href="#b-4-efecto-en-el-ranking" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mejores</span><span class="p">(</span><span class="n">filas</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([{</span><span class="s2">"modelo"</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">"modelo"</span><span class="p">],</span> <span class="s2">"balanceo"</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">"balanceo"</span><span class="p">],</span> <span class="s2">"optimizacion"</span><span class="p">:</span> <span class="n">r</span><span class="p">[</span><span class="s2">"optimizacion"</span><span class="p">],</span>
+                        <span class="s2">"f1"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"f1_macro_outer"</span><span class="p">])}</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">filas</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"aplicable"</span><span class="p">,</span> <span class="kc">True</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"modelo"</span><span class="p">)[</span><span class="s2">"f1"</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"modelo"</span><span class="p">)</span>
+
+<span class="n">ma</span><span class="p">,</span> <span class="n">md</span> <span class="o">=</span> <span class="n">mejores</span><span class="p">(</span><span class="n">antes</span><span class="p">),</span> <span class="n">mejores</span><span class="p">(</span><span class="n">despues</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"Mejor combinación (previa)"</span><span class="p">:</span> <span class="n">ma</span><span class="p">[</span><span class="s2">"balanceo"</span><span class="p">]</span> <span class="o">+</span> <span class="s2">" · "</span> <span class="o">+</span> <span class="n">ma</span><span class="p">[</span><span class="s2">"optimizacion"</span><span class="p">],</span> <span class="s2">"F1 previa"</span><span class="p">:</span> <span class="n">ma</span><span class="p">[</span><span class="s2">"f1"</span><span class="p">],</span>
+              <span class="s2">"Mejor combinación (homogénea)"</span><span class="p">:</span> <span class="n">md</span><span class="p">[</span><span class="s2">"balanceo"</span><span class="p">]</span> <span class="o">+</span> <span class="s2">" · "</span> <span class="o">+</span> <span class="n">md</span><span class="p">[</span><span class="s2">"optimizacion"</span><span class="p">],</span> <span class="s2">"F1 homogénea"</span><span class="p">:</span> <span class="n">md</span><span class="p">[</span><span class="s2">"f1"</span><span class="p">],</span>
+              <span class="s2">"Rango homogéneo"</span><span class="p">:</span> <span class="n">md</span><span class="p">[</span><span class="s2">"f1"</span><span class="p">]</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"Rango homogéneo"</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>modelo</th>
+      <th>Mejor combinación (previa)</th>
+      <th>F1 previa</th>
+      <th>Mejor combinación (homogénea)</th>
+      <th>F1 homogénea</th>
+      <th>Rango homogéneo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RF</td>
+      <td>smote · grid</td>
+      <td>0.7831</td>
+      <td>smote · grid</td>
+      <td>0.7831</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>KNN</td>
+      <td>ninguno · grid</td>
+      <td>0.7463</td>
+      <td>ninguno · grid</td>
+      <td>0.7463</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>XGB</td>
+      <td>ninguno · grid</td>
+      <td>0.8088</td>
+      <td>ninguno · grid</td>
+      <td>0.7457</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>DT</td>
+      <td>ninguno · bayes</td>
+      <td>0.7221</td>
+      <td>ninguno · bayes</td>
+      <td>0.7221</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>SVM</td>
+      <td>smote · random</td>
+      <td>0.6700</td>
+      <td>smote · grid</td>
+      <td>0.6698</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>LR</td>
+      <td>ninguno · grid</td>
+      <td>0.5636</td>
+      <td>ninguno · grid</td>
+      <td>0.5636</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>NB</td>
+      <td>smote · grid</td>
+      <td>0.2242</td>
+      <td>smote · grid</td>
+      <td>0.2242</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>Con el benchmark homogéneo, XGBoost pasa del primer lugar (0,809) al tercero (0,746). Su ventaja en la
+ejecución previa se debía al espacio de búsqueda mayor que solo tuvieron sus variantes sin balanceo. Random
+Forest con SMOTE pasa a ser la mejor combinación (0,783), y el balanceo mejora a Random Forest en lugar de no
+afectarlo.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_apendice.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Apéndice A. Reproducibilidad</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bibliografia.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Bibliografía</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-1-cambios-realizados">B.1 Cambios realizados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-2-combinaciones-repetidas">B.2 Combinaciones repetidas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-3-presupuesto-por-metodo">B.3 Presupuesto por método</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-4-efecto-en-el-ranking">B.4 Efecto en el ranking</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Ana Galván, Valeria Oñate y María José Ruiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

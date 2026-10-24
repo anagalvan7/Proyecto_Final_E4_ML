@@ -1,0 +1,1568 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>11. Modelo original: ensamble por competencia local y por clase (ECLC) &#8212; Clasificación de la cobertura forestal (Covertype)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'e3_05_modelo_original';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="12. Validación estadística del modelo original" href="e3_06_validacion.html" />
+    <link rel="prev" title="10. Revisión de literatura y evidencia de novedad" href="e3_04_literatura.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_bosque.jpg" class="logo__image only-light" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>
+    <script>document.write(`<img src="_static/logo_bosque.jpg" class="logo__image only-dark" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Clasificación de la cobertura forestal a partir de variables cartográficas
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I. Datos, análisis exploratorio y modelo base</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_base_datos.html">1. Base de datos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="02b_fuga_estructura.html">2.5–2.8 Fuga de información y estructura de los datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c_preprocesamiento.html">2.9 Preprocesamiento</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_conclusiones.html">4. Conclusiones de la Parte I</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II. Benchmark, optimización y evaluación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_modelos.html">5. Benchmark combinatorio de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_optimizacion.html">6. Comparación de los métodos de optimización de hiperparámetros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_comparacion_estadistica.html">7. Comparación estadística de los modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_interpretabilidad.html">8. Interpretabilidad de XGBoost: SHAP frente a LIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_conclusiones_finales.html">9. Eficiencia computacional, reproducibilidad y conclusiones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III. Modelo original</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="e3_04_literatura.html">10. Revisión de literatura y evidencia de novedad</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Modelo original: ensamble por competencia local y por clase (ECLC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_06_validacion.html">12. Validación estadística del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_08_conclusiones.html">13. Conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_09_reproducibilidad.html">14. Reproducibilidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_apendice.html">Apéndice A. Reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_01_correcciones.html">Apéndice B. Registro de cambios del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliografia.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/e3_05_modelo_original.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>11. Modelo original: ensamble por competencia local y por clase (ECLC)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacion">11.1 Motivación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">11.2 Formulación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-demostradas">11.3 Propiedades demostradas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo">11.4 Algoritmo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">11.5 Implementación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-unitarias">Pruebas unitarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad-empirica">11.6 Complejidad empírica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudio-de-ablacion">11.7 Estudio de ablación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-y-sensibilidad">11.8 Robustez y sensibilidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-errores">Análisis de errores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-shap-del-eclc-frente-al-mejor-benchmark">11.9 Interpretabilidad: SHAP del ECLC frente al mejor benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-modelo">11.10 Limitaciones del modelo</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelo-original-ensamble-por-competencia-local-y-por-clase-eclc">
+<h1>11. Modelo original: ensamble por competencia local y por clase (ECLC)<a class="headerlink" href="#modelo-original-ensamble-por-competencia-local-y-por-clase-eclc" title="Permalink to this heading">#</a></h1>
+<p>Este capítulo presenta el modelo original del proyecto. Cubre la motivación, la formulación matemática, las
+propiedades demostradas, el pseudocódigo, la complejidad, la implementación, las pruebas unitarias, la
+ablación, la robustez y la interpretabilidad. La revisión de literatura que respalda la novedad está en el
+capítulo 10, y la validación estadística, en el capítulo 12.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">RAIZ</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"dashboard"</span><span class="p">))</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"scripts"</span><span class="p">))</span>
+<span class="n">E3</span> <span class="o">=</span> <span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"resultados"</span> <span class="o">/</span> <span class="s2">"e3"</span>
+<span class="n">resumen</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="s2">"estadistica_resumen.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"metodo"</span><span class="p">)</span>
+<span class="n">ablacion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="s2">"estadistica_ablacion.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="motivacion">
+<h2>11.1 Motivación<a class="headerlink" href="#motivacion" title="Permalink to this heading">#</a></h2>
+<p>Los capítulos 3 a 9 mostraron dos hechos que motivan el diseño:</p>
+<ol class="arabic simple">
+<li><p><strong>Ningún modelo domina en todas las clases ni en todas las zonas.</strong> Random Forest es el mejor en promedio, pero
+K vecinos y el árbol de decisión aciertan en celdas donde Random Forest falla, y el desempeño cambia
+mucho entre áreas silvestres y franjas de elevación (secciones 2.7 y 3.7).</p></li>
+<li><p><strong>El desbalance (103:1) castiga el F1 macro.</strong> Un error en el álamo/sauce pesa lo mismo que uno en el pino
+lodgepole, aunque haya 100 veces menos celdas.</p></li>
+</ol>
+<p>Un ensamble que confíe en cada modelo <strong>donde y para la clase en que ese modelo ha demostrado ser bueno</strong>
+ataca ambos problemas a la vez.</p>
+</section>
+<section id="formulacion">
+<h2>11.2 Formulación<a class="headerlink" href="#formulacion" title="Permalink to this heading">#</a></h2>
+<p>Sean <span class="math notranslate nohighlight">\(f_1, \dots, f_M\)</span> los modelos base (aquí, la mejor combinación de cada uno de los <span class="math notranslate nohighlight">\(M = 7\)</span> algoritmos
+del benchmark) y <span class="math notranslate nohighlight">\(C = 7\)</span> clases. Para el conjunto de entrenamiento <span class="math notranslate nohighlight">\(\{(x_j, y_j)\}_{j=1}^n\)</span> se calculan
+probabilidades <strong>fuera de pliegue</strong> <span class="math notranslate nohighlight">\(\hat p_{mc}(x_j)\)</span> con 3 pliegues, de modo que ningún modelo evalúe su
+competencia sobre celdas que vio al entrenarse.</p>
+<p><strong>Pérdida binaria de referencia.</strong> Para cada modelo <span class="math notranslate nohighlight">\(m\)</span>, clase <span class="math notranslate nohighlight">\(c\)</span> y celda de referencia <span class="math notranslate nohighlight">\(j\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-perdida">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-perdida" title="Enlace permanente a esta ecuación">#</a></span>\[
+\ell_{mc}(j) = -\,\mathbb{1}[y_j = c]\,\log \hat p_{mc}(x_j) \;-\; \mathbb{1}[y_j \neq c]\,\log\bigl(1 - \hat p_{mc}(x_j)\bigr).
+\]</div>
+<p>Es la pérdida logarítmica de la pregunta «¿es esta celda de la clase <span class="math notranslate nohighlight">\(c\)</span>?». Mide la calidad de la columna
+<span class="math notranslate nohighlight">\(c\)</span> de las probabilidades del modelo <span class="math notranslate nohighlight">\(m\)</span>, no solo si acierta la clase final.</p>
+<p><strong>Competencia local con contracción.</strong> Para una celda nueva <span class="math notranslate nohighlight">\(x\)</span> se buscan sus <span class="math notranslate nohighlight">\(k\)</span> vecinos más cercanos
+<span class="math notranslate nohighlight">\(N_k(x)\)</span> en el espacio preprocesado (ingeniería de variables y estandarización del capítulo 2.9), con distancias
+<span class="math notranslate nohighlight">\(d_1 \le \dots \le d_k\)</span>. Cada vecino recibe el peso</p>
+<div class="math notranslate nohighlight" id="equation-eq-nucleo">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-nucleo" title="Enlace permanente a esta ecuación">#</a></span>\[
+a_j(x) = s_{y_j}\,\exp\!\bigl(-(d_j / d_k)^2\bigr), \qquad s_c = \frac{n}{C\,n_c},
+\]</div>
+<p>que combina un núcleo gaussiano con ancho adaptativo (<span class="math notranslate nohighlight">\(d_k\)</span>, la distancia al vecino más lejano) y un peso
+que compensa el desbalance (<span class="math notranslate nohighlight">\(s_c\)</span> es el peso de clase «balanced»). Con <span class="math notranslate nohighlight">\(A(x) = \sum_j a_j(x)\)</span> y la pérdida
+global <span class="math notranslate nohighlight">\(\bar L_{mc} = \sum_i s_{y_i}\ell_{mc}(i) / \sum_i s_{y_i}\)</span>, la competencia del modelo <span class="math notranslate nohighlight">\(m\)</span> para la clase
+<span class="math notranslate nohighlight">\(c\)</span> en <span class="math notranslate nohighlight">\(x\)</span> es</p>
+<div class="math notranslate nohighlight" id="equation-eq-competencia">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-competencia" title="Enlace permanente a esta ecuación">#</a></span>\[
+L_{mc}(x) = \frac{\sum_{j \in N_k(x)} a_j(x)\,\ell_{mc}(j) \;+\; \tau\,\bar L_{mc}}{A(x) + \tau}.
+\]</div>
+<p>El término <span class="math notranslate nohighlight">\(\tau\)</span> contrae la estimación local hacia la global, como un estimador bayesiano con
+<span class="math notranslate nohighlight">\(\tau\)</span> pseudo-observaciones de la pérdida global. Esto evita que pocas celdas vecinas, o vecindarios sin
+ejemplos de una clase rara, produzcan pesos extremos.</p>
+<p><strong>Regla de combinación.</strong> Los pesos del modelo <span class="math notranslate nohighlight">\(m\)</span> para la clase <span class="math notranslate nohighlight">\(c\)</span> son</p>
+<div class="math notranslate nohighlight" id="equation-eq-gibbs">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-gibbs" title="Enlace permanente a esta ecuación">#</a></span>\[
+w_{mc}(x) = \frac{\exp\bigl(-\beta\,L_{mc}(x)\bigr)}{\sum_{m'=1}^{M}\exp\bigl(-\beta\,L_{m'c}(x)\bigr)},
+\]</div>
+<p>y la probabilidad combinada es</p>
+<div class="math notranslate nohighlight" id="equation-eq-combinacion">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-combinacion" title="Enlace permanente a esta ecuación">#</a></span>\[
+q_c(x) = \sum_{m=1}^M w_{mc}(x)\,\hat p_{mc}(x), \qquad p(c \mid x) = \frac{q_c(x)}{\sum_{c'} q_{c'}(x)},
+\qquad \hat y(x) = \arg\max_c\, p(c \mid x).
+\]</div>
+<p>Los hiperparámetros propios son <span class="math notranslate nohighlight">\(k\)</span> (tamaño del vecindario), <span class="math notranslate nohighlight">\(\beta \ge 0\)</span> (qué tan selectiva es la regla)
+y <span class="math notranslate nohighlight">\(\tau \ge 0\)</span> (cuánto se confía en la vecindad frente al promedio global).</p>
+</section>
+<section id="propiedades-demostradas">
+<h2>11.3 Propiedades demostradas<a class="headerlink" href="#propiedades-demostradas" title="Permalink to this heading">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Proposición 1 (pesos en forma cerrada y únicos)</p>
+<p>Para <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(c\)</span> fijos, <span class="math notranslate nohighlight">\(w_{\cdot c}(x)\)</span> en <a class="reference internal" href="#equation-eq-gibbs">(4)</a> es el <strong>único</strong> minimizador en el símplex
+<span class="math notranslate nohighlight">\(\Delta_M = \{w \ge 0,\ \sum_m w_m = 1\}\)</span> de</p>
+<div class="math notranslate nohighlight" id="equation-eq-objetivo">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-objetivo" title="Enlace permanente a esta ecuación">#</a></span>\[
+F(w) = \sum_{m=1}^M w_m L_{mc}(x) + \frac{1}{\beta}\sum_{m=1}^M w_m \log w_m, \qquad \beta &gt; 0.
+\]</div>
+</div>
+<p><em>Demostración.</em> <span class="math notranslate nohighlight">\(F\)</span> es la suma de una función lineal y de <span class="math notranslate nohighlight">\(\frac{1}{\beta}\)</span> veces la entropía negativa, que
+es estrictamente convexa en <span class="math notranslate nohighlight">\(\Delta_M\)</span>. Por tanto, <span class="math notranslate nohighlight">\(F\)</span> es estrictamente convexa y tiene a lo sumo un
+minimizador. Como <span class="math notranslate nohighlight">\(w_m\log w_m \to 0\)</span> cuando <span class="math notranslate nohighlight">\(w_m \to 0^+\)</span> y su derivada tiende a <span class="math notranslate nohighlight">\(-\infty\)</span>, el mínimo está
+en el interior del símplex y basta la condición de Lagrange con la restricción
+<span class="math notranslate nohighlight">\(\sum_m w_m = 1\)</span>: <span class="math notranslate nohighlight">\(L_{mc} + \frac{1}{\beta}(1 + \log w_m) + \lambda = 0\)</span>. Despejando,
+<span class="math notranslate nohighlight">\(w_m = e^{-1-\beta\lambda}\,e^{-\beta L_{mc}}\)</span>, y la normalización fija la constante, lo que da
+<a class="reference internal" href="#equation-eq-gibbs">(4)</a>. <span class="math notranslate nohighlight">\(\blacksquare\)</span></p>
+<p>La regla <strong>se deriva</strong> de un objetivo explícito: minimizar la pérdida local esperada con una penalización de
+entropía que impide concentrar todo el peso en un solo modelo con poca evidencia. Los casos límite
+recuperan reglas estándar: con <span class="math notranslate nohighlight">\(\beta = 0\)</span> se obtiene el <strong>promedio simple</strong>; con <span class="math notranslate nohighlight">\(\beta \to \infty\)</span>, la
+<strong>selección</strong> del modelo con menor pérdida local (como OLA); y con <span class="math notranslate nohighlight">\(\tau \to \infty\)</span>, <strong>pesos globales por
+clase</strong>. Estas reglas son justamente las líneas base de la ablación (sección 11.7).</p>
+<div class="important admonition">
+<p class="admonition-title">Proposición 2 (cota de la pérdida local del ensamble)</p>
+<p>Sea <span class="math notranslate nohighlight">\(\tilde L_c(q)\)</span> la pérdida contraída <a class="reference internal" href="#equation-eq-competencia">(3)</a> evaluada con la combinación
+<span class="math notranslate nohighlight">\(q_c(x_i) = \sum_m w_{mc}(x)\hat p_{mc}(x_i)\)</span> (con los pesos de <span class="math notranslate nohighlight">\(x\)</span>) en lugar de las probabilidades de un
+solo modelo. Entonces</p>
+<div class="math notranslate nohighlight" id="equation-eq-cota">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq-cota" title="Enlace permanente a esta ecuación">#</a></span>\[
+\tilde L_c(q) \;\le\; \sum_{m=1}^M w_{mc}(x)\,L_{mc}(x) \;\le\; \min_{m} L_{mc}(x) + \frac{\log M}{\beta}.
+\]</div>
+</div>
+<p><em>Demostración.</em> La pérdida binaria <span class="math notranslate nohighlight">\(\ell(p) = -[y=c]\log p - [y\ne c]\log(1-p)\)</span> es convexa en <span class="math notranslate nohighlight">\(p\in(0,1)\)</span>.
+Por la desigualdad de Jensen, <span class="math notranslate nohighlight">\(\ell\bigl(\sum_m w_m p_m\bigr) \le \sum_m w_m\,\ell(p_m)\)</span> en cada celda de
+referencia. Como <span class="math notranslate nohighlight">\(\tilde L_c\)</span> es un promedio con pesos no negativos (<span class="math notranslate nohighlight">\(a_j\)</span> y <span class="math notranslate nohighlight">\(\tau\)</span>) de esas pérdidas, la
+desigualdad se conserva, lo que prueba la primera parte. Para la segunda, sea <span class="math notranslate nohighlight">\(m^\star = \arg\min_m L_{mc}\)</span>
+y <span class="math notranslate nohighlight">\(e_{m^\star}\)</span> el vértice correspondiente del símplex. Por la Proposición 1,
+<span class="math notranslate nohighlight">\(F(w) \le F(e_{m^\star}) = L_{m^\star c}\)</span>. Además, <span class="math notranslate nohighlight">\(-\sum_m w_m\log w_m \le \log M\)</span> (la entropía es máxima en
+la distribución uniforme), de modo que
+<span class="math notranslate nohighlight">\(\sum_m w_m L_{mc} = F(w) - \frac{1}{\beta}\sum_m w_m\log w_m \le L_{m^\star c} + \frac{\log M}{\beta}\)</span>. <span class="math notranslate nohighlight">\(\blacksquare\)</span></p>
+<p>La cota garantiza que, en la vecindad de cada celda y para cada clase, el ensamble <strong>nunca es mucho peor que
+el mejor modelo local</strong>: como máximo, <span class="math notranslate nohighlight">\(\log(7)/\beta\)</span> nats por encima. Por la primera desigualdad, puede ser
+estrictamente mejor que el promedio de sus componentes cuando estos discrepan. Las dos desigualdades se
+verifican numéricamente en las pruebas unitarias (<code class="docutils literal notranslate"><span class="pre">test_prop1_pesos_minimizan_objetivo_regularizado</span></code> y
+<code class="docutils literal notranslate"><span class="pre">test_prop2_cota_de_jensen_y_gibbs</span></code>).</p>
+<div class="important admonition">
+<p class="admonition-title">Proposición 3 (complejidad)</p>
+<p>Con las probabilidades fuera de pliegue disponibles, el ajuste de la capa de combinación cuesta
+<span class="math notranslate nohighlight">\(O(n\,M\,C)\)</span> en tiempo y <span class="math notranslate nohighlight">\(O(n\,(p + M\,C))\)</span> en memoria. La inferencia de <span class="math notranslate nohighlight">\(n_q\)</span> celdas cuesta
+<span class="math notranslate nohighlight">\(O(n_q\,n\,p + n_q\,k\,M\,C)\)</span> en tiempo con la búsqueda exacta por bloques. El costo total incluye además el de
+los modelos base: <span class="math notranslate nohighlight">\(O\bigl((K+1)\sum_m T_m(n)\bigr)\)</span> para entrenar con <span class="math notranslate nohighlight">\(K\)</span> pliegues y <span class="math notranslate nohighlight">\(\sum_m I_m(n_q)\)</span> para
+predecir.</p>
+</div>
+<p><em>Demostración.</em> El ajuste calcula <a class="reference internal" href="#equation-eq-perdida">(1)</a> para cada <span class="math notranslate nohighlight">\((j, m, c)\)</span>, que son <span class="math notranslate nohighlight">\(nMC\)</span> operaciones
+constantes, y una suma ponderada para <span class="math notranslate nohighlight">\(\bar L_{mc}\)</span>, del mismo orden. Además, guarda las coordenadas
+(<span class="math notranslate nohighlight">\(np\)</span>) y las pérdidas (<span class="math notranslate nohighlight">\(nMC\)</span>). En la inferencia, cada bloque de consultas calcula las distancias a las <span class="math notranslate nohighlight">\(n\)</span>
+referencias con un producto de matrices (<span class="math notranslate nohighlight">\(O(n\,p)\)</span> por consulta) y extrae los <span class="math notranslate nohighlight">\(k\)</span> menores con
+<code class="docutils literal notranslate"><span class="pre">argpartition</span></code> en tiempo lineal <span class="math notranslate nohighlight">\(O(n)\)</span>. Luego ordena solo esos <span class="math notranslate nohighlight">\(k\)</span> (<span class="math notranslate nohighlight">\(O(k\log k)\)</span>) y agrega <span class="math notranslate nohighlight">\(k\cdot M\cdot C\)</span>
+pérdidas. La regla de Gibbs y la combinación cuestan <span class="math notranslate nohighlight">\(O(MC)\)</span> por consulta. Los demás términos son de orden
+menor. <span class="math notranslate nohighlight">\(\blacksquare\)</span></p>
+<p>La sección 11.6 contrasta esta cota con los tiempos medidos.</p>
+</section>
+<section id="algoritmo">
+<h2>11.4 Algoritmo<a class="headerlink" href="#algoritmo" title="Permalink to this heading">#</a></h2>
+<div class="note admonition">
+<p class="admonition-title">Algoritmo 1. ECLC</p>
+<p><strong>Entradas:</strong> <span class="math notranslate nohighlight">\((X, y)\)</span> de entrenamiento; modelos base <span class="math notranslate nohighlight">\(f_1,\dots,f_M\)</span> (con su preprocesamiento y balanceo);
+<span class="math notranslate nohighlight">\(k\in\mathbb{N}\)</span>, <span class="math notranslate nohighlight">\(\beta\ge 0\)</span>, <span class="math notranslate nohighlight">\(\tau\ge 0\)</span>; número de pliegues <span class="math notranslate nohighlight">\(K = 3\)</span>.
+<strong>Salidas:</strong> probabilidades <span class="math notranslate nohighlight">\(p(c\mid x)\)</span> y clase predicha <span class="math notranslate nohighlight">\(\hat y(x)\)</span>.</p>
+<p><em>Ajuste</em></p>
+<ol class="arabic simple">
+<li><p>Dividir <span class="math notranslate nohighlight">\((X,y)\)</span> en <span class="math notranslate nohighlight">\(K\)</span> pliegues estratificados. Para cada pliegue y cada <span class="math notranslate nohighlight">\(m\)</span>: entrenar <span class="math notranslate nohighlight">\(f_m\)</span> con los
+otros <span class="math notranslate nohighlight">\(K-1\)</span> y predecir <span class="math notranslate nohighlight">\(\hat P_m\)</span> en el pliegue retenido.</p></li>
+<li><p>Reentrenar cada <span class="math notranslate nohighlight">\(f_m\)</span> con todo <span class="math notranslate nohighlight">\((X,y)\)</span>.</p></li>
+<li><p>Ajustar el preprocesamiento del espacio de vecinos <span class="math notranslate nohighlight">\(\phi\)</span> con <span class="math notranslate nohighlight">\(X\)</span> y guardar <span class="math notranslate nohighlight">\(Z = \phi(X)\)</span>.</p></li>
+<li><p>Calcular <span class="math notranslate nohighlight">\(\ell_{mc}(j)\)</span> con <a class="reference internal" href="#equation-eq-perdida">(1)</a>, los pesos <span class="math notranslate nohighlight">\(s_c\)</span> y la pérdida global <span class="math notranslate nohighlight">\(\bar L_{mc}\)</span>.</p></li>
+</ol>
+<p><em>Predicción de <span class="math notranslate nohighlight">\(x\)</span></em>
+5. <span class="math notranslate nohighlight">\(z = \phi(x)\)</span>; <span class="math notranslate nohighlight">\(N_k(x)\)</span> = los <span class="math notranslate nohighlight">\(k\)</span> vecinos de <span class="math notranslate nohighlight">\(z\)</span> en <span class="math notranslate nohighlight">\(Z\)</span> (búsqueda exacta por bloques).
+6. Pesos <span class="math notranslate nohighlight">\(a_j\)</span> con <a class="reference internal" href="#equation-eq-nucleo">(2)</a>; competencia <span class="math notranslate nohighlight">\(L_{mc}(x)\)</span> con <a class="reference internal" href="#equation-eq-competencia">(3)</a>.
+7. <span class="math notranslate nohighlight">\(w_{mc}(x)\)</span> con <a class="reference internal" href="#equation-eq-gibbs">(4)</a>; <span class="math notranslate nohighlight">\(q_c(x)\)</span> y <span class="math notranslate nohighlight">\(p(c\mid x)\)</span> con <a class="reference internal" href="#equation-eq-combinacion">(5)</a>.
+8. Devolver <span class="math notranslate nohighlight">\(p(\cdot\mid x)\)</span> y <span class="math notranslate nohighlight">\(\hat y(x)=\arg\max_c p(c\mid x)\)</span>.</p>
+<p><strong>Criterio de parada:</strong> el algoritmo no es iterativo. El ajuste termina tras los <span class="math notranslate nohighlight">\(K\)</span> pliegues y la predicción
+tiene forma cerrada. Lo único que se busca iterativamente son los hiperparámetros <span class="math notranslate nohighlight">\((k, \beta, \tau)\)</span>, con 6
+ensayos de optimización bayesiana (TPE) dentro de la validación interna, el mismo presupuesto que el
+optimizador bayesiano del benchmark.</p>
+</div>
+</section>
+<section id="implementacion">
+<h2>11.5 Implementación<a class="headerlink" href="#implementacion" title="Permalink to this heading">#</a></h2>
+<p>La clase <code class="docutils literal notranslate"><span class="pre">EnsambleCompetenciaLocal</span></code> hereda de <code class="docutils literal notranslate"><span class="pre">ClassifierMixin</span></code> y
+<code class="docutils literal notranslate"><span class="pre">BaseEstimator</span></code> e implementa <code class="docutils literal notranslate"><span class="pre">fit</span></code>, <code class="docutils literal notranslate"><span class="pre">predict</span></code> y <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>. La búsqueda de vecinos, las pérdidas, la
+contracción, la regla de Gibbs y la combinación están programadas con numpy. Los modelos base son pipelines
+de scikit-learn, imbalanced-learn y XGBoost; la contribución está en la regla de combinación.</p>
+<p>Dos detalles de implementación merecen mención:</p>
+<ul class="simple">
+<li><p><strong>Orden de herencia.</strong> Un esqueleto habitual es <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">Modelo(BaseEstimator,</span> <span class="pre">ClassifierMixin)</span></code>. Con scikit-learn
+≥ 1.6, ese orden hace que <code class="docutils literal notranslate"><span class="pre">is_classifier</span></code> devuelva <code class="docutils literal notranslate"><span class="pre">False</span></code>, porque las etiquetas del estimador se resuelven
+por el orden de herencia. En consecuencia, <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> usa <code class="docutils literal notranslate"><span class="pre">KFold</span></code> sin estratificar. En una prueba
+con Iris (datos ordenados por clase), eso dejaba clases fuera del entrenamiento y bajaba el F1 a 0,47 en dos
+pliegues. La clase usa <code class="docutils literal notranslate"><span class="pre">ClassifierMixin</span></code> primero, y una prueba unitaria lo verifica.</p></li>
+<li><p><strong>Ajuste de la capa de combinación sin reentrenar.</strong> El método <code class="docutils literal notranslate"><span class="pre">ajustar_desde_oof</span></code> recibe las
+probabilidades fuera de pliegue ya calculadas. Así, la optimización de <span class="math notranslate nohighlight">\((k,\beta,\tau)\)</span> y la ablación no
+reentrenan los siete modelos base en cada ensayo; los modelos base no dependen de esos hiperparámetros.</p></li>
+</ul>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.original_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnsambleCompetenciaLocal</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">EnsambleCompetenciaLocal</span><span class="o">.</span><span class="n">perdidas_locales</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">EnsambleCompetenciaLocal</span><span class="o">.</span><span class="n">_perdidas_bloque</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">EnsambleCompetenciaLocal</span><span class="o">.</span><span class="n">combinar</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    def perdidas_locales(self, Z):
+        """Perdida contraida L_mc(x) de cada modelo (y clase) en la vecindad de cada fila de Z."""
+        if np.isinf(self.tau):
+            forma = (Z.shape[0],) + self.perdida_global_.shape
+            return np.broadcast_to(self.perdida_global_, forma).astype(np.float64)
+        # Por bloques de consultas: el tensor de perdidas de los vecinos tiene forma
+        # (n_q, k, M, C) y para k grande no cabe completo en memoria.
+        return np.concatenate([self._perdidas_bloque(Z[i:i + self.tam_bloque])
+                               for i in range(0, Z.shape[0], self.tam_bloque)])
+
+    def _perdidas_bloque(self, Z):
+        idx, dist = vecinos_mas_cercanos(self.Z_ref_, Z, self.k, self.tam_bloque)
+        if self.ponderar_distancia:
+            escala = np.maximum(dist[:, -1:], 1e-12)
+            a = np.exp(-(dist / escala) ** 2)
+        else:
+            a = np.ones_like(dist)
+        a = a * self.peso_clase_[self.y_ref_[idx]]                     # (n_q, k)
+        A = a.sum(axis=1)
+        l_vec = self.perdidas_ref_[idx]                                 # (n_q, k, M[, C])
+        if self.por_clase:
+            L_loc = np.einsum("qj,qjmc-&gt;qmc", a, l_vec) / A[:, None, None]
+            return (A[:, None, None] * L_loc + self.tau * self.perdida_global_) / (A[:, None, None] + self.tau)
+        L_loc = np.einsum("qj,qjm-&gt;qm", a, l_vec) / A[:, None]
+        return (A[:, None] * L_loc + self.tau * self.perdida_global_) / (A[:, None] + self.tau)
+
+    def combinar(self, P, X=None, Z=None):
+        """Combina probabilidades base P (M, n, C) con la regla ECLC."""
+        W = self.pesos(X=X, Z=Z)
+        if not self.por_clase:
+            W = np.repeat(W[:, :, None], P.shape[2], axis=2)
+        q = np.einsum("qmc,mqc-&gt;qc", W, P)
+        return q / np.maximum(q.sum(axis=1, keepdims=True), 1e-300)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="pruebas-unitarias">
+<h3>Pruebas unitarias<a class="headerlink" href="#pruebas-unitarias" title="Permalink to this heading">#</a></h3>
+<p>La implementación incluye 20 pruebas unitarias (pytest) que verifican el aprendizaje, la reproducibilidad, el manejo de entradas inválidas y la compatibilidad con scikit-learn, y
+las propiedades de la sección 11.3:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Propiedad verificada</p></th>
+<th class="head"><p>Prueba</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>(i) Aprende en un problema con solución conocida</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">test_aprende_solucion_conocida</span></code>: dos expertos sintéticos, cada uno perfecto en una mitad del plano; el ECLC supera 0,97 de exactitud y asigna más de 0,9 de peso al experto correcto en cada región</p></td>
+</tr>
+<tr class="row-odd"><td><p>(ii) Reproducibilidad</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">test_reproducible_con_la_misma_semilla</span></code>, <code class="docutils literal notranslate"><span class="pre">test_probabilidades_validas</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>(iii) Entradas inválidas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">test_hiperparametros_invalidos</span></code> (7 casos), <code class="docutils literal notranslate"><span class="pre">test_entradas_invalidas</span></code> (NaN, una sola clase, columnas distintas), <code class="docutils literal notranslate"><span class="pre">test_no_ajustado</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>(iv) <code class="docutils literal notranslate"><span class="pre">sklearn.base.clone</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">test_compatibilidad_clone</span></code>, <code class="docutils literal notranslate"><span class="pre">test_reconocido_como_clasificador</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Proposiciones 1 y 2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">test_prop1_pesos_minimizan_objetivo_regularizado</span></code>, <code class="docutils literal notranslate"><span class="pre">test_prop2_cota_de_jensen_y_gibbs</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Casos límite</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">test_casos_limite_beta_cero_y_tau_infinito</span></code>, <code class="docutils literal notranslate"><span class="pre">test_busqueda_de_vecinos_exacta</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="n">salida</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">"-m"</span><span class="p">,</span> <span class="s2">"pytest"</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"tests"</span><span class="p">),</span> <span class="s2">"-q"</span><span class="p">,</span> <span class="s2">"-p"</span><span class="p">,</span> <span class="s2">"no:cacheprovider"</span><span class="p">],</span>
+                        <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">RAIZ</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">salida</span><span class="o">.</span><span class="n">stdout</span><span class="p">[</span><span class="o">-</span><span class="mi">600</span><span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>...............................                                          [100%]
+31 passed in 6.20s
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="complejidad-empirica">
+<h2>11.6 Complejidad empírica<a class="headerlink" href="#complejidad-empirica" title="Permalink to this heading">#</a></h2>
+<p>Para aislar la capa de combinación, se midió su tiempo con datos sintéticos (<span class="math notranslate nohighlight">\(M = C = 7\)</span>, <span class="math notranslate nohighlight">\(k = 25\)</span>),
+variando el tamaño del conjunto de referencia <span class="math notranslate nohighlight">\(n\)</span> y la dimensión <span class="math notranslate nohighlight">\(p\)</span>, con 2.000 consultas.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="s2">"complejidad_meta.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"p"</span><span class="p">):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">"n_referencia"</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="s2">"ajuste_s"</span><span class="p">],</span> <span class="s2">"o-"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">"n_referencia"</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="s2">"inferencia_2000_s"</span><span class="p">],</span> <span class="s2">"o-"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"p = </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">pend</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">comp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"p"</span><span class="p">):</span>
+    <span class="n">pend</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">"n_referencia"</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">"inferencia_2000_s"</span><span class="p">]),</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Ajuste de la capa de combinación"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"n (celdas de referencia)"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"segundos"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Inferencia de 2.000 celdas"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"n (celdas de referencia)"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"segundos"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Exponente empírico de la inferencia en n:"</span><span class="p">,</span> <span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pend</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/9be5a9d6195f045b8eb04e8d049af2c462aaf7742aa39d44b44b1ccb4e82a57c.png" src="_images/9be5a9d6195f045b8eb04e8d049af2c462aaf7742aa39d44b44b1ccb4e82a57c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exponente empírico de la inferencia en n: {16: 0.99, 57: 0.89}
+</pre></div>
+</div>
+</div>
+</div>
+<p>La teoría predice un costo lineal en <span class="math notranslate nohighlight">\(n\)</span> tanto para el ajuste como para la inferencia (con <span class="math notranslate nohighlight">\(n_q\)</span> fijo).
+Un exponente empírico cercano a 1 confirma que la búsqueda exacta por bloques domina la inferencia, como
+indica la Proposición 3. Para <span class="math notranslate nohighlight">\(n\)</span> mucho mayor (las 464.809 celdas de entrenamiento) convendría un índice de
+vecinos (KD-tree o búsqueda aproximada), al costo de la exactitud. Con las 40.000 celdas del proyecto, la
+capa de combinación tarda segundos. El costo dominante del ECLC es entrenar los siete modelos base cuatro
+veces (tres pliegues fuera de pliegue más el ajuste final), del orden de la suma de sus costos de la sección 9.1.</p>
+</section>
+<section id="estudio-de-ablacion">
+<h2>11.7 Estudio de ablación<a class="headerlink" href="#estudio-de-ablacion" title="Permalink to this heading">#</a></h2>
+<p>Cada componente se retiró por separado, manteniendo los hiperparámetros elegidos en cada pliegue, sobre las
+mismas probabilidades de los 30 pliegues externos del capítulo 12. También se incluyen las reglas de
+combinación estándar (promedio simple, pesos por error global, <em>stacking</em> lineal) y dos
+métodos de selección dinámica de la literatura (KNORA-E y OLA), implementados con la misma búsqueda de vecinos.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">ablacion</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">t</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"ECLC"</span><span class="p">,</span> <span class="n">resumen</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"ECLC"</span><span class="p">,</span> <span class="s2">"f1_media"</span><span class="p">])</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"variante"</span><span class="p">:</span> <span class="s2">"Variante"</span><span class="p">,</span> <span class="s2">"f1_media"</span><span class="p">:</span> <span class="s2">"F1 macro"</span><span class="p">,</span> <span class="s2">"f1_sd"</span><span class="p">:</span> <span class="s2">"DE"</span><span class="p">,</span> <span class="s2">"dif_vs_eclc"</span><span class="p">:</span> <span class="s2">"Δ vs. ECLC"</span><span class="p">,</span>
+                      <span class="s2">"wilcoxon_p"</span><span class="p">:</span> <span class="s2">"p Wilcoxon"</span><span class="p">,</span> <span class="s2">"wilcoxon_p_holm"</span><span class="p">:</span> <span class="s2">"p Holm"</span><span class="p">,</span> <span class="s2">"cliff_delta"</span><span class="p">:</span> <span class="s2">"δ Cliff (ECLC vs. variante)"</span><span class="p">})</span>
+<span class="n">t</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">"ECLC"</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Variante</th>
+      <th>F1 macro</th>
+      <th>DE</th>
+      <th>Δ vs. ECLC</th>
+      <th>p Wilcoxon</th>
+      <th>δ Cliff (ECLC vs. variante)</th>
+      <th>p Holm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sin pesos por clase</td>
+      <td>0.7864</td>
+      <td>0.0068</td>
+      <td>-0.0044</td>
+      <td>0.0000</td>
+      <td>0.3533</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sin vecindario (tau = inf)</td>
+      <td>0.7896</td>
+      <td>0.0078</td>
+      <td>-0.0012</td>
+      <td>0.0440</td>
+      <td>0.0778</td>
+      <td>0.0908</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sin contraccion (tau = 0)</td>
+      <td>0.7661</td>
+      <td>0.0127</td>
+      <td>-0.0247</td>
+      <td>0.0000</td>
+      <td>0.8778</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sin nucleo de distancia</td>
+      <td>0.7900</td>
+      <td>0.0072</td>
+      <td>-0.0008</td>
+      <td>0.0303</td>
+      <td>0.0756</td>
+      <td>0.0908</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sin balanceo de vecinos</td>
+      <td>0.7799</td>
+      <td>0.0087</td>
+      <td>-0.0110</td>
+      <td>0.0000</td>
+      <td>0.6467</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>promedio simple (beta = 0)</td>
+      <td>0.7767</td>
+      <td>0.0092</td>
+      <td>-0.0142</td>
+      <td>0.0000</td>
+      <td>0.7822</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>pesos por error global</td>
+      <td>0.7878</td>
+      <td>0.0100</td>
+      <td>-0.0031</td>
+      <td>0.0225</td>
+      <td>0.1756</td>
+      <td>0.0898</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>stacking lineal</td>
+      <td>0.8088</td>
+      <td>0.0077</td>
+      <td>0.0179</td>
+      <td>1.0000</td>
+      <td>-0.9489</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>KNORA-E</td>
+      <td>0.7690</td>
+      <td>0.0076</td>
+      <td>-0.0219</td>
+      <td>0.0000</td>
+      <td>0.9711</td>
+      <td>0.0000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>OLA</td>
+      <td>0.7826</td>
+      <td>0.0074</td>
+      <td>-0.0082</td>
+      <td>0.0000</td>
+      <td>0.5511</td>
+      <td>0.0000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La tabla anterior tiene dos lecturas, y ambas se reportan sin omitir la desfavorable:</p>
+<ul class="simple">
+<li><p><strong>Contribución de los componentes.</strong> Una diferencia positiva y significativa de la variante frente al ECLC
+indica que el componente retirado aporta. La contracción hacia la pérdida global y el balanceo de los
+vecinos por clase son los componentes con mayor aporte. Los pesos por clase aportan una mejora menor, pero
+consistente. El núcleo de distancia y el componente puramente local (comparado con <span class="math notranslate nohighlight">\(\tau=\infty\)</span>) aportan
+diferencias del orden de una milésima, del mismo tamaño que la variabilidad entre pliegues.</p></li>
+<li><p><strong>Frente a las reglas estándar.</strong> El ECLC supera en media al promedio simple, a los pesos por error global, a
+KNORA-E y a OLA. Las diferencias son significativas tras Holm frente al promedio, KNORA-E y OLA, pero no
+frente a los pesos por error global (Δ = 0,003). En cambio, <strong>el <em>stacking</em> lineal obtiene un F1 macro mayor que el ECLC</strong>. Una regresión logística
+multinomial sobre las log-probabilidades de los siete modelos aprende correcciones entre clases (pesos
+negativos, interceptos por clase) que una combinación convexa por clase no puede representar. La sección
+11.9 discute esta limitación.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p><strong>Selección del rango de hiperparámetros.</strong> Un primer rango de búsqueda (<span class="math notranslate nohighlight">\(\tau \le 100\)</span>, <span class="math notranslate nohighlight">\(\beta \le 30\)</span>)
+dejaba fuera el régimen casi global que la Proposición 1 contempla como caso límite. Antes de evaluar en los
+pliegues de prueba se compararon, <strong>solo con validación interna</strong>, una agregación log-lineal, una corrección de
+sesgo por clase y meta-variables de competencia para un combinador lineal, sin que ninguna superara al diseño
+propuesto. El único cambio adoptado fue ampliar el rango a <span class="math notranslate nohighlight">\(\tau \le 10^4\)</span> y <span class="math notranslate nohighlight">\(\beta \le 50\)</span>.</p>
+</div>
+</section>
+<section id="robustez-y-sensibilidad">
+<h2>11.8 Robustez y sensibilidad<a class="headerlink" href="#robustez-y-sensibilidad" title="Permalink to this heading">#</a></h2>
+<p>Sobre los tres pliegues de la partición del benchmark (repetición 0) se midió:</p>
+<ul class="simple">
+<li><p>La sensibilidad a cada hiperparámetro, fijando los otros dos en los valores elegidos.</p></li>
+<li><p>La estabilidad ante cinco semillas del optimizador.</p></li>
+<li><p>El efecto del ruido en las etiquetas del conjunto de referencia.</p></li>
+<li><p>El efecto de reducir ese conjunto al 10 %, 25 % y 50 %.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rob</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="s2">"robustez.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">ref</span> <span class="o">=</span> <span class="n">rob</span><span class="p">[</span><span class="n">rob</span><span class="o">.</span><span class="n">experimento</span> <span class="o">==</span> <span class="s2">"referencia"</span><span class="p">][</span><span class="s2">"f1_macro"</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">log</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="p">[</span><span class="s2">"sensibilidad k"</span><span class="p">,</span> <span class="s2">"sensibilidad beta"</span><span class="p">,</span> <span class="s2">"sensibilidad tau"</span><span class="p">],</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">]):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">rob</span><span class="p">[</span><span class="n">rob</span><span class="o">.</span><span class="n">experimento</span> <span class="o">==</span> <span class="n">exp</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">g</span><span class="p">[</span><span class="s2">"valor"</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"valor"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"valor"</span><span class="p">)[</span><span class="s2">"f1_macro"</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s2">"valor"</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">m</span><span class="p">[</span><span class="s2">"valor"</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">"valor"</span><span class="p">])]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">exp</span> <span class="o">==</span> <span class="s2">"sensibilidad tau"</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">[</span><span class="s2">"mean"</span><span class="p">],</span> <span class="n">yerr</span><span class="o">=</span><span class="n">m</span><span class="p">[</span><span class="s2">"std"</span><span class="p">],</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">"o-"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#b0413e"</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">ref</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"hiperparámetros elegidos"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s2">"log"</span> <span class="k">if</span> <span class="n">exp</span> <span class="o">!=</span> <span class="s2">"sensibilidad beta"</span> <span class="k">else</span> <span class="s2">"symlog"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">exp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"sensibilidad"</span><span class="p">,</span> <span class="s2">"Sensibilidad a"</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="n">exp</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"F1 macro"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">tabla</span> <span class="o">=</span> <span class="n">rob</span><span class="p">[</span><span class="o">~</span><span class="n">rob</span><span class="o">.</span><span class="n">experimento</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"sensibilidad"</span><span class="p">)]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">"experimento"</span><span class="p">,</span> <span class="s2">"valor"</span><span class="p">])[</span><span class="s2">"f1_macro"</span><span class="p">]</span> \
+    <span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">"mean"</span><span class="p">,</span> <span class="s2">"std"</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">tabla</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/fef3cae25942a44a06369ca68337afe185a0899c2135c3ac44160c4bd9d79f31.png" src="_images/fef3cae25942a44a06369ca68337afe185a0899c2135c3ac44160c4bd9d79f31.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>mean</th>
+      <th>std</th>
+    </tr>
+    <tr>
+      <th>experimento</th>
+      <th>valor</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>referencia</th>
+      <th>elegido</th>
+      <td>0.7933</td>
+      <td>0.0066</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">ruido en etiquetas</th>
+      <th>0.05</th>
+      <td>0.7935</td>
+      <td>0.0027</td>
+    </tr>
+    <tr>
+      <th>0.1</th>
+      <td>0.7935</td>
+      <td>0.0036</td>
+    </tr>
+    <tr>
+      <th>0.2</th>
+      <td>0.7882</td>
+      <td>0.0059</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">semilla del optimizador</th>
+      <th>100</th>
+      <td>0.7853</td>
+      <td>0.0110</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>0.7935</td>
+      <td>0.0056</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>0.7911</td>
+      <td>0.0077</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>0.7885</td>
+      <td>0.0101</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>0.7902</td>
+      <td>0.0099</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">tamano de referencia</th>
+      <th>0.1</th>
+      <td>0.7880</td>
+      <td>0.0063</td>
+    </tr>
+    <tr>
+      <th>0.25</th>
+      <td>0.7899</td>
+      <td>0.0072</td>
+    </tr>
+    <tr>
+      <th>0.5</th>
+      <td>0.7904</td>
+      <td>0.0075</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La sensibilidad muestra en qué rango de cada hiperparámetro el modelo es estable. La caída con <span class="math notranslate nohighlight">\(\tau = 0\)</span>
+(sin contracción) confirma lo que mostró la ablación: con vecindarios pequeños, las pérdidas locales sin
+regularizar producen pesos extremos. La variación entre semillas del optimizador indica cuánto depende el
+resultado de los 6 ensayos de TPE. Las pruebas de ruido y de tamaño de muestra muestran que el desempeño se
+degrada de forma gradual, no abrupta.</p>
+<section id="analisis-de-errores">
+<h3>Análisis de errores<a class="headerlink" href="#analisis-de-errores" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">err</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="s2">"robustez_errores.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">nombres</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">"Abeto/pícea"</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">"P. lodgepole"</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">"P. ponderosa"</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">"Álamo/sauce"</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s2">"Á. temblón"</span><span class="p">,</span>
+           <span class="mi">6</span><span class="p">:</span> <span class="s2">"A. Douglas"</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span> <span class="s2">"Krummholz"</span><span class="p">}</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">err</span><span class="p">[</span><span class="n">err</span><span class="o">.</span><span class="n">area</span> <span class="o">==</span> <span class="s2">"todas"</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"clase"</span><span class="p">)[[</span><span class="s2">"f1_eclc"</span><span class="p">,</span> <span class="s2">"f1_rf"</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">e</span><span class="p">[</span><span class="s2">"diferencia"</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="s2">"f1_eclc"</span><span class="p">]</span> <span class="o">-</span> <span class="n">e</span><span class="p">[</span><span class="s2">"f1_rf"</span><span class="p">]</span>
+<span class="n">e</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">nombres</span><span class="p">)</span>
+<span class="n">e</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>f1_eclc</th>
+      <th>f1_rf</th>
+      <th>diferencia</th>
+    </tr>
+    <tr>
+      <th>clase</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Abeto/pícea</th>
+      <td>0.8309</td>
+      <td>0.8380</td>
+      <td>-0.0072</td>
+    </tr>
+    <tr>
+      <th>P. lodgepole</th>
+      <td>0.8555</td>
+      <td>0.8566</td>
+      <td>-0.0011</td>
+    </tr>
+    <tr>
+      <th>P. ponderosa</th>
+      <td>0.8582</td>
+      <td>0.8529</td>
+      <td>0.0053</td>
+    </tr>
+    <tr>
+      <th>Álamo/sauce</th>
+      <td>0.8269</td>
+      <td>0.7823</td>
+      <td>0.0446</td>
+    </tr>
+    <tr>
+      <th>Á. temblón</th>
+      <td>0.5763</td>
+      <td>0.5498</td>
+      <td>0.0265</td>
+    </tr>
+    <tr>
+      <th>A. Douglas</th>
+      <td>0.7346</td>
+      <td>0.7339</td>
+      <td>0.0007</td>
+    </tr>
+    <tr>
+      <th>Krummholz</th>
+      <td>0.8708</td>
+      <td>0.8680</td>
+      <td>0.0028</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La tabla compara el F1 de cada clase con el de Random Forest, el mejor modelo del benchmark. <strong>El ECLC gana
+en las clases raras y pierde un poco en las mayoritarias.</strong> Mejora el F1 del álamo/sauce en unas 0,045 y el del
+álamo temblón en 0,027, y queda levemente por debajo en el abeto/pícea (−0,007) y el pino lodgepole (−0,001).
+Es la consecuencia esperada de balancear los vecinos por clase (<span class="math notranslate nohighlight">\(s_c\)</span> en <a class="reference internal" href="#equation-eq-nucleo">(2)</a>): el modelo traslada
+aciertos desde las clases grandes hacia las pequeñas. Por eso mejora el F1 macro y, a la vez, su exactitud
+global queda ligeramente por debajo de la de Random Forest, lo que explica el resultado de McNemar en el
+capítulo 12.</p>
+</section>
+</section>
+<section id="interpretabilidad-shap-del-eclc-frente-al-mejor-benchmark">
+<h2>11.9 Interpretabilidad: SHAP del ECLC frente al mejor benchmark<a class="headerlink" href="#interpretabilidad-shap-del-eclc-frente-al-mejor-benchmark" title="Permalink to this heading">#</a></h2>
+<p>Se aplicó <strong>KernelSHAP agrupado</strong> con la misma implementación para ambos modelos
+(implementada con numpy). La explicación usa 12 jugadores: las 10 variables numéricas, el área
+silvestre (sus 4 indicadoras como un solo jugador) y el tipo de suelo (sus 40 indicadoras), con un fondo de 10
+celdas y 256 coaliciones. Agrupar las indicadoras es necesario porque solo una puede valer 1 a la vez. Usar el
+mismo estimador para los dos modelos hace comparables las importancias, cosa que no ocurriría al mezclar
+TreeSHAP (Random Forest) con KernelSHAP (ECLC).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">src.explicacion</span><span class="w"> </span><span class="kn">import</span> <span class="n">NOMBRES_GRUPOS</span>
+<span class="n">imp</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"ECLC"</span><span class="p">,</span> <span class="s2">"RF"</span><span class="p">]:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"shap_</span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">.csv"</span><span class="p">)</span>
+    <span class="n">imp</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">NOMBRES_GRUPOS</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">imp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">imp</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"ECLC"</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">imp</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">"#b0413e"</span><span class="p">,</span> <span class="s2">"#1b6f5c"</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">"media |SHAP| (aporte a la probabilidad de la clase predicha)"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span>
+       <span class="n">title</span><span class="o">=</span><span class="s2">"Importancia global: ECLC frente a Random Forest (60 celdas de la prueba reservada)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">imp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"ECLC"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/ab0de9975633c8bf5f22625755353ad0ee1bbf8aea72657c1f8f6f07ab159ac0.png" src="_images/ab0de9975633c8bf5f22625755353ad0ee1bbf8aea72657c1f8f6f07ab159ac0.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ECLC</th>
+      <th>RF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Elevation</th>
+      <td>0.2513</td>
+      <td>0.2370</td>
+    </tr>
+    <tr>
+      <th>Soil_Type</th>
+      <td>0.0784</td>
+      <td>0.0797</td>
+    </tr>
+    <tr>
+      <th>Wilderness_Area</th>
+      <td>0.0752</td>
+      <td>0.0798</td>
+    </tr>
+    <tr>
+      <th>Horizontal_Distance_To_Roadways</th>
+      <td>0.0275</td>
+      <td>0.0276</td>
+    </tr>
+    <tr>
+      <th>Horizontal_Distance_To_Fire_Points</th>
+      <td>0.0257</td>
+      <td>0.0260</td>
+    </tr>
+    <tr>
+      <th>Vertical_Distance_To_Hydrology</th>
+      <td>0.0231</td>
+      <td>0.0224</td>
+    </tr>
+    <tr>
+      <th>Aspect</th>
+      <td>0.0212</td>
+      <td>0.0221</td>
+    </tr>
+    <tr>
+      <th>Horizontal_Distance_To_Hydrology</th>
+      <td>0.0205</td>
+      <td>0.0209</td>
+    </tr>
+    <tr>
+      <th>Hillshade_Noon</th>
+      <td>0.0126</td>
+      <td>0.0130</td>
+    </tr>
+    <tr>
+      <th>Hillshade_9am</th>
+      <td>0.0122</td>
+      <td>0.0125</td>
+    </tr>
+    <tr>
+      <th>Slope</th>
+      <td>0.0110</td>
+      <td>0.0122</td>
+    </tr>
+    <tr>
+      <th>Hillshade_3pm</th>
+      <td>0.0091</td>
+      <td>0.0099</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Ambos modelos dependen sobre todo de la elevación, seguida del tipo de suelo, el área silvestre y las
+distancias a carreteras y a puntos de incendio, en coherencia con el análisis exploratorio (η² de la sección
+2.3) y con la interpretación del capítulo 8. Como el ECLC es una combinación convexa por clase de los modelos
+base, su explicación no puede introducir variables que ninguno de ellos use. Además, tiene una fuente de
+interpretación propia que los modelos base no ofrecen: los <strong>pesos <span class="math notranslate nohighlight">\(w_{mc}(x)\)</span></strong>, que dicen qué modelo usa
+para cada clase en cada celda.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">))[</span><span class="s2">"pesos_medios"</span><span class="p">]</span>
+             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="s2">"meta"</span> <span class="o">/</span> <span class="s2">"rep*_f?.json"</span><span class="p">))],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">modelos</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">E3</span> <span class="o">/</span> <span class="s2">"meta"</span> <span class="o">/</span> <span class="s2">"rep0_f0.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">))[</span><span class="s2">"modelos"</span><span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">modelos</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">nombres</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Abeto/pícea</th>
+      <th>P. lodgepole</th>
+      <th>P. ponderosa</th>
+      <th>Álamo/sauce</th>
+      <th>Á. temblón</th>
+      <th>A. Douglas</th>
+      <th>Krummholz</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>KNN</th>
+      <td>0.01</td>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>0.00</td>
+      <td>0.01</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>NB</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>LR</th>
+      <td>0.05</td>
+      <td>0.01</td>
+      <td>0.05</td>
+      <td>0.16</td>
+      <td>0.00</td>
+      <td>0.05</td>
+      <td>0.06</td>
+    </tr>
+    <tr>
+      <th>DT</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>RF</th>
+      <td>0.61</td>
+      <td>0.92</td>
+      <td>0.62</td>
+      <td>0.57</td>
+      <td>0.93</td>
+      <td>0.69</td>
+      <td>0.63</td>
+    </tr>
+    <tr>
+      <th>XGB</th>
+      <td>0.28</td>
+      <td>0.07</td>
+      <td>0.32</td>
+      <td>0.24</td>
+      <td>0.06</td>
+      <td>0.25</td>
+      <td>0.28</td>
+    </tr>
+    <tr>
+      <th>SVM</th>
+      <td>0.04</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.02</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.01</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La tabla muestra el peso medio de cada modelo para cada clase en las celdas de prueba (promedio de los 30
+pliegues). Random Forest recibe la mayor parte del peso (entre 0,57 y 0,93 según la clase) y XGBoost el segundo
+(hasta 0,32). La regresión logística gana peso en el álamo/sauce (0,16), la clase en la que sus probabilidades
+son competitivas. K vecinos y el árbol de decisión reciben pesos casi nulos aunque su F1 es alto: sus
+probabilidades son extremas (casi siempre 0 o 1), y la pérdida logarítmica castiga con dureza la confianza mal
+asignada. Este es el efecto buscado al medir la competencia con la pérdida logarítmica y no con la exactitud,
+como hacen OLA y KNORA-E. También explica por qué esos dos métodos rinden menos aquí: seleccionan a K vecinos
+y al árbol cuando aciertan en la vecindad, aunque sus probabilidades no sean fiables.</p>
+</section>
+<section id="limitaciones-del-modelo">
+<h2>11.10 Limitaciones del modelo<a class="headerlink" href="#limitaciones-del-modelo" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>No supera al <em>stacking</em> lineal ni a HistGradientBoosting.</strong> La restricción de la Proposición 1 (pesos en
+el símplex) es la que da la cota de la Proposición 2, pero impide aprender correcciones entre clases. Un
+trabajo futuro natural es combinar ambos: pesos locales de Gibbs como entrada de un combinador lineal con
+regularización, con su propia ablación.</p></li>
+<li><p><strong>El componente local aporta poco en Covertype.</strong> Con 7 modelos de calidad muy desigual (Naive Bayes con
+F1 = 0,22), la mayor parte del beneficio viene de descartar los modelos malos por clase y de balancear las
+clases, lo que en buena medida también logran los pesos globales por clase (<span class="math notranslate nohighlight">\(\tau=\infty\)</span>).</p></li>
+<li><p><strong>Cambia exactitud por F1 macro.</strong> Al favorecer las clases raras, el ECLC pierde algo de exactitud en las
+clases mayoritarias frente a Random Forest.</p></li>
+<li><p><strong>Costo de inferencia.</strong> Predecir con el ECLC exige predecir con los siete modelos base más la búsqueda de
+vecinos, alrededor de la suma de sus tiempos (sección 12.1).</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="e3_04_literatura.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">10. Revisión de literatura y evidencia de novedad</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="e3_06_validacion.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">12. Validación estadística del modelo original</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivacion">11.1 Motivación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formulacion">11.2 Formulación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#propiedades-demostradas">11.3 Propiedades demostradas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo">11.4 Algoritmo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementacion">11.5 Implementación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-unitarias">Pruebas unitarias</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad-empirica">11.6 Complejidad empírica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estudio-de-ablacion">11.7 Estudio de ablación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robustez-y-sensibilidad">11.8 Robustez y sensibilidad</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-errores">Análisis de errores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-shap-del-eclc-frente-al-mejor-benchmark">11.9 Interpretabilidad: SHAP del ECLC frente al mejor benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones-del-modelo">11.10 Limitaciones del modelo</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Ana Galván, Valeria Oñate y María José Ruiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

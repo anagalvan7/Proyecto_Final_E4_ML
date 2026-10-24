@@ -1,0 +1,851 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>14. Reproducibilidad &#8212; Clasificación de la cobertura forestal (Covertype)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'e3_09_reproducibilidad';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Apéndice A. Reproducibilidad" href="05_apendice.html" />
+    <link rel="prev" title="13. Conclusiones" href="e3_08_conclusiones.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_bosque.jpg" class="logo__image only-light" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>
+    <script>document.write(`<img src="_static/logo_bosque.jpg" class="logo__image only-dark" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Clasificación de la cobertura forestal a partir de variables cartográficas
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I. Datos, análisis exploratorio y modelo base</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_base_datos.html">1. Base de datos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="02b_fuga_estructura.html">2.5–2.8 Fuga de información y estructura de los datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c_preprocesamiento.html">2.9 Preprocesamiento</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_conclusiones.html">4. Conclusiones de la Parte I</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II. Benchmark, optimización y evaluación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_modelos.html">5. Benchmark combinatorio de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_optimizacion.html">6. Comparación de los métodos de optimización de hiperparámetros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_comparacion_estadistica.html">7. Comparación estadística de los modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_interpretabilidad.html">8. Interpretabilidad de XGBoost: SHAP frente a LIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_conclusiones_finales.html">9. Eficiencia computacional, reproducibilidad y conclusiones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III. Modelo original</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="e3_04_literatura.html">10. Revisión de literatura y evidencia de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_05_modelo_original.html">11. Modelo original: ensamble por competencia local y por clase (ECLC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_06_validacion.html">12. Validación estadística del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_08_conclusiones.html">13. Conclusiones</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Reproducibilidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_apendice.html">Apéndice A. Reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_01_correcciones.html">Apéndice B. Registro de cambios del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliografia.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/e3_09_reproducibilidad.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>14. Reproducibilidad</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-y-semillas">14.1 Entorno y semillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-ejecucion">14.2 Orden de ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-maestra-de-experimentos">14.3 Tabla maestra de experimentos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="reproducibilidad">
+<h1>14. Reproducibilidad<a class="headerlink" href="#reproducibilidad" title="Permalink to this heading">#</a></h1>
+<section id="entorno-y-semillas">
+<h2>14.1 Entorno y semillas<a class="headerlink" href="#entorno-y-semillas" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Python 3.10</strong>, con las versiones exactas fijadas en <code class="docutils literal notranslate"><span class="pre">docs/requirements.txt</span></code>. Las principales son
+scikit-learn 1.7.2, imbalanced-learn 0.14.2, XGBoost 2.1.4, Optuna 5.0.0, numpy 1.25.2 y pandas 2.1.0.</p></li>
+<li><p><strong>Semilla global</strong> <code class="docutils literal notranslate"><span class="pre">RANDOM_STATE</span> <span class="pre">=</span> <span class="pre">42</span></code>. Se propaga a la partición 80/20, a la submuestra de 40.000 celdas, a
+los pliegues externos e internos, a los modelos, a SMOTE y ADASYN, a Optuna (TPE), al algoritmo genético y a
+las predicciones fuera de pliegue del modelo original. La repetición <span class="math notranslate nohighlight">\(r\)</span> de la validación repetida usa la
+semilla <span class="math notranslate nohighlight">\(42 + r\)</span>.</p></li>
+<li><p><strong>Hardware.</strong> Los experimentos se ejecutaron en dos estaciones de trabajo con Windows (12 y 24 hilos
+lógicos), con <code class="docutils literal notranslate"><span class="pre">n_jobs</span> <span class="pre">=</span> <span class="pre">1</span></code> por estimador y procesos paralelos por combinación o por pliegue. Los tiempos
+absolutos de equipos distintos no son comparables (sección 6.2).</p></li>
+</ul>
+</section>
+<section id="orden-de-ejecucion">
+<h2>14.2 Orden de ejecución<a class="headerlink" href="#orden-de-ejecucion" title="Permalink to this heading">#</a></h2>
+<p>Desde la raíz del proyecto, con el ambiente activado:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Paso</p></th>
+<th class="head"><p>Comando</p></th>
+<th class="head"><p>Produce</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/run_benchmark.py</span> <span class="pre">--modelos</span> <span class="pre">M</span></code> (un proceso por algoritmo)</p></td>
+<td><p>Registros de las 112 combinaciones</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/analizar_resultados.py</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tabla_maestra.csv</span></code>, Friedman-Nemenyi</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_probas_pliegue.py</span> <span class="pre">--rep</span> <span class="pre">r</span> <span class="pre">--pliegue</span> <span class="pre">f</span></code> (r = 0…9, f = 0…2)</p></td>
+<td><p>Probabilidades de los 7 modelos en los 30 pliegues</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_meta.py</span> <span class="pre">--rep</span> <span class="pre">r</span> <span class="pre">--pliegue</span> <span class="pre">f</span></code></p></td>
+<td><p>Modelo original, ablación y reglas de referencia por pliegue</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_holdout_artefactos.py</span></code></p></td>
+<td><p>Modelos finales y evaluación en la prueba reservada</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_estadistica.py</span></code></p></td>
+<td><p>Pruebas de hipótesis y diagrama de diferencia crítica</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_robustez.py</span></code></p></td>
+<td><p>Sensibilidad, robustez y complejidad empírica</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_datasets_adicionales.py</span> <span class="pre">--conjunto</span> <span class="pre">c</span></code> y luego sin argumentos</p></td>
+<td><p>Conjuntos de datos adicionales</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_finalista_completo.py</span></code></p></td>
+<td><p>Finalista del benchmark con el entrenamiento completo</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3c_probas_completo.py</span> <span class="pre">--rep</span> <span class="pre">r</span> <span class="pre">--pliegue</span> <span class="pre">f</span></code> (r = 0, 1; f = 0…4) y <code class="docutils literal notranslate"><span class="pre">--holdout</span></code></p></td>
+<td><p>Probabilidades con el entrenamiento completo</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3c_meta.py</span> <span class="pre">--rep</span> <span class="pre">r</span> <span class="pre">--pliegue</span> <span class="pre">f</span></code> y <code class="docutils literal notranslate"><span class="pre">--holdout</span></code></p></td>
+<td><p>Modelo original con el entrenamiento completo</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3c_estadistica.py</span></code></p></td>
+<td><p>Pruebas de hipótesis con el entrenamiento completo</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/e3_revision_literatura.py</span></code></p></td>
+<td><p>Registro de las búsquedas bibliográficas</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pytest</span> <span class="pre">tests</span></code></p></td>
+<td><p>Pruebas unitarias del modelo original</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">docs</span></code></p></td>
+<td><p>Este documento</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los pasos 3, 4, 8, 10 y 11 se ejecutan en paralelo, con un proceso por pliegue o por conjunto y
+<code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
+</section>
+<section id="tabla-maestra-de-experimentos">
+<h2>14.3 Tabla maestra de experimentos<a class="headerlink" href="#tabla-maestra-de-experimentos" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"resultados"</span> <span class="o">/</span> <span class="s2">"e3"</span> <span class="o">/</span> <span class="s2">"tabla_maestra_e3.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s2"> filas: 112 combinaciones del benchmark + modelo original + HistGradientBoosting"</span><span class="p">)</span>
+<span class="n">t</span><span class="p">[[</span><span class="s2">"modelo"</span><span class="p">,</span> <span class="s2">"balanceo"</span><span class="p">,</span> <span class="s2">"optimizacion"</span><span class="p">,</span> <span class="s2">"aplicable"</span><span class="p">,</span> <span class="s2">"f1_macro_media"</span><span class="p">,</span> <span class="s2">"f1_macro_sd"</span><span class="p">,</span> <span class="s2">"accuracy_media"</span><span class="p">,</span>
+   <span class="s2">"tiempo_total_s"</span><span class="p">,</span> <span class="s2">"semilla"</span><span class="p">,</span> <span class="s2">"particion"</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"f1_macro_media"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>114 filas: 112 combinaciones del benchmark + modelo original + HistGradientBoosting
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>modelo</th>
+      <th>balanceo</th>
+      <th>optimizacion</th>
+      <th>aplicable</th>
+      <th>f1_macro_media</th>
+      <th>f1_macro_sd</th>
+      <th>accuracy_media</th>
+      <th>tiempo_total_s</th>
+      <th>semilla</th>
+      <th>particion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>113</th>
+      <td>HGB</td>
+      <td>ninguno</td>
+      <td>random</td>
+      <td>True</td>
+      <td>0.8074</td>
+      <td>0.0086</td>
+      <td>0.8784</td>
+      <td>16294.9922</td>
+      <td>42</td>
+      <td>10 x StratifiedKFold(3, shuffle, 42 + r) sobre...</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>ECLC</td>
+      <td>pesos de clase en la vecindad</td>
+      <td>bayes</td>
+      <td>True</td>
+      <td>0.7908</td>
+      <td>0.0073</td>
+      <td>0.8393</td>
+      <td>14909.0654</td>
+      <td>42</td>
+      <td>10 x StratifiedKFold(3, shuffle, 42 + r) sobre...</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>RF</td>
+      <td>smote</td>
+      <td>grid</td>
+      <td>True</td>
+      <td>0.7831</td>
+      <td>0.0045</td>
+      <td>0.8392</td>
+      <td>2400.2987</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>RF</td>
+      <td>smote</td>
+      <td>random</td>
+      <td>True</td>
+      <td>0.7831</td>
+      <td>0.0045</td>
+      <td>0.8392</td>
+      <td>3480.2878</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>RF</td>
+      <td>smote</td>
+      <td>bayes</td>
+      <td>True</td>
+      <td>0.7831</td>
+      <td>0.0045</td>
+      <td>0.8392</td>
+      <td>2885.5591</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>RF</td>
+      <td>adasyn</td>
+      <td>grid</td>
+      <td>True</td>
+      <td>0.7827</td>
+      <td>0.0056</td>
+      <td>0.8428</td>
+      <td>1135.6378</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>RF</td>
+      <td>adasyn</td>
+      <td>random</td>
+      <td>True</td>
+      <td>0.7827</td>
+      <td>0.0056</td>
+      <td>0.8428</td>
+      <td>1238.5762</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>RF</td>
+      <td>adasyn</td>
+      <td>bayes</td>
+      <td>True</td>
+      <td>0.7827</td>
+      <td>0.0056</td>
+      <td>0.8428</td>
+      <td>3185.2764</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>RF</td>
+      <td>balanced</td>
+      <td>random</td>
+      <td>True</td>
+      <td>0.7748</td>
+      <td>0.0025</td>
+      <td>0.8460</td>
+      <td>344.5883</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>RF</td>
+      <td>balanced</td>
+      <td>grid</td>
+      <td>True</td>
+      <td>0.7748</td>
+      <td>0.0025</td>
+      <td>0.8460</td>
+      <td>294.7052</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>RF</td>
+      <td>balanced</td>
+      <td>bayes</td>
+      <td>True</td>
+      <td>0.7748</td>
+      <td>0.0025</td>
+      <td>0.8460</td>
+      <td>1854.2923</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>RF</td>
+      <td>ninguno</td>
+      <td>grid</td>
+      <td>True</td>
+      <td>0.7497</td>
+      <td>0.0033</td>
+      <td>0.8418</td>
+      <td>150.1080</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>RF</td>
+      <td>ninguno</td>
+      <td>random</td>
+      <td>True</td>
+      <td>0.7497</td>
+      <td>0.0033</td>
+      <td>0.8418</td>
+      <td>203.2872</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>RF</td>
+      <td>ninguno</td>
+      <td>bayes</td>
+      <td>True</td>
+      <td>0.7497</td>
+      <td>0.0033</td>
+      <td>0.8418</td>
+      <td>1097.5229</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>KNN</td>
+      <td>ninguno</td>
+      <td>bayes</td>
+      <td>True</td>
+      <td>0.7463</td>
+      <td>0.0112</td>
+      <td>0.8257</td>
+      <td>70.0118</td>
+      <td>42</td>
+      <td>StratifiedKFold(3, shuffle, 42) sobre 40.000 c...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La tabla maestra (<code class="docutils literal notranslate"><span class="pre">resultados/e3/tabla_maestra_e3.csv</span></code>) contiene, por combinación, los hiperparámetros elegidos
+en cada pliegue, las métricas del bucle externo, el número de evaluaciones, los tiempos, la semilla y la
+partición. Las filas del modelo original y de HistGradientBoosting resumen los 30 pliegues de la validación
+repetida.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="e3_08_conclusiones.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">13. Conclusiones</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_apendice.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Apéndice A. Reproducibilidad</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entorno-y-semillas">14.1 Entorno y semillas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-ejecucion">14.2 Orden de ejecución</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-maestra-de-experimentos">14.3 Tabla maestra de experimentos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Ana Galván, Valeria Oñate y María José Ruiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

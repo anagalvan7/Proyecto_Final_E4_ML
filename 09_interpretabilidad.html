@@ -1,0 +1,834 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>8. Interpretabilidad de XGBoost: SHAP frente a LIME &#8212; Clasificación de la cobertura forestal (Covertype)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '09_interpretabilidad';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="9. Eficiencia computacional, reproducibilidad y conclusiones" href="10_conclusiones_finales.html" />
+    <link rel="prev" title="7. Comparación estadística de los modelos" href="08_comparacion_estadistica.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_bosque.jpg" class="logo__image only-light" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>
+    <script>document.write(`<img src="_static/logo_bosque.jpg" class="logo__image only-dark" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Clasificación de la cobertura forestal a partir de variables cartográficas
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I. Datos, análisis exploratorio y modelo base</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_base_datos.html">1. Base de datos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="02b_fuga_estructura.html">2.5–2.8 Fuga de información y estructura de los datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c_preprocesamiento.html">2.9 Preprocesamiento</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_conclusiones.html">4. Conclusiones de la Parte I</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II. Benchmark, optimización y evaluación</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_modelos.html">5. Benchmark combinatorio de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_optimizacion.html">6. Comparación de los métodos de optimización de hiperparámetros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_comparacion_estadistica.html">7. Comparación estadística de los modelos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Interpretabilidad de XGBoost: SHAP frente a LIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_conclusiones_finales.html">9. Eficiencia computacional, reproducibilidad y conclusiones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III. Modelo original</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="e3_04_literatura.html">10. Revisión de literatura y evidencia de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_05_modelo_original.html">11. Modelo original: ensamble por competencia local y por clase (ECLC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_06_validacion.html">12. Validación estadística del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_08_conclusiones.html">13. Conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_09_reproducibilidad.html">14. Reproducibilidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_apendice.html">Apéndice A. Reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_01_correcciones.html">Apéndice B. Registro de cambios del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliografia.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/09_interpretabilidad.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>8. Interpretabilidad de XGBoost: SHAP frente a LIME</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-global">8.1 Interpretabilidad global</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-local">8.2 Interpretabilidad local</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shap-frente-a-lime">8.3 SHAP frente a LIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-de-la-interpretacion">8.4 Alcance de la interpretación</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="interpretabilidad-de-xgboost-shap-frente-a-lime">
+<h1>8. Interpretabilidad de XGBoost: SHAP frente a LIME<a class="headerlink" href="#interpretabilidad-de-xgboost-shap-frente-a-lime" title="Permalink to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Este capítulo analiza XGBoost con su mejor configuración del benchmark (150 árboles, profundidad 6, tasa de
+aprendizaje 0,1), reentrenado con el conjunto completo, para comparar SHAP y LIME sobre un modelo de
+<em>boosting</em>. La interpretabilidad del finalista del benchmark (Random Forest con SMOTE) y del modelo original,
+con un mismo estimador para ambos, está en la sección 11.9; los tres análisis coinciden en que la elevación es
+la variable dominante.</p>
+</div>
+<p>La regresión logística de la Parte I se interpretó directamente a partir de sus
+coeficientes (sección 3.10). El modelo XGBoost analizado aquí, un conjunto de 1.050 árboles de <em>boosting</em> (150
+iteraciones × 7 clases), no admite esa lectura. Su interpretación se basa en los <strong>valores
+de Shapley</strong> <span id="id1">[<a class="reference internal" href="bibliografia.html#id22" title="Scott M. Lundberg and Su-In Lee. A unified approach to interpreting model predictions. In Advances in Neural Information Processing Systems, volume 30, 4765–4774. 2017.">Lundberg and Lee, 2017</a>]</span>, procedentes de la teoría de juegos cooperativos. Para
+cada observación, SHAP reparte la diferencia entre la predicción del modelo y su
+predicción media entre las variables, y es el único método de atribución aditiva que
+satisface simultáneamente tres propiedades:</p>
+<ul class="simple">
+<li><p><strong>Eficiencia:</strong> la suma de las contribuciones de todas las variables es exactamente igual
+a la diferencia entre la predicción de la observación y la predicción media.</p></li>
+<li><p><strong>Simetría:</strong> dos variables que aportan lo mismo en todas las coaliciones reciben la misma
+contribución.</p></li>
+<li><p><strong>Aditividad:</strong> la contribución de una variable a un modelo formado por la suma de dos
+modelos es la suma de sus contribuciones a cada uno, lo que permite descomponer de forma
+coherente un conjunto de árboles.</p></li>
+</ul>
+<p>Los valores se calcularon con <code class="docutils literal notranslate"><span class="pre">TreeExplainer</span></code> <span id="id2">[<a class="reference internal" href="bibliografia.html#id23" title="Scott M. Lundberg, Gabriel Erion, Hugh Chen, Alex DeGrave, Jordan M. Prutkin, Bala Nair, Ronit Katz, Jonathan Himmelfarb, Nisha Bansal, and Su-In Lee. From local explanations to global understanding with explainable AI for trees. Nature Machine Intelligence, 2(1):56–67, 2020. doi:10.1038/s42256-019-0138-9.">Lundberg <em>et al.</em>, 2020</a>]</span>, que obtiene los valores
+de Shapley exactos para modelos de árboles en tiempo polinómico, sobre una muestra
+aleatoria de 3.000 celdas de la prueba reservada. Las contribuciones se expresan en la
+escala del margen del modelo (logaritmo de las <em>odds</em> de cada clase) y las variables
+continuas, en unidades estandarizadas.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"scripts"</span><span class="p">))</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">_utils3</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u3</span>
+
+<span class="n">RESULTS3</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"resultados"</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="interpretabilidad-global">
+<h2>8.1 Interpretabilidad global<a class="headerlink" href="#interpretabilidad-global" title="Permalink to this heading">#</a></h2>
+<figure class="align-default" id="fig-shap-global">
+<a class="reference internal image-reference" href="_images/shap_importancia_por_clase.png"><img alt="_images/shap_importancia_por_clase.png" src="_images/shap_importancia_por_clase.png" style="width: 85%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 1 </span><span class="caption-text">Importancia global de las 15 variables más relevantes, medida como el valor absoluto medio
+de SHAP y desagregada por clase.</span><a class="headerlink" href="#fig-shap-global" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">imp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"shap_importancia_global_muestra.csv"</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">imp</span> <span class="o">=</span> <span class="n">imp</span><span class="p">[</span><span class="s2">"importancia_media_abs"</span><span class="p">]</span>
+<span class="n">tabla_imp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"|SHAP| medio (suma sobre clases)"</span><span class="p">:</span> <span class="n">imp</span><span class="p">,</span>
+                          <span class="s2">"Proporción del total (%)"</span><span class="p">:</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">imp</span> <span class="o">/</span> <span class="n">imp</span><span class="o">.</span><span class="n">sum</span><span class="p">()})</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tabla_imp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Variable"</span>
+<span class="n">display</span><span class="p">(</span><span class="n">tabla_imp</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Variable</th>
+      <th>|SHAP| medio (suma sobre clases)</th>
+      <th>Proporción del total (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Elevation</td>
+      <td>14.63</td>
+      <td>27.16</td>
+    </tr>
+    <tr>
+      <td>Elevation_Minus_VDH</td>
+      <td>12.68</td>
+      <td>23.54</td>
+    </tr>
+    <tr>
+      <td>Horizontal_Distance_To_Roadways</td>
+      <td>4.16</td>
+      <td>7.72</td>
+    </tr>
+    <tr>
+      <td>Wilderness_Area_1</td>
+      <td>3.75</td>
+      <td>6.96</td>
+    </tr>
+    <tr>
+      <td>Wilderness_Area_4</td>
+      <td>3.53</td>
+      <td>6.55</td>
+    </tr>
+    <tr>
+      <td>Horizontal_Distance_To_Fire_Points</td>
+      <td>2.81</td>
+      <td>5.22</td>
+    </tr>
+    <tr>
+      <td>Dist_Hydrology_Euclid</td>
+      <td>1.14</td>
+      <td>2.11</td>
+    </tr>
+    <tr>
+      <td>Vertical_Distance_To_Hydrology</td>
+      <td>1.03</td>
+      <td>1.91</td>
+    </tr>
+    <tr>
+      <td>Aspect_cos</td>
+      <td>1.01</td>
+      <td>1.87</td>
+    </tr>
+    <tr>
+      <td>Horizontal_Distance_To_Hydrology</td>
+      <td>0.95</td>
+      <td>1.77</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>La importancia global confirma, con un modelo de naturaleza completamente distinta, los
+hallazgos de la Parte I:</p>
+<ol class="arabic simple">
+<li><p><strong>La elevación domina el problema.</strong> La elevación y la elevación relativa a la fuente de
+agua más cercana (<code class="docutils literal notranslate"><span class="pre">Elevation_Minus_VDH</span></code>, construida en la sección 2.9) concentran el
+60 % de la importancia total. Ambas codifican el gradiente altitudinal de la vegetación
+de montaña, que la regresión logística también identificó como su efecto principal
+(sección 3.10). La coincidencia entre un modelo lineal y un conjunto de árboles indica
+que se trata de una propiedad del fenómeno y no de un artefacto del modelo.</p></li>
+<li><p><strong>La importancia se reparte entre variables redundantes.</strong> La elevación absoluta y la
+relativa están casi perfectamente correlacionadas, y SHAP distribuye entre ambas el
+crédito del gradiente altitudinal. Su importancia debe leerse de forma conjunta.</p></li>
+<li><p><strong>El área silvestre actúa como proxy geográfico.</strong> <code class="docutils literal notranslate"><span class="pre">Wilderness_Area_1</span></code> (Rawah) y
+<code class="docutils literal notranslate"><span class="pre">Wilderness_Area_4</span></code> (Cache la Poudre) ocupan el tercer y el cuarto lugar. Cache la Poudre
+es la variable más importante para el álamo/sauce, la clase que solo existe en esa área,
+y Rawah es decisiva para el pino ponderosa y el abeto de Douglas, que nunca aparecen en
+ella. Este patrón coincide con el proxy geográfico identificado en la auditoría de fuga
+(sección 2.5) y explica la pérdida de desempeño en áreas no vistas (sección 9.4).</p></li>
+<li><p><strong>Las distancias a carreteras y a puntos de incendio</strong> ocupan el quinto y el sexto
+lugar. Su relación con la cobertura es indirecta: las carreteras y los incendios
+históricos se concentran en los valles, donde predominan las clases de zonas bajas.</p></li>
+</ol>
+<figure class="align-default" id="fig-shap-lodgepole">
+<a class="reference internal image-reference" href="_images/shap_beeswarm_lodgepole.png"><img alt="_images/shap_beeswarm_lodgepole.png" src="_images/shap_beeswarm_lodgepole.png" style="width: 85%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 2 </span><span class="caption-text">Gráfico de resumen SHAP para el pino lodgepole. Cada punto es una celda de la muestra; su
+posición horizontal indica la contribución de la variable a la clase, y su color, el valor
+de la variable.</span><a class="headerlink" href="#fig-shap-lodgepole" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-shap-abeto">
+<a class="reference internal image-reference" href="_images/shap_beeswarm_abeto_picea.png"><img alt="_images/shap_beeswarm_abeto_picea.png" src="_images/shap_beeswarm_abeto_picea.png" style="width: 85%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3 </span><span class="caption-text">Gráfico de resumen SHAP para el abeto/pícea.</span><a class="headerlink" href="#fig-shap-abeto" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+<p>Los gráficos de resumen de las dos clases mayoritarias, que concentran los errores del
+modelo, muestran <strong>cómo</strong> actúa cada variable. Para el abeto/pícea, los valores bajos de
+<code class="docutils literal notranslate"><span class="pre">Elevation_Minus_VDH</span></code> producen contribuciones fuertemente negativas (hasta −6,7 en el margen),
+mientras que los valores altos producen contribuciones positivas moderadas (alrededor de +0,6):
+la elevación funciona como un criterio de exclusión en las zonas bajas más que como un criterio
+de inclusión en las altas. Para el pino lodgepole, en cambio, tanto los valores muy bajos como
+los muy altos de elevación reducen la probabilidad de la clase, mientras que los intermedios
+la elevan, lo que refleja su posición intermedia en el gradiente. Esta <strong>relación no
+monótona</strong> es precisamente la que un modelo lineal no puede representar y explica la mayor
+parte de la mejora de los modelos de árboles sobre la regresión logística.</p>
+</section>
+<section id="interpretabilidad-local">
+<h2>8.2 Interpretabilidad local<a class="headerlink" href="#interpretabilidad-local" title="Permalink to this heading">#</a></h2>
+<p>Se explican dos celdas de la muestra: la predicción correcta con mayor confianza y el
+error con mayor confianza, que es el caso más informativo para el diagnóstico.</p>
+<figure class="align-default" id="fig-shap-correcta">
+<a class="reference internal image-reference" href="_images/shap_waterfall_correcta.png"><img alt="_images/shap_waterfall_correcta.png" src="_images/shap_waterfall_correcta.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 4 </span><span class="caption-text">Explicación local de una celda de krummholz clasificada correctamente con probabilidad
+1,00. <span class="math notranslate nohighlight">\(E[f(X)]\)</span> es el margen medio de la clase y <span class="math notranslate nohighlight">\(f(x)\)</span>, el margen de la observación.</span><a class="headerlink" href="#fig-shap-correcta" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-shap-error">
+<a class="reference internal image-reference" href="_images/shap_waterfall_error.png"><img alt="_images/shap_waterfall_error.png" src="_images/shap_waterfall_error.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 5 </span><span class="caption-text">Explicación local de una celda de abeto/pícea clasificada como pino lodgepole con
+probabilidad 0,98.</span><a class="headerlink" href="#fig-shap-error" title="Enlace permanente a esta imagen">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Predicción correcta.</strong> La celda de krummholz está muy por encima de la elevación media
+(2,5 desviaciones estándar), lejos de puntos de incendio históricos, en Comanche Peak y sobre
+el suelo 40, uno de los suelos pedregosos de alta montaña. Las cuatro condiciones empujan en
+la misma dirección y elevan el margen de la clase de −0,99 a 5,97, lo que corresponde al perfil
+ecológico típico del krummholz: el límite arbóreo, donde los árboles crecen achaparrados por
+el viento y el frío.</p>
+<p><strong>Error.</strong> La celda de abeto/pícea clasificada como pino lodgepole está por debajo de la
+elevación media (−0,9 desviaciones estándar tanto en la elevación absoluta como en la
+relativa), pertenece al suelo 12 y está en Rawah. Cada una de estas condiciones es más
+frecuente en el pino lodgepole, y juntas desplazan el margen de esa clase de 2,06 a 3,19.
+Ninguna variable aporta una evidencia en contra comparable. El error se produce en la zona
+de solapamiento entre las dos clases mayoritarias que la Parte I identificó en todas las
+variables (sección 2.3) y que también es la principal fuente de confusión del finalista
+(sección 5.6). Se trata de una celda de abeto/pícea en la franja más baja de su rango
+altitudinal, probablemente en la transición entre ambos tipos de bosque, más que de un
+fallo del modelo atribuible a una variable concreta.</p>
+</section>
+<section id="shap-frente-a-lime">
+<h2>8.3 SHAP frente a LIME<a class="headerlink" href="#shap-frente-a-lime" title="Permalink to this heading">#</a></h2>
+<p>LIME <span id="id3">[<a class="reference internal" href="bibliografia.html#id24" title="Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. “Why should I trust you?”: explaining the predictions of any classifier. In Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 1135–1144. 2016. doi:10.1145/2939672.2939778.">Ribeiro <em>et al.</em>, 2016</a>]</span> explica una predicción ajustando un modelo lineal <strong>local</strong>:
+perturba la observación, consulta al modelo en los puntos perturbados y pondera cada punto
+según su cercanía a la observación original. Su explicación es tan fiable como la
+aproximación lineal en esa vecindad. SHAP, en cambio, no ajusta un modelo sustituto:
+calcula la contribución de cada variable promediando sobre todas las coaliciones posibles,
+lo que garantiza las propiedades de eficiencia, simetría y aditividad. Para comparar ambos
+métodos se aplicó LIME a las mismas dos celdas, con 5.000 perturbaciones y discretización
+de las variables continuas.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"shap_lime_casos.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">sl</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">filas</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">etiqueta</span><span class="p">,</span> <span class="n">caso</span> <span class="ow">in</span> <span class="n">sl</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">filas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"Caso"</span><span class="p">:</span> <span class="s2">"Predicción correcta"</span> <span class="k">if</span> <span class="n">etiqueta</span> <span class="o">==</span> <span class="s2">"correcta"</span> <span class="k">else</span> <span class="s2">"Error"</span><span class="p">,</span>
+                  <span class="s2">"Clase real → predicha"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">u3</span><span class="o">.</span><span class="n">CLASS_SHORT</span><span class="p">[</span><span class="n">caso</span><span class="p">[</span><span class="s1">'clase_real'</span><span class="p">]]</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">u3</span><span class="o">.</span><span class="n">CLASS_SHORT</span><span class="p">[</span><span class="n">caso</span><span class="p">[</span><span class="s1">'clase_predicha'</span><span class="p">]]</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+                  <span class="s2">"5 variables principales (SHAP)"</span><span class="p">:</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">caso</span><span class="p">[</span><span class="s2">"top5_shap"</span><span class="p">]),</span>
+                  <span class="s2">"5 variables principales (LIME)"</span><span class="p">:</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">caso</span><span class="p">[</span><span class="s2">"top5_lime"</span><span class="p">]),</span>
+                  <span class="s2">"Variables en común"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">caso</span><span class="p">[</span><span class="s2">"comunes_top5"</span><span class="p">]),</span>
+                  <span class="s2">"R² local de LIME"</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">caso</span><span class="p">[</span><span class="s2">"lime_r2_local"</span><span class="p">],</span> <span class="mi">3</span><span class="p">)})</span>
+<span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filas</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"Caso"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Caso</th>
+      <th>Clase real → predicha</th>
+      <th>5 variables principales (SHAP)</th>
+      <th>5 variables principales (LIME)</th>
+      <th>Variables en común</th>
+      <th>R² local de LIME</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Predicción correcta</td>
+      <td>3 P. ponderosa → 3 P. ponderosa</td>
+      <td>Elevation_Minus_VDH, Hillshade_9am, Horizontal_Distance_To_Fire_Points, Elevation, Hillshade_3pm</td>
+      <td>Soil_Type_9, Elevation_Minus_VDH, Elevation, Wilderness_Area_1, Soil_Type_14</td>
+      <td>2</td>
+      <td>0.115</td>
+    </tr>
+    <tr>
+      <td>Error</td>
+      <td>2 P. lodgepole → 1 Abeto/pícea</td>
+      <td>Elevation_Minus_VDH, Soil_Type_24, Horizontal_Distance_To_Roadways, Hillshade_9am, Aspect_cos</td>
+      <td>Soil_Type_27, Soil_Type_7, Soil_Type_21, Soil_Type_2, Soil_Type_3</td>
+      <td>0</td>
+      <td>0.075</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>Las dos técnicas coinciden solo parcialmente. En la predicción correcta comparten dos de
+las cinco variables principales (la elevación y el suelo 40), y en el error solo una (la
+elevación relativa), que son también las que dominan la importancia global. El resto de las
+variables con mayor peso en LIME son indicadoras de tipos de suelo poco frecuentes (35, 37, 38 y
+39 en el primer caso; 1, 27, 37 y 39 en el segundo), ninguna de las cuales caracteriza a las
+celdas explicadas. El <span class="math notranslate nohighlight">\(R^2\)</span> local de LIME es bajo en ambos casos (0,26 y 0,23), lo que indica
+que el modelo lineal sustituto reproduce mal el comportamiento de XGBoost en esas vecindades.</p>
+<p>La divergencia tiene una causa identificable. Al perturbar la observación, LIME activa y
+desactiva de forma independiente las 40 indicadoras de suelo y genera celdas con
+combinaciones de suelo, área y elevación que no existen en los datos. XGBoost
+responde a esas combinaciones atípicas con cambios grandes de probabilidad, y LIME
+atribuye esos cambios a los suelos perturbados aunque no intervengan en la predicción
+real. SHAP, que solo recorre caminos observados en los árboles, no presenta este
+problema.</p>
+<p>Las dos técnicas divergen, en general, en tres situaciones:</p>
+<ol class="arabic simple">
+<li><p><strong>Interacciones fuertes entre variables.</strong> Cuando el efecto de una variable depende de
+otra (por ejemplo, el de la elevación según el área silvestre, sección 2.7), el modelo
+lineal de LIME no puede representar la interacción y atribuye su efecto de forma
+parcial a una de las variables. SHAP reparte la contribución de la interacción entre las
+variables implicadas.</p></li>
+<li><p><strong>Fronteras de decisión escalonadas.</strong> En los modelos de árboles la función de
+decisión es constante a trozos. Si la vecindad de perturbación de LIME cruza uno de
+esos escalones, la aproximación lineal pierde precisión, lo que se refleja en un <span class="math notranslate nohighlight">\(R^2\)</span>
+local bajo.</p></li>
+<li><p><strong>Variables correlacionadas.</strong> LIME perturba cada variable de forma independiente y
+genera combinaciones poco realistas (por ejemplo, una elevación absoluta alta con una
+elevación relativa baja), mientras que <code class="docutils literal notranslate"><span class="pre">TreeExplainer</span></code> sigue los caminos de los árboles
+condicionados a los datos de entrenamiento. Con variables redundantes, como las dos
+elevaciones o los tres índices de sombreado (sección 2.3), LIME tiende a concentrar el
+peso en una sola de ellas.</p></li>
+</ol>
+<p>Por estas razones, en este estudio SHAP se considera la explicación de referencia y LIME
+una verificación complementaria cuya fiabilidad depende de su <span class="math notranslate nohighlight">\(R^2\)</span> local.</p>
+</section>
+<section id="alcance-de-la-interpretacion">
+<h2>8.4 Alcance de la interpretación<a class="headerlink" href="#alcance-de-la-interpretacion" title="Permalink to this heading">#</a></h2>
+<p>Las atribuciones SHAP describen el comportamiento del modelo, no relaciones causales en
+el ecosistema. Cuando dos variables están correlacionadas, la importancia se reparte entre
+ellas y la importancia de cada una por separado subestima su relevancia conjunta. Además,
+los valores se calcularon sobre una muestra de 3.000 celdas de la prueba reservada por
+costo computacional; con 3.000 celdas, las clases más raras quedan representadas por pocas
+decenas de observaciones, por lo que su importancia por clase es menos precisa que la global.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="08_comparacion_estadistica.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">7. Comparación estadística de los modelos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="10_conclusiones_finales.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">9. Eficiencia computacional, reproducibilidad y conclusiones</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-global">8.1 Interpretabilidad global</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretabilidad-local">8.2 Interpretabilidad local</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shap-frente-a-lime">8.3 SHAP frente a LIME</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alcance-de-la-interpretacion">8.4 Alcance de la interpretación</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Ana Galván, Valeria Oñate y María José Ruiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

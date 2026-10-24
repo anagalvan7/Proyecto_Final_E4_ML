@@ -1,0 +1,1712 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1. Base de datos &#8212; Clasificación de la cobertura forestal (Covertype)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_base_datos';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="2. Análisis exploratorio de datos" href="02_eda.html" />
+    <link rel="prev" title="Clasificación de la cobertura forestal a partir de variables cartográficas" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_bosque.jpg" class="logo__image only-light" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>
+    <script>document.write(`<img src="_static/logo_bosque.jpg" class="logo__image only-dark" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Clasificación de la cobertura forestal a partir de variables cartográficas
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I. Datos, análisis exploratorio y modelo base</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Base de datos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="02b_fuga_estructura.html">2.5–2.8 Fuga de información y estructura de los datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c_preprocesamiento.html">2.9 Preprocesamiento</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_conclusiones.html">4. Conclusiones de la Parte I</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II. Benchmark, optimización y evaluación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_modelos.html">5. Benchmark combinatorio de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_optimizacion.html">6. Comparación de los métodos de optimización de hiperparámetros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_comparacion_estadistica.html">7. Comparación estadística de los modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_interpretabilidad.html">8. Interpretabilidad de XGBoost: SHAP frente a LIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_conclusiones_finales.html">9. Eficiencia computacional, reproducibilidad y conclusiones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III. Modelo original</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="e3_04_literatura.html">10. Revisión de literatura y evidencia de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_05_modelo_original.html">11. Modelo original: ensamble por competencia local y por clase (ECLC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_06_validacion.html">12. Validación estadística del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_08_conclusiones.html">13. Conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_09_reproducibilidad.html">14. Reproducibilidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_apendice.html">Apéndice A. Reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_01_correcciones.html">Apéndice B. Registro de cambios del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliografia.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_base_datos.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Base de datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-del-problema">1.1 Definición del problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#justificacion-de-la-seleccion">1.2 Justificación de la selección</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuente-de-los-datos-y-licencia">1.3 Fuente de los datos y licencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables">1.4 Diccionario de variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-de-los-datos">1.5 Estructura de los datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reserva-del-conjunto-de-prueba">1.6 Reserva del conjunto de prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-la-muestra">1.7 Tamaño de la muestra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calidad-de-los-datos">1.8 Calidad de los datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-faltantes">Valores faltantes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicados-exactos-y-casi-duplicados">Duplicados exactos y casi-duplicados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-imposibles-o-inconsistentes">Valores imposibles o inconsistentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-atipicos">Valores atípicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sesgos-de-muestreo-y-representatividad">Sesgos de muestreo y representatividad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-eticas">1.9 Consideraciones éticas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="base-de-datos">
+<h1>1. Base de datos<a class="headerlink" href="#base-de-datos" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BIN_COLS</span><span class="p">,</span> <span class="n">CLASS_NAMES</span><span class="p">,</span> <span class="n">CLASS_PALETTE</span><span class="p">,</span> <span class="n">DISPLAY_NAMES</span><span class="p">,</span> <span class="n">FEATURES</span><span class="p">,</span> <span class="n">NUM_COLS</span><span class="p">,</span> <span class="n">RANDOM_STATE</span><span class="p">,</span>
+    <span class="n">SOIL_COLS</span><span class="p">,</span> <span class="n">TARGET</span><span class="p">,</span> <span class="n">WILD_COLS</span><span class="p">,</span> <span class="n">WILD_NAMES</span><span class="p">,</span> <span class="n">load_covertype</span><span class="p">,</span> <span class="n">split_covertype</span><span class="p">,</span> <span class="n">wilderness_label</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"whitegrid"</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">"notebook"</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">"display.max_columns"</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_covertype</span><span class="p">()</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">split_covertype</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="definicion-del-problema">
+<h2>1.1 Definición del problema<a class="headerlink" href="#definicion-del-problema" title="Permalink to this heading">#</a></h2>
+<p>El objetivo es <strong>clasificar el tipo de cobertura forestal dominante</strong> de una celda de terreno de 30 × 30 m a partir de variables cartográficas. La variable objetivo <code class="docutils literal notranslate"><span class="pre">Cover_Type</span></code> toma siete valores, cada uno correspondiente a una especie o asociación forestal dominante. Las predictoras describen la topografía (elevación, orientación, pendiente y sombreado), la proximidad a elementos del paisaje (agua superficial, carreteras y puntos de ignición de incendios históricos), el área silvestre a la que pertenece la celda y su tipo de suelo.</p>
+<p>Formalmente, se busca una función <span class="math notranslate nohighlight">\(f: \mathbb{R}^{54} \to \{1, \dots, 7\}\)</span> que asigne a cada celda su clase de cobertura, aprendida a partir de ejemplos etiquetados y evaluada sobre celdas no vistas durante el entrenamiento.</p>
+</section>
+<section id="justificacion-de-la-seleccion">
+<h2>1.2 Justificación de la selección<a class="headerlink" href="#justificacion-de-la-seleccion" title="Permalink to this heading">#</a></h2>
+<p>La elección del conjunto <em>Covertype</em> se apoya en cuatro razones:</p>
+<ol class="arabic simple">
+<li><p><strong>Relevancia aplicada.</strong> La cobertura forestal condiciona la gestión de bosques, el riesgo y el comportamiento de incendios, la conservación de hábitats y la regulación hídrica. Inferirla a partir de cartografía reduce la dependencia de inventarios de campo costosos.</p></li>
+<li><p><strong>Tamaño y calidad.</strong> Con 581.012 observaciones, el conjunto es lo bastante grande para sostener validación cruzada anidada y particiones de prueba holgadas sin agotar las clases minoritarias; además no tiene valores faltantes y proviene de fuentes oficiales (US Forest Service y US Geological Survey).</p></li>
+<li><p><strong>Dificultad adecuada.</strong> Es un problema multiclase con desbalance fuerte y fronteras de decisión no lineales. Es además un conjunto de referencia habitual en la evaluación de algoritmos para datos tabulares <span id="id1">[<a class="reference internal" href="bibliografia.html#id54" title="Léo Grinsztajn, Edouard Oyallon, and Gaël Varoquaux. Why do tree-based models still outperform deep learning on typical tabular data? In Advances in Neural Information Processing Systems (Datasets and Benchmarks Track), volume 35, 507–520. 2022.">Grinsztajn <em>et al.</em>, 2022</a>]</span>. Un clasificador lineal obtiene un desempeño intermedio, lo que deja margen de mejora real para modelos más complejos y evita un problema trivial.</p></li>
+<li><p><strong>Baja exposición a fuga de información.</strong> Las variables son atributos físicos del terreno medidos de forma independiente de la etiqueta, y no existen identificadores ni variables derivadas de la cobertura.</p></li>
+</ol>
+</section>
+<section id="fuente-de-los-datos-y-licencia">
+<h2>1.3 Fuente de los datos y licencia<a class="headerlink" href="#fuente-de-los-datos-y-licencia" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Atributo</p></th>
+<th class="head"><p>Detalle</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nombre</p></td>
+<td><p>Covertype</p></td>
+</tr>
+<tr class="row-odd"><td><p>Repositorio</p></td>
+<td><p>UCI Machine Learning Repository: <a class="reference external" href="https://archive.ics.uci.edu/dataset/31/covertype">https://archive.ics.uci.edu/dataset/31/covertype</a></p></td>
+</tr>
+<tr class="row-even"><td><p>DOI</p></td>
+<td><p><a class="reference external" href="https://doi.org/10.24432/C50K5N">10.24432/C50K5N</a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Autor original</p></td>
+<td><p>Jock A. Blackard (US Forest Service), con Denis J. Dean y Charles W. Anderson (Colorado State University)</p></td>
+</tr>
+<tr class="row-even"><td><p>Fuentes primarias</p></td>
+<td><p>Sistema de Información de Recursos de la Región 2 del US Forest Service (cobertura) y datos del US Geological Survey y del USFS (variables cartográficas)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fecha de donación</p></td>
+<td><p>1 de agosto de 1998</p></td>
+</tr>
+<tr class="row-even"><td><p>Licencia</p></td>
+<td><p>Creative Commons Attribution 4.0 International (CC BY 4.0)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Referencia</p></td>
+<td><p><span id="id2">[<a class="reference internal" href="bibliografia.html#id2" title="Jock A. Blackard and Denis J. Dean. Comparative accuracies of artificial neural networks and discriminant analysis in predicting forest cover types from cartographic variables. Computers and Electronics in Agriculture, 24(3):131–151, 1999. doi:10.1016/S0168-1699(99)00046-0.">Blackard and Dean, 1999</a>]</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La licencia CC BY 4.0 permite usar, compartir y adaptar los datos con fines académicos siempre que se reconozca la autoría, como se hace en este documento.</p>
+</section>
+<section id="diccionario-de-variables">
+<h2>1.4 Diccionario de variables<a class="headerlink" href="#diccionario-de-variables" title="Permalink to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Unidad</p></th>
+<th class="head"><p>Significado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Elevation</span></code></p></td>
+<td><p>Numérica continua</p></td>
+<td><p>m</p></td>
+<td><p>Elevación sobre el nivel del mar</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Aspect</span></code></p></td>
+<td><p>Numérica circular</p></td>
+<td><p>° azimut (0–360)</p></td>
+<td><p>Orientación de la ladera respecto al norte</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Slope</span></code></p></td>
+<td><p>Numérica continua</p></td>
+<td><p>°</p></td>
+<td><p>Pendiente del terreno</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Horizontal_Distance_To_Hydrology</span></code></p></td>
+<td><p>Numérica continua</p></td>
+<td><p>m</p></td>
+<td><p>Distancia horizontal a la fuente de agua superficial más cercana</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Vertical_Distance_To_Hydrology</span></code></p></td>
+<td><p>Numérica continua</p></td>
+<td><p>m</p></td>
+<td><p>Diferencia de altura con esa fuente de agua (negativa si la celda está por debajo)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Horizontal_Distance_To_Roadways</span></code></p></td>
+<td><p>Numérica continua</p></td>
+<td><p>m</p></td>
+<td><p>Distancia horizontal a la carretera más cercana</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Hillshade_9am</span></code></p></td>
+<td><p>Numérica discreta</p></td>
+<td><p>índice 0–255</p></td>
+<td><p>Iluminación relativa a las 9 a. m. en el solsticio de verano</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Hillshade_Noon</span></code></p></td>
+<td><p>Numérica discreta</p></td>
+<td><p>índice 0–255</p></td>
+<td><p>Iluminación relativa al mediodía en el solsticio de verano</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Hillshade_3pm</span></code></p></td>
+<td><p>Numérica discreta</p></td>
+<td><p>índice 0–255</p></td>
+<td><p>Iluminación relativa a las 3 p. m. en el solsticio de verano</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Horizontal_Distance_To_Fire_Points</span></code></p></td>
+<td><p>Numérica continua</p></td>
+<td><p>m</p></td>
+<td><p>Distancia horizontal al punto de ignición de incendio forestal más cercano</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Wilderness_Area_1</span></code> … <code class="docutils literal notranslate"><span class="pre">_4</span></code></p></td>
+<td><p>Binaria (<em>one-hot</em>)</p></td>
+<td><p>0/1</p></td>
+<td><p>Área silvestre: 1 Rawah, 2 Neota, 3 Comanche Peak, 4 Cache la Poudre</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Soil_Type_1</span></code> … <code class="docutils literal notranslate"><span class="pre">_40</span></code></p></td>
+<td><p>Binaria (<em>one-hot</em>)</p></td>
+<td><p>0/1</p></td>
+<td><p>Tipo de suelo según la clasificación de unidades ecológicas terrestres (ELU) del USFS</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Cover_Type</span></code></p></td>
+<td><p>Categórica nominal (objetivo)</p></td>
+<td><p>1–7</p></td>
+<td><p>Tipo de cobertura forestal dominante</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Las siete clases de la variable objetivo son:</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">"Clase"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">CLASS_NAMES</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="s2">"Cobertura"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">CLASS_NAMES</span><span class="o">.</span><span class="n">values</span><span class="p">())}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"Clase"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Clase</th>
+      <th>Cobertura</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Abeto/pícea (Spruce/Fir)</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Pino lodgepole</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Pino ponderosa</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Álamo/sauce (Cottonwood/Willow)</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Álamo temblón (Aspen)</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Abeto de Douglas</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Krummholz</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>Los 40 tipos de suelo corresponden a unidades ELU del US Forest Service. Su descripción completa se incluye a continuación de forma plegable, porque resulta útil para interpretar los coeficientes del modelo, pero no para la lectura general.</p>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">soil_desc</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mi">2702</span><span class="p">,</span> <span class="s2">"Cathedral family - Rock outcrop complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2703</span><span class="p">,</span> <span class="s2">"Vanet - Ratake families complex, very stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2704</span><span class="p">,</span> <span class="s2">"Haploborolis - Rock outcrop complex, rubbly"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2705</span><span class="p">,</span> <span class="s2">"Ratake family - Rock outcrop complex, rubbly"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2706</span><span class="p">,</span> <span class="s2">"Vanet family - Rock outcrop complex, rubbly"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">2717</span><span class="p">,</span> <span class="s2">"Vanet - Wetmore families - Rock outcrop complex, stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3501</span><span class="p">,</span> <span class="s2">"Gothic family"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">3502</span><span class="p">,</span> <span class="s2">"Supervisor - Limber families complex"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4201</span><span class="p">,</span> <span class="s2">"Troutville family, very stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4703</span><span class="p">,</span> <span class="s2">"Bullwark - Catamount families - Rock outcrop complex, rubbly"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4704</span><span class="p">,</span> <span class="s2">"Bullwark - Catamount families - Rock land complex, rubbly"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4744</span><span class="p">,</span> <span class="s2">"Legault family - Rock land complex, stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">4758</span><span class="p">,</span> <span class="s2">"Catamount family - Rock land - Bullwark family complex, rubbly"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">5101</span><span class="p">,</span> <span class="s2">"Pachic Argiborolis - Aquolis complex"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">5151</span><span class="p">,</span> <span class="s2">"Sin especificar en el inventario de suelos del USFS"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">6101</span><span class="p">,</span> <span class="s2">"Cryaquolis - Cryoborolis complex"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">6102</span><span class="p">,</span> <span class="s2">"Gateview family - Cryaquolis complex"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">6731</span><span class="p">,</span> <span class="s2">"Rogert family, very stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7101</span><span class="p">,</span> <span class="s2">"Typic Cryaquolis - Borohemists complex"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7102</span><span class="p">,</span> <span class="s2">"Typic Cryaquepts - Typic Cryaquolls complex"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7103</span><span class="p">,</span> <span class="s2">"Typic Cryaquolls - Leighcan family, till substratum complex"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7201</span><span class="p">,</span> <span class="s2">"Leighcan family, till substratum, extremely bouldery"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7202</span><span class="p">,</span> <span class="s2">"Leighcan family, till substratum - Typic Cryaquolls complex"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7700</span><span class="p">,</span> <span class="s2">"Leighcan family, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7701</span><span class="p">,</span> <span class="s2">"Leighcan family, warm, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7702</span><span class="p">,</span> <span class="s2">"Granile - Catamount families complex, very stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7709</span><span class="p">,</span> <span class="s2">"Leighcan family, warm - Rock outcrop complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7710</span><span class="p">,</span> <span class="s2">"Leighcan family - Rock outcrop complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7745</span><span class="p">,</span> <span class="s2">"Como - Legault families complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7746</span><span class="p">,</span> <span class="s2">"Como family - Rock land - Legault family complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7755</span><span class="p">,</span> <span class="s2">"Leighcan - Catamount families complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7756</span><span class="p">,</span> <span class="s2">"Catamount family - Rock outcrop - Leighcan family complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7757</span><span class="p">,</span> <span class="s2">"Leighcan - Catamount families - Rock outcrop complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">7790</span><span class="p">,</span> <span class="s2">"Cryorthents - Rock land complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">8703</span><span class="p">,</span> <span class="s2">"Cryumbrepts - Rock outcrop - Cryaquepts complex"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">8707</span><span class="p">,</span> <span class="s2">"Bross family - Rock land - Cryumbrepts complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">8708</span><span class="p">,</span> <span class="s2">"Rock outcrop - Cryumbrepts - Cryorthents complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">8771</span><span class="p">,</span> <span class="s2">"Leighcan - Moran families - Cryaquolls complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">8772</span><span class="p">,</span> <span class="s2">"Moran family - Cryorthents - Leighcan family complex, extremely stony"</span><span class="p">),</span>
+    <span class="p">(</span><span class="mi">8776</span><span class="p">,</span> <span class="s2">"Moran family - Cryorthents - Rock land complex, extremely stony"</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">[(</span><span class="sa">f</span><span class="s2">"Soil_Type_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">soil_desc</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"Variable"</span><span class="p">,</span> <span class="s2">"Código ELU"</span><span class="p">,</span> <span class="s2">"Descripción"</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"Variable"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Variable</th>
+      <th>Código ELU</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Soil_Type_1</td>
+      <td>2702</td>
+      <td>Cathedral family - Rock outcrop complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_2</td>
+      <td>2703</td>
+      <td>Vanet - Ratake families complex, very stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_3</td>
+      <td>2704</td>
+      <td>Haploborolis - Rock outcrop complex, rubbly</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_4</td>
+      <td>2705</td>
+      <td>Ratake family - Rock outcrop complex, rubbly</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_5</td>
+      <td>2706</td>
+      <td>Vanet family - Rock outcrop complex, rubbly</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_6</td>
+      <td>2717</td>
+      <td>Vanet - Wetmore families - Rock outcrop complex, stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_7</td>
+      <td>3501</td>
+      <td>Gothic family</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_8</td>
+      <td>3502</td>
+      <td>Supervisor - Limber families complex</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_9</td>
+      <td>4201</td>
+      <td>Troutville family, very stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_10</td>
+      <td>4703</td>
+      <td>Bullwark - Catamount families - Rock outcrop complex, rubbly</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_11</td>
+      <td>4704</td>
+      <td>Bullwark - Catamount families - Rock land complex, rubbly</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_12</td>
+      <td>4744</td>
+      <td>Legault family - Rock land complex, stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_13</td>
+      <td>4758</td>
+      <td>Catamount family - Rock land - Bullwark family complex, rubbly</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_14</td>
+      <td>5101</td>
+      <td>Pachic Argiborolis - Aquolis complex</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_15</td>
+      <td>5151</td>
+      <td>Sin especificar en el inventario de suelos del USFS</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_16</td>
+      <td>6101</td>
+      <td>Cryaquolis - Cryoborolis complex</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_17</td>
+      <td>6102</td>
+      <td>Gateview family - Cryaquolis complex</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_18</td>
+      <td>6731</td>
+      <td>Rogert family, very stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_19</td>
+      <td>7101</td>
+      <td>Typic Cryaquolis - Borohemists complex</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_20</td>
+      <td>7102</td>
+      <td>Typic Cryaquepts - Typic Cryaquolls complex</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_21</td>
+      <td>7103</td>
+      <td>Typic Cryaquolls - Leighcan family, till substratum complex</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_22</td>
+      <td>7201</td>
+      <td>Leighcan family, till substratum, extremely bouldery</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_23</td>
+      <td>7202</td>
+      <td>Leighcan family, till substratum - Typic Cryaquolls complex</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_24</td>
+      <td>7700</td>
+      <td>Leighcan family, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_25</td>
+      <td>7701</td>
+      <td>Leighcan family, warm, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_26</td>
+      <td>7702</td>
+      <td>Granile - Catamount families complex, very stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_27</td>
+      <td>7709</td>
+      <td>Leighcan family, warm - Rock outcrop complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_28</td>
+      <td>7710</td>
+      <td>Leighcan family - Rock outcrop complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_29</td>
+      <td>7745</td>
+      <td>Como - Legault families complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_30</td>
+      <td>7746</td>
+      <td>Como family - Rock land - Legault family complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_31</td>
+      <td>7755</td>
+      <td>Leighcan - Catamount families complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_32</td>
+      <td>7756</td>
+      <td>Catamount family - Rock outcrop - Leighcan family complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_33</td>
+      <td>7757</td>
+      <td>Leighcan - Catamount families - Rock outcrop complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_34</td>
+      <td>7790</td>
+      <td>Cryorthents - Rock land complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_35</td>
+      <td>8703</td>
+      <td>Cryumbrepts - Rock outcrop - Cryaquepts complex</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_36</td>
+      <td>8707</td>
+      <td>Bross family - Rock land - Cryumbrepts complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_37</td>
+      <td>8708</td>
+      <td>Rock outcrop - Cryumbrepts - Cryorthents complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_38</td>
+      <td>8771</td>
+      <td>Leighcan - Moran families - Cryaquolls complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_39</td>
+      <td>8772</td>
+      <td>Moran family - Cryorthents - Leighcan family complex, extremely stony</td>
+    </tr>
+    <tr>
+      <td>Soil_Type_40</td>
+      <td>8776</td>
+      <td>Moran family - Cryorthents - Rock land complex, extremely stony</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</details>
+</div>
+</section>
+<section id="estructura-de-los-datos">
+<h2>1.5 Estructura de los datos<a class="headerlink" href="#estructura-de-los-datos" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estructura</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"Tipo de dato en el archivo"</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Filas: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> | Columnas: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> (54 predictoras + 1 objetivo)"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">"."</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Predictoras numéricas: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">NUM_COLS</span><span class="p">)</span><span class="si">}</span><span class="s2"> | Indicadoras de área silvestre: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">WILD_COLS</span><span class="p">)</span><span class="si">}</span><span class="s2"> | Indicadoras de suelo: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">SOIL_COLS</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">estructura</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filas: 581.012 | Columnas: 55 (54 predictoras + 1 objetivo)
+Predictoras numéricas: 10 | Indicadoras de área silvestre: 4 | Indicadoras de suelo: 40
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tipo de dato en el archivo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>int64</th>
+      <td>55</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<ul class="simple">
+<li><p><strong>Unidad de observación:</strong> una celda de 30 × 30 m del terreno.</p></li>
+<li><p><strong>Nivel de agregación:</strong> cada fila resume la celda completa; la cobertura corresponde al tipo dominante en ella según el sistema de información del USFS, y las variables cartográficas se derivan de modelos digitales de elevación y capas del USGS y del USFS.</p></li>
+<li><p><strong>Tipo de datos:</strong> transversal. No hay variable temporal: la información describe el estado del bosque en el momento de construcción de la cartografía, y todas las celdas corresponden a una misma fecha de referencia.</p></li>
+<li><p><strong>Componente espacial:</strong> existe de forma implícita. Las celdas pertenecen a cuatro áreas silvestres contiguas del norte de Colorado, pero el conjunto no incluye coordenadas geográficas. La única referencia espacial disponible es el área silvestre, que se analiza en la sección 2.7.</p></li>
+<li><p><strong>Codificación:</strong> las dos variables categóricas originales (área silvestre, 4 niveles, y tipo de suelo, 40 niveles) vienen codificadas en formato <em>one-hot</em>.</p></li>
+</ul>
+</section>
+<section id="reserva-del-conjunto-de-prueba">
+<h2>1.6 Reserva del conjunto de prueba<a class="headerlink" href="#reserva-del-conjunto-de-prueba" title="Permalink to this heading">#</a></h2>
+<p>Antes de cualquier análisis que pueda influir en el modelado, se reserva el 20 % de los datos como conjunto de prueba. La partición es <strong>estratificada por la variable objetivo</strong> para conservar las proporciones de las siete clases, algo imprescindible con clases que representan menos del 1 % de los datos, y usa la semilla <code class="docutils literal notranslate"><span class="pre">42</span></code>. El conjunto de prueba solo se utiliza en la evaluación final del capítulo 3.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">particion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"Entrenamiento (n)"</span><span class="p">:</span> <span class="n">y_train</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(),</span>
+        <span class="s2">"Prueba (n)"</span><span class="p">:</span> <span class="n">y_test</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(),</span>
+        <span class="s2">"Entrenamiento (%)"</span><span class="p">:</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">y_train</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+        <span class="s2">"Prueba (%)"</span><span class="p">:</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">y_test</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">particion</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">CLASS_NAMES</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">particion</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">particion</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Total"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">]</span>
+<span class="n">particion</span> <span class="o">=</span> <span class="n">particion</span><span class="o">.</span><span class="n">astype</span><span class="p">({</span><span class="s2">"Entrenamiento (n)"</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s2">"Prueba (n)"</span><span class="p">:</span> <span class="nb">int</span><span class="p">})</span>
+<span class="n">particion</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Entrenamiento (n)</th>
+      <th>Prueba (n)</th>
+      <th>Entrenamiento (%)</th>
+      <th>Prueba (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1 Abeto/pícea (Spruce/Fir)</th>
+      <td>169472</td>
+      <td>42368</td>
+      <td>36.46</td>
+      <td>36.46</td>
+    </tr>
+    <tr>
+      <th>2 Pino lodgepole</th>
+      <td>226640</td>
+      <td>56661</td>
+      <td>48.76</td>
+      <td>48.76</td>
+    </tr>
+    <tr>
+      <th>3 Pino ponderosa</th>
+      <td>28603</td>
+      <td>7151</td>
+      <td>6.15</td>
+      <td>6.15</td>
+    </tr>
+    <tr>
+      <th>4 Álamo/sauce (Cottonwood/Willow)</th>
+      <td>2198</td>
+      <td>549</td>
+      <td>0.47</td>
+      <td>0.47</td>
+    </tr>
+    <tr>
+      <th>5 Álamo temblón (Aspen)</th>
+      <td>7594</td>
+      <td>1899</td>
+      <td>1.63</td>
+      <td>1.63</td>
+    </tr>
+    <tr>
+      <th>6 Abeto de Douglas</th>
+      <td>13894</td>
+      <td>3473</td>
+      <td>2.99</td>
+      <td>2.99</td>
+    </tr>
+    <tr>
+      <th>7 Krummholz</th>
+      <td>16408</td>
+      <td>4102</td>
+      <td>3.53</td>
+      <td>3.53</td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <td>464809</td>
+      <td>116203</td>
+      <td>100.00</td>
+      <td>100.00</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Las proporciones por clase coinciden en ambos conjuntos hasta la segunda cifra decimal, lo que confirma que la estratificación funcionó. Los diagnósticos que implican decisiones de modelado, como los umbrales de valores atípicos, se calculan desde aquí solo con el conjunto de entrenamiento. Los chequeos estructurales que no conducen a ninguna decisión (dimensiones, tipos, faltantes y rangos válidos) se reportan sobre el conjunto completo.</p>
+</section>
+<section id="tamano-de-la-muestra">
+<h2>1.7 Tamaño de la muestra<a class="headerlink" href="#tamano-de-la-muestra" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">conteos</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">resumen</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"Observaciones (n)"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">"."</span><span class="p">),</span>
+        <span class="s2">"Predictoras (p)"</span><span class="p">:</span> <span class="n">p</span><span class="p">,</span>
+        <span class="s2">"Relación n/p"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">p</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">"."</span><span class="p">),</span>
+        <span class="s2">"Relación n/p (solo entrenamiento)"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">p</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">"."</span><span class="p">),</span>
+        <span class="s2">"Clase mayoritaria"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">CLASS_NAMES</span><span class="p">[</span><span class="n">conteos</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">conteos</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">)"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">"."</span><span class="p">),</span>
+        <span class="s2">"Clase minoritaria"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">CLASS_NAMES</span><span class="p">[</span><span class="n">conteos</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">conteos</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">)"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">"."</span><span class="p">),</span>
+        <span class="s2">"Razón de desbalance (mayoritaria/minoritaria)"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">conteos</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">conteos</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s2">"Áreas silvestres (entidades de nivel superior)"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"Valor"</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">resumen</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Observaciones (n)</th>
+      <td>581.012</td>
+    </tr>
+    <tr>
+      <th>Predictoras (p)</th>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>Relación n/p</th>
+      <td>10.759</td>
+    </tr>
+    <tr>
+      <th>Relación n/p (solo entrenamiento)</th>
+      <td>8.608</td>
+    </tr>
+    <tr>
+      <th>Clase mayoritaria</th>
+      <td>Pino lodgepole (283.301)</td>
+    </tr>
+    <tr>
+      <th>Clase minoritaria</th>
+      <td>Álamo/sauce (Cottonwood/Willow) (2.747)</td>
+    </tr>
+    <tr>
+      <th>Razón de desbalance (mayoritaria/minoritaria)</th>
+      <td>103.1</td>
+    </tr>
+    <tr>
+      <th>Áreas silvestres (entidades de nivel superior)</th>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>La relación entre observaciones y predictoras es alta tanto en el conjunto completo (más
+de 10.000) como en el de entrenamiento, que es el que de verdad importa para ajustar el
+modelo (más de 8.000), de modo que el riesgo de sobreajuste por dimensionalidad es bajo
+para un modelo lineal. Aun así, el <strong>tamaño efectivo de la muestra es menor que el número
+de filas</strong> por dos motivos:</p>
+<ul class="simple">
+<li><p><strong>Autocorrelación espacial.</strong> Las celdas vecinas comparten elevación, suelo y cobertura. Aunque el conjunto no trae coordenadas, es razonable suponer que muchas celdas del muestreo son adyacentes y, por tanto, no son observaciones independientes.</p></li>
+<li><p><strong>Pocas entidades de nivel superior.</strong> Solo hay cuatro áreas silvestres, y algunas clases dependen casi por completo de una de ellas (sección 2.1). Para aprender la clase 4 (álamo/sauce) hay 2.747 celdas, todas del área Cache la Poudre, lo que equivale en la práctica a un número pequeño de rodales.</p></li>
+</ul>
+</section>
+<section id="calidad-de-los-datos">
+<h2>1.8 Calidad de los datos<a class="headerlink" href="#calidad-de-los-datos" title="Permalink to this heading">#</a></h2>
+<section id="valores-faltantes">
+<h3>Valores faltantes<a class="headerlink" href="#valores-faltantes" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">faltantes</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Celdas faltantes en todo el conjunto: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">faltantes</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Columnas con al menos un faltante: </span><span class="si">{</span><span class="nb">int</span><span class="p">((</span><span class="n">faltantes</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Celdas faltantes en todo el conjunto: 0
+Columnas con al menos un faltante: 0
+</pre></div>
+</div>
+</div>
+</div>
+<p>El conjunto <strong>no tiene valores faltantes</strong> en ninguna de sus 55 columnas, lo que coincide con la documentación del repositorio. Por lo tanto, no es necesario analizar el mecanismo de ausencia (MCAR, MAR o MNAR) ni aplicar pruebas como la de Little <span id="id3">[<a class="reference internal" href="bibliografia.html#id28" title="Roderick J. A. Little. A test of missing completely at random for multivariate data with missing values. Journal of the American Statistical Association, 83(404):1198–1202, 1988. doi:10.1080/01621459.1988.10478722.">Little, 1988</a>]</span>, y el <em>pipeline</em> no incluye imputación. Sí se revisa que no existan valores centinela que oculten faltantes (por ejemplo, ceros o códigos como −999 en lugar de nulos); ese análisis se presenta en la subsección de valores imposibles.</p>
+</section>
+<section id="duplicados-exactos-y-casi-duplicados">
+<h3>Duplicados exactos y casi-duplicados<a class="headerlink" href="#duplicados-exactos-y-casi-duplicados" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dup_full</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">dup_X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Casi-duplicados: celdas idénticas en área, suelo, orientación y pendiente, con diferencias</span>
+<span class="c1"># menores a la resolución de los datos en las variables continuas.</span>
+<span class="n">redondeo</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">redondeo</span><span class="p">[</span><span class="s2">"Elevation"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">redondeo</span><span class="p">[</span><span class="s2">"Elevation"</span><span class="p">]</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Horizontal_Distance_To_Hydrology"</span><span class="p">,</span> <span class="s2">"Horizontal_Distance_To_Roadways"</span><span class="p">,</span> <span class="s2">"Horizontal_Distance_To_Fire_Points"</span><span class="p">]:</span>
+    <span class="n">redondeo</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">redondeo</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">/</span> <span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<span class="n">redondeo</span><span class="p">[</span><span class="s2">"Vertical_Distance_To_Hydrology"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">redondeo</span><span class="p">[</span><span class="s2">"Vertical_Distance_To_Hydrology"</span><span class="p">]</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Hillshade_9am"</span><span class="p">,</span> <span class="s2">"Hillshade_Noon"</span><span class="p">,</span> <span class="s2">"Hillshade_3pm"</span><span class="p">]:</span>
+    <span class="n">redondeo</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">redondeo</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+
+<span class="n">grupos</span> <span class="o">=</span> <span class="n">redondeo</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">FEATURES</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="s2">"y"</span><span class="p">]</span>
+<span class="n">tam</span> <span class="o">=</span> <span class="n">grupos</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">"size"</span><span class="p">)</span>
+<span class="n">n_clases</span> <span class="o">=</span> <span class="n">grupos</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="s2">"nunique"</span><span class="p">)</span>
+<span class="n">casi</span> <span class="o">=</span> <span class="n">tam</span> <span class="o">&gt;</span> <span class="mi">1</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"Duplicados exactos (filas completas)"</span><span class="p">:</span> <span class="n">dup_full</span><span class="p">,</span>
+        <span class="s2">"Duplicados exactos en predictoras"</span><span class="p">:</span> <span class="n">dup_X</span><span class="p">,</span>
+        <span class="s2">"Casi-duplicados en entrenamiento (filas)"</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">casi</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+        <span class="s2">"Casi-duplicados con etiquetas distintas (filas)"</span><span class="p">:</span> <span class="nb">int</span><span class="p">((</span><span class="n">casi</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">n_clases</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+    <span class="p">},</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"Filas"</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Filas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Duplicados exactos (filas completas)</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Duplicados exactos en predictoras</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Casi-duplicados en entrenamiento (filas)</th>
+      <td>392</td>
+    </tr>
+    <tr>
+      <th>Casi-duplicados con etiquetas distintas (filas)</th>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>No hay duplicados exactos, ni en las filas completas ni en las predictoras. Para detectar casi-duplicados se redondearon las variables continuas a una resolución cercana a la del dato original (10 m de elevación, 30 m en distancias horizontales, que es el tamaño de la celda, 5 m en distancia vertical y 5 unidades de sombreado) y se buscaron coincidencias en las 54 predictoras. Solo 392 filas de entrenamiento (0,08 %) tienen al menos un casi-duplicado, una cantidad despreciable frente a las 464.809 filas. De ellas, 16 pertenecen a grupos con etiquetas distintas, lo cual es una señal, aunque pequeña, de <strong>ruido irreducible</strong>: sitios cartográficamente casi idénticos con cobertura distinta. Esto fija un techo para cualquier modelo que use solo estas variables. Los casi-duplicados se conservan, porque corresponden a celdas reales y no a registros repetidos.</p>
+</section>
+<section id="valores-imposibles-o-inconsistentes">
+<h3>Valores imposibles o inconsistentes<a class="headerlink" href="#valores-imposibles-o-inconsistentes" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chequeos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">"Aspect fuera de [0, 360]"</span><span class="p">,</span> <span class="nb">int</span><span class="p">(((</span><span class="n">X</span><span class="p">[</span><span class="s2">"Aspect"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s2">"Aspect"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">360</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Slope fuera de [0, 90]"</span><span class="p">,</span> <span class="nb">int</span><span class="p">(((</span><span class="n">X</span><span class="p">[</span><span class="s2">"Slope"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s2">"Slope"</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">90</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Hillshade fuera de [0, 255]"</span><span class="p">,</span> <span class="nb">int</span><span class="p">(((</span><span class="n">X</span><span class="p">[[</span><span class="s2">"Hillshade_9am"</span><span class="p">,</span> <span class="s2">"Hillshade_Noon"</span><span class="p">,</span> <span class="s2">"Hillshade_3pm"</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X</span><span class="p">[[</span><span class="s2">"Hillshade_9am"</span><span class="p">,</span> <span class="s2">"Hillshade_Noon"</span><span class="p">,</span> <span class="s2">"Hillshade_3pm"</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">255</span><span class="p">))</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Distancias horizontales negativas"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">X</span><span class="p">[[</span><span class="s2">"Horizontal_Distance_To_Hydrology"</span><span class="p">,</span> <span class="s2">"Horizontal_Distance_To_Roadways"</span><span class="p">,</span> <span class="s2">"Horizontal_Distance_To_Fire_Points"</span><span class="p">]]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Filas sin exactamente un área silvestre"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">X</span><span class="p">[</span><span class="n">WILD_COLS</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Filas sin exactamente un tipo de suelo"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">X</span><span class="p">[</span><span class="n">SOIL_COLS</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Etiquetas fuera de 1–7"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="o">~</span><span class="n">y</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)))</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Códigos centinela (−999, −9999)"</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="o">-</span><span class="mi">9999</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Distancia vertical negativa (válida)"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">X</span><span class="p">[</span><span class="s2">"Vertical_Distance_To_Hydrology"</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Hillshade_3pm igual a 0"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">X</span><span class="p">[</span><span class="s2">"Hillshade_3pm"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+        <span class="p">(</span><span class="s2">"Aspect igual a 360 (equivale a 0)"</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">X</span><span class="p">[</span><span class="s2">"Aspect"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">360</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())),</span>
+    <span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"Chequeo"</span><span class="p">,</span> <span class="s2">"Filas"</span><span class="p">],</span>
+<span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"Chequeo"</span><span class="p">)</span>
+<span class="n">chequeos</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Chequeo</th>
+      <th>Filas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Aspect fuera de [0, 360]</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Slope fuera de [0, 90]</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Hillshade fuera de [0, 255]</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Distancias horizontales negativas</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Filas sin exactamente un área silvestre</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Filas sin exactamente un tipo de suelo</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Etiquetas fuera de 1–7</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Códigos centinela (−999, −9999)</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Distancia vertical negativa (válida)</td>
+      <td>55143</td>
+    </tr>
+    <tr>
+      <td>Hillshade_3pm igual a 0</td>
+      <td>1338</td>
+    </tr>
+    <tr>
+      <td>Aspect igual a 360 (equivale a 0)</td>
+      <td>51</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>Todas las variables respetan sus rangos físicos, las codificaciones <em>one-hot</em> son consistentes (cada celda pertenece a exactamente un área y un tipo de suelo) y no hay códigos centinela. Tres casos merecen comentario:</p>
+<ul class="simple">
+<li><p><strong>Distancia vertical negativa.</strong> No es un error: indica que la celda está por debajo del nivel de la fuente de agua más cercana.</p></li>
+<li><p><strong>Orientación igual a 360°.</strong> Es la misma dirección que 0° (norte). La discontinuidad artificial entre 359° y 0° se resuelve en el preprocesamiento con la transformación seno-coseno (sección 2.9).</p></li>
+<li><p><strong>Sombreado de las 3 p. m. igual a 0.</strong> Podría parecer un faltante codificado como cero, pero no lo es:</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ceros</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="s2">"Hillshade_3pm"</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">comparacion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"Hillshade_3pm = 0"</span><span class="p">:</span> <span class="n">X_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ceros</span><span class="p">,</span> <span class="p">[</span><span class="s2">"Aspect"</span><span class="p">,</span> <span class="s2">"Slope"</span><span class="p">,</span> <span class="s2">"Hillshade_9am"</span><span class="p">]]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span>
+        <span class="s2">"Resto de celdas"</span><span class="p">:</span> <span class="n">X_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">ceros</span><span class="p">,</span> <span class="p">[</span><span class="s2">"Aspect"</span><span class="p">,</span> <span class="s2">"Slope"</span><span class="p">,</span> <span class="s2">"Hillshade_9am"</span><span class="p">]]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span>
+    <span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">comparacion</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Orientación mediana (°)"</span><span class="p">,</span> <span class="s2">"Pendiente mediana (°)"</span><span class="p">,</span> <span class="s2">"Sombreado 9 a. m. mediano"</span><span class="p">]</span>
+<span class="n">comparacion</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Hillshade_3pm = 0</th>
+      <th>Resto de celdas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Orientación mediana (°)</th>
+      <td>86.0</td>
+      <td>128.0</td>
+    </tr>
+    <tr>
+      <th>Pendiente mediana (°)</th>
+      <td>36.0</td>
+      <td>13.0</td>
+    </tr>
+    <tr>
+      <th>Sombreado 9 a. m. mediano</th>
+      <td>241.0</td>
+      <td>218.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Las celdas con sombreado nulo a las 3 p. m. son laderas <strong>empinadas (pendiente mediana cercana a 36°) orientadas al este (orientación mediana cercana a 86°)</strong> y muy iluminadas en la mañana. Es exactamente la geometría que queda en sombra total cuando el sol está al oeste por la tarde, de modo que los ceros son valores físicamente válidos y se conservan.</p>
+</section>
+<section id="valores-atipicos">
+<h3>Valores atípicos<a class="headerlink" href="#valores-atipicos" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q1</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">NUM_COLS</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">q3</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">NUM_COLS</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
+<span class="n">fuera</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">NUM_COLS</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">NUM_COLS</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span>
+<span class="n">atipicos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"Límite inferior"</span><span class="p">:</span> <span class="p">(</span><span class="n">q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+        <span class="s2">"Límite superior"</span><span class="p">:</span> <span class="p">(</span><span class="n">q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">iqr</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+        <span class="s2">"Atípicos (n)"</span><span class="p">:</span> <span class="n">fuera</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+        <span class="s2">"Atípicos (%)"</span><span class="p">:</span> <span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">fuera</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">atipicos</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">DISPLAY_NAMES</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">atipicos</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">atipicos</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Límite inferior</th>
+      <th>Límite superior</th>
+      <th>Atípicos (n)</th>
+      <th>Atípicos (%)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Elevación (m)</th>
+      <td>2276.5</td>
+      <td>3696.5</td>
+      <td>12356</td>
+      <td>2.66</td>
+    </tr>
+    <tr>
+      <th>Orientación (° azimut)</th>
+      <td>-246.5</td>
+      <td>565.5</td>
+      <td>0</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>Pendiente (°)</th>
+      <td>-4.5</td>
+      <td>31.5</td>
+      <td>12187</td>
+      <td>2.62</td>
+    </tr>
+    <tr>
+      <th>Dist. horizontal a agua (m)</th>
+      <td>-306.0</td>
+      <td>798.0</td>
+      <td>11632</td>
+      <td>2.50</td>
+    </tr>
+    <tr>
+      <th>Dist. vertical a agua (m)</th>
+      <td>-86.0</td>
+      <td>162.0</td>
+      <td>25064</td>
+      <td>5.39</td>
+    </tr>
+    <tr>
+      <th>Dist. a carreteras (m)</th>
+      <td>-2231.5</td>
+      <td>6668.5</td>
+      <td>523</td>
+      <td>0.11</td>
+    </tr>
+    <tr>
+      <th>Sombreado 9 a. m. (0-255)</th>
+      <td>148.5</td>
+      <td>280.5</td>
+      <td>13904</td>
+      <td>2.99</td>
+    </tr>
+    <tr>
+      <th>Sombreado mediodía (0-255)</th>
+      <td>177.0</td>
+      <td>273.0</td>
+      <td>12491</td>
+      <td>2.69</td>
+    </tr>
+    <tr>
+      <th>Sombreado 3 p. m. (0-255)</th>
+      <td>45.5</td>
+      <td>241.5</td>
+      <td>6238</td>
+      <td>1.34</td>
+    </tr>
+    <tr>
+      <th>Dist. a puntos de incendio (m)</th>
+      <td>-1265.0</td>
+      <td>4839.0</td>
+      <td>24859</td>
+      <td>5.35</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Con la regla de 1,5 veces el rango intercuartílico (calculada solo en entrenamiento), cada variable tiene entre 0 % y 5,4 % de valores atípicos. Estos valores no son errores de medición: corresponden a zonas reales del bosque, como las cotas más bajas del valle del río Cache la Poudre, pendientes muy pronunciadas o celdas alejadas de cursos de agua. Además, varias de estas zonas concentran clases minoritarias (por ejemplo, el álamo/sauce en elevaciones bajas), por lo que eliminarlas sesgaría el aprendizaje justamente de las clases más difíciles. <strong>Decisión:</strong> se conservan todos los valores atípicos; el escalado estándar y la transformación logarítmica de las distancias (sección 2.9) reducen su influencia en la regresión logística. El análisis gráfico y multivariado de atípicos se presenta en las secciones 2.2 y 2.4.</p>
+</section>
+<section id="sesgos-de-muestreo-y-representatividad">
+<h3>Sesgos de muestreo y representatividad<a class="headerlink" href="#sesgos-de-muestreo-y-representatividad" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Cobertura geográfica limitada.</strong> Los datos provienen de cuatro áreas silvestres del Roosevelt National Forest, entre unos 1.860 y 3.860 m de altitud. Un modelo entrenado aquí es representativo de bosques montanos y subalpinos de las Montañas Rocosas del norte de Colorado, no de bosques en general.</p></li>
+<li><p><strong>Áreas con mínima intervención humana.</strong> Las áreas silvestres tienen poca perturbación antrópica, por lo que la cobertura refleja sobre todo procesos ecológicos naturales. Esto favorece la relación entre cartografía y cobertura, pero limita la aplicación del modelo a zonas intervenidas.</p></li>
+<li><p><strong>Tamaños desiguales de las áreas.</strong> Rawah y Comanche Peak aportan cerca del 88 % de las celdas; Neota y Cache la Poudre, el resto. Los patrones de las áreas grandes dominan el ajuste.</p></li>
+<li><p><strong>Dependencia de clases respecto al área.</strong> El álamo/sauce aparece solo en Cache la Poudre, y el pino ponderosa y el abeto de Douglas se concentran allí. El modelo puede aprender el área como atajo para esas clases, lo que se analiza en la sección 2.7.</p></li>
+<li><p><strong>Etiquetas derivadas de un sistema de información.</strong> La cobertura proviene del sistema de información de recursos del USFS, no de un inventario de campo celda por celda, por lo que las etiquetas pueden contener errores de clasificación.</p></li>
+</ul>
+</section>
+</section>
+<section id="consideraciones-eticas">
+<h2>1.9 Consideraciones éticas<a class="headerlink" href="#consideraciones-eticas" title="Permalink to this heading">#</a></h2>
+<p>El conjunto no contiene datos personales ni información sobre individuos, de modo que no existen riesgos de reidentificación ni se requiere anonimización. Las celdas no tienen coordenadas geográficas precisas, lo que además impide ubicar con exactitud recursos sensibles (por ejemplo, hábitats de especies protegidas). Los datos son públicos y se usan bajo licencia CC BY 4.0, con la debida atribución.</p>
+<p>El principal riesgo ético es de <strong>uso indebido de las predicciones</strong>: un modelo con errores sistemáticos en las clases minoritarias podría llevar a subestimar ecosistemas raros, como los bosques ribereños de álamo y sauce, en decisiones de manejo o conservación. Por eso el documento reporta métricas por clase, y no solo exactitud global.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Clasificación de la cobertura forestal a partir de variables cartográficas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_eda.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">2. Análisis exploratorio de datos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-del-problema">1.1 Definición del problema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#justificacion-de-la-seleccion">1.2 Justificación de la selección</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fuente-de-los-datos-y-licencia">1.3 Fuente de los datos y licencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionario-de-variables">1.4 Diccionario de variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estructura-de-los-datos">1.5 Estructura de los datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reserva-del-conjunto-de-prueba">1.6 Reserva del conjunto de prueba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tamano-de-la-muestra">1.7 Tamaño de la muestra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calidad-de-los-datos">1.8 Calidad de los datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-faltantes">Valores faltantes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicados-exactos-y-casi-duplicados">Duplicados exactos y casi-duplicados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-imposibles-o-inconsistentes">Valores imposibles o inconsistentes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#valores-atipicos">Valores atípicos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sesgos-de-muestreo-y-representatividad">Sesgos de muestreo y representatividad</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-eticas">1.9 Consideraciones éticas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Ana Galván, Valeria Oñate y María José Ruiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

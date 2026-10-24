@@ -1,0 +1,1065 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2.5–2.8 Fuga de información y estructura de los datos &#8212; Clasificación de la cobertura forestal (Covertype)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02b_fuga_estructura';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="2.9 Preprocesamiento" href="02c_preprocesamiento.html" />
+    <link rel="prev" title="2. Análisis exploratorio de datos" href="02_eda.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_bosque.jpg" class="logo__image only-light" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>
+    <script>document.write(`<img src="_static/logo_bosque.jpg" class="logo__image only-dark" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Clasificación de la cobertura forestal a partir de variables cartográficas
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I. Datos, análisis exploratorio y modelo base</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_base_datos.html">1. Base de datos</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.5–2.8 Fuga de información y estructura de los datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c_preprocesamiento.html">2.9 Preprocesamiento</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_conclusiones.html">4. Conclusiones de la Parte I</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II. Benchmark, optimización y evaluación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_modelos.html">5. Benchmark combinatorio de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_optimizacion.html">6. Comparación de los métodos de optimización de hiperparámetros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_comparacion_estadistica.html">7. Comparación estadística de los modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_interpretabilidad.html">8. Interpretabilidad de XGBoost: SHAP frente a LIME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_conclusiones_finales.html">9. Eficiencia computacional, reproducibilidad y conclusiones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III. Modelo original</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="e3_04_literatura.html">10. Revisión de literatura y evidencia de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_05_modelo_original.html">11. Modelo original: ensamble por competencia local y por clase (ECLC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_06_validacion.html">12. Validación estadística del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_08_conclusiones.html">13. Conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_09_reproducibilidad.html">14. Reproducibilidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_apendice.html">Apéndice A. Reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_01_correcciones.html">Apéndice B. Registro de cambios del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliografia.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02b_fuga_estructura.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2.5–2.8 Fuga de información y estructura de los datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-fuga-de-informacion">2.5 Auditoría de fuga de información</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disponibilidad-de-las-variables-en-el-momento-de-la-prediccion">Disponibilidad de las variables en el momento de la predicción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-individual-de-cada-predictora">Desempeño individual de cada predictora</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicados-y-entidades-repetidas-entre-particiones">Duplicados y entidades repetidas entre particiones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-de-la-auditoria">Conclusión de la auditoría</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-temporal">2.6 Componente temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-espacial">2.7 Componente espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneidad-espacial-entre-areas">Heterogeneidad espacial entre áreas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelacion-espacial-y-efecto-de-la-escala">Autocorrelación espacial y efecto de la escala</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-vecindad-entre-prueba-y-entrenamiento">Prueba de vecindad entre prueba y entrenamiento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consecuencias-para-el-modelado">Consecuencias para el modelado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-espacio-temporal">2.8 Componente espacio-temporal</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fuga-de-informacion-y-estructura-de-los-datos">
+<h1>2.5–2.8 Fuga de información y estructura de los datos<a class="headerlink" href="#fuga-de-informacion-y-estructura-de-los-datos" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">NearestNeighbors</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CLASS_PALETTE</span><span class="p">,</span> <span class="n">CLASS_SHORT</span><span class="p">,</span> <span class="n">DISPLAY_NAMES</span><span class="p">,</span> <span class="n">FEATURES</span><span class="p">,</span> <span class="n">NUM_COLS</span><span class="p">,</span> <span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">WILD_NAMES</span><span class="p">,</span>
+    <span class="n">load_covertype</span><span class="p">,</span> <span class="n">split_covertype</span><span class="p">,</span> <span class="n">wilderness_label</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"whitegrid"</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">"notebook"</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_covertype</span><span class="p">()</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">split_covertype</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">area</span> <span class="o">=</span> <span class="n">wilderness_label</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="auditoria-de-fuga-de-informacion">
+<h2>2.5 Auditoría de fuga de información<a class="headerlink" href="#auditoria-de-fuga-de-informacion" title="Permalink to this heading">#</a></h2>
+<section id="disponibilidad-de-las-variables-en-el-momento-de-la-prediccion">
+<h3>Disponibilidad de las variables en el momento de la predicción<a class="headerlink" href="#disponibilidad-de-las-variables-en-el-momento-de-la-prediccion" title="Permalink to this heading">#</a></h3>
+<p>El uso previsto del modelo es estimar la cobertura de una celda <strong>sin visitarla</strong>, a partir de cartografía existente. Se sigue la definición de fuga de <span id="id1">Kaufman <em>et al.</em> [<a class="reference internal" href="bibliografia.html#id39" title="Shachar Kaufman, Saharon Rosset, Claudia Perlich, and Ori Stitelman. Leakage in data mining: formulation, detection, and avoidance. ACM Transactions on Knowledge Discovery from Data, 6(4):15:1–15:21, 2012. doi:10.1145/2382577.2382579.">2012</a>]</span>: información en las predictoras que no estaría disponible en el momento real de la predicción. La pregunta clave de la auditoría es si cada predictora estaría disponible en ese momento y si fue construida sin conocer la cobertura.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Grupo de variables</p></th>
+<th class="head"><p>¿Disponible antes de conocer la cobertura?</p></th>
+<th class="head"><p>Justificación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Elevación, orientación y pendiente</p></td>
+<td><p>Sí</p></td>
+<td><p>Se derivan de modelos digitales de elevación del USGS, independientes de la vegetación</p></td>
+</tr>
+<tr class="row-odd"><td><p>Índices de sombreado</p></td>
+<td><p>Sí</p></td>
+<td><p>Se calculan de forma determinística a partir de la orientación, la pendiente y la posición del sol</p></td>
+</tr>
+<tr class="row-even"><td><p>Distancias horizontal y vertical al agua</p></td>
+<td><p>Sí</p></td>
+<td><p>Provienen de la red hidrográfica cartografiada</p></td>
+</tr>
+<tr class="row-odd"><td><p>Distancia a carreteras</p></td>
+<td><p>Sí</p></td>
+<td><p>Proviene de la red vial cartografiada</p></td>
+</tr>
+<tr class="row-even"><td><p>Distancia a puntos de incendio</p></td>
+<td><p>Sí, con una salvedad</p></td>
+<td><p>Proviene del registro histórico de puntos de ignición; es anterior a la etiqueta, pero los incendios pueden haber influido en la cobertura actual (relación causal legítima, no fuga)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Área silvestre</p></td>
+<td><p>Sí</p></td>
+<td><p>Es una delimitación administrativa</p></td>
+</tr>
+<tr class="row-even"><td><p>Tipo de suelo</p></td>
+<td><p>Sí, con una salvedad</p></td>
+<td><p>Proviene del inventario de unidades ecológicas terrestres (ELU) del USFS. Algunas unidades ELU se definen combinando suelo y vegetación, por lo que ciertos tipos podrían codificar información parcial sobre la cobertura</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Identificadores y variables derivadas del objetivo.</strong> El conjunto no contiene identificadores de fila, códigos de rodal ni variables calculadas a partir de <code class="docutils literal notranslate"><span class="pre">Cover_Type</span></code>. Tampoco hay variables posteriores a la etiqueta, como cambios de cobertura o variables de manejo forestal.</p>
+</section>
+<section id="desempeno-individual-de-cada-predictora">
+<h3>Desempeño individual de cada predictora<a class="headerlink" href="#desempeno-individual-de-cada-predictora" title="Permalink to this heading">#</a></h3>
+<p>Se calcula el AUC univariado de cada predictora para cada clase, usando el valor crudo de la variable como puntaje en un esquema uno contra el resto. Se reporta <span class="math notranslate nohighlight">\(\max(\text{AUC}, 1 - \text{AUC})\)</span>, de modo que 0,5 indica ausencia de señal y 1 una separación perfecta. Valores superiores a 0,95 se consideran una señal de alerta que debe justificarse.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filas</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">FEATURES</span><span class="p">:</span>
+    <span class="n">filas</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">k</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="p">]</span>
+<span class="n">auc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filas</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">CLASS_SHORT</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">auc</span><span class="p">[</span><span class="s2">"Promedio"</span><span class="p">]</span> <span class="o">=</span> <span class="n">auc</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">auc</span> <span class="o">=</span> <span class="n">auc</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"Promedio"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">top</span> <span class="o">=</span> <span class="n">auc</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">top</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">".2f"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"YlOrRd"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="n">DISPLAY_NAMES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">top</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">"size"</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"AUC univariado por clase (uno contra el resto) de las 15 predictoras con mayor AUC promedio"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">alertas</span> <span class="o">=</span> <span class="n">auc</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">"Promedio"</span><span class="p">)</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+<span class="n">alertas</span> <span class="o">=</span> <span class="n">alertas</span><span class="p">[</span><span class="n">alertas</span> <span class="o">&gt;</span> <span class="mf">0.95</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"AUC"</span><span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<span class="n">alertas</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Predictora"</span><span class="p">,</span> <span class="s2">"Clase"</span><span class="p">]</span>
+<span class="n">alertas</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/3509d1450c95a04c17cf1bc10d6a7f78ba883f3b59d0b675bbd1b53a6c9fb9e3.png" src="_images/3509d1450c95a04c17cf1bc10d6a7f78ba883f3b59d0b675bbd1b53a6c9fb9e3.png" />
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Predictora</th>
+      <th>Clase</th>
+      <th>AUC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Elevation</td>
+      <td>4 Álamo/sauce</td>
+      <td>0.980</td>
+    </tr>
+    <tr>
+      <td>Wilderness_Area_4</td>
+      <td>4 Álamo/sauce</td>
+      <td>0.970</td>
+    </tr>
+    <tr>
+      <td>Elevation</td>
+      <td>3 P. ponderosa</td>
+      <td>0.967</td>
+    </tr>
+    <tr>
+      <td>Elevation</td>
+      <td>7 Krummholz</td>
+      <td>0.959</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>Ninguna predictora separa de forma casi perfecta el conjunto de clases: el AUC promedio más alto es el de la elevación (≈ 0,87). Sin embargo, <strong>cuatro combinaciones de predictora y clase superan el umbral de 0,95</strong>:</p>
+<ul class="simple">
+<li><p><strong>La elevación para el álamo/sauce, el pino ponderosa y el <em>krummholz</em></strong> (y, muy cerca del umbral, para el abeto de Douglas, con 0,947). No es fuga: es el gradiente altitudinal de la vegetación de montaña. Las especies se distribuyen en franjas de altitud por su tolerancia a la temperatura y a la humedad, algo documentado en la ecología de las Montañas Rocosas. La elevación está disponible antes de la predicción y no se deriva de la cobertura.</p></li>
+<li><p><strong>El área silvestre 4 (Cache la Poudre) para el álamo/sauce.</strong> Tampoco es fuga en sentido estricto, porque la delimitación del área es independiente de la vegetación. Pero sí es un <strong>proxy geográfico</strong>: el álamo/sauce solo existe en esa área dentro de la muestra, de modo que el modelo puede aprender «Cache la Poudre implica álamo/sauce posible», una regla que no se trasladaría a otras regiones.</p></li>
+</ul>
+</section>
+<section id="duplicados-y-entidades-repetidas-entre-particiones">
+<h3>Duplicados y entidades repetidas entre particiones<a class="headerlink" href="#duplicados-y-entidades-repetidas-entre-particiones" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">redondear</span><span class="p">(</span><span class="n">df_</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">r</span><span class="p">[</span><span class="s2">"Elevation"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"Elevation"</span><span class="p">]</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Horizontal_Distance_To_Hydrology"</span><span class="p">,</span> <span class="s2">"Horizontal_Distance_To_Roadways"</span><span class="p">,</span> <span class="s2">"Horizontal_Distance_To_Fire_Points"</span><span class="p">]:</span>
+        <span class="n">r</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">/</span> <span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+    <span class="n">r</span><span class="p">[</span><span class="s2">"Vertical_Distance_To_Hydrology"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"Vertical_Distance_To_Hydrology"</span><span class="p">]</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"Hillshade_9am"</span><span class="p">,</span> <span class="s2">"Hillshade_Noon"</span><span class="p">,</span> <span class="s2">"Hillshade_3pm"</span><span class="p">]:</span>
+        <span class="n">r</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+<span class="n">claves_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">claves_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">exactos</span> <span class="o">=</span> <span class="n">claves_test</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">claves_train</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">rtrain</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">redondear</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+<span class="n">rtest</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">redondear</span><span class="p">(</span><span class="n">X_test</span><span class="p">))</span>
+<span class="n">casi</span> <span class="o">=</span> <span class="n">rtest</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">rtrain</span><span class="p">)</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"Filas de prueba con un duplicado exacto en entrenamiento"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">exactos</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s2">"Filas de prueba con un casi-duplicado en entrenamiento"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">casi</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+        <span class="s2">"Porcentaje de la prueba con casi-duplicado"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="mi">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">casi</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> %"</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"Valor"</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Filas de prueba con un duplicado exacto en entrenamiento</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>Filas de prueba con un casi-duplicado en entrenamiento</th>
+      <td>102</td>
+    </tr>
+    <tr>
+      <th>Porcentaje de la prueba con casi-duplicado</th>
+      <td>0.09 %</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>No hay filas de prueba idénticas a filas de entrenamiento, y solo 102 celdas de prueba (0,09 %) tienen un casi-duplicado en entrenamiento, es decir, una celda con el mismo suelo y área y valores prácticamente iguales en todas las variables continuas. Probablemente se trata de <strong>celdas vecinas</strong> de un mismo rodal. Su número es tan pequeño que la fuga directa por celdas casi idénticas es despreciable. Sin embargo, la dependencia espacial puede operar a una escala mayor: celdas cercanas que se parecen sin ser casi idénticas y que comparten la misma cobertura. Esa forma de dependencia no se detecta con este chequeo, y se analiza en la sección 2.7 y en el capítulo 3.</p>
+</section>
+<section id="conclusion-de-la-auditoria">
+<h3>Conclusión de la auditoría<a class="headerlink" href="#conclusion-de-la-auditoria" title="Permalink to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Estado</p></th>
+<th class="head"><p>Justificación</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Todas las variables cartográficas</p></td>
+<td><p>Se conservan</p></td>
+<td><p>Disponibles antes de la predicción e independientes de la etiqueta</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Elevation</span></code></p></td>
+<td><p>Se conserva, en observación</p></td>
+<td><p>AUC &gt; 0,95 para tres clases por el gradiente altitudinal; relación causal legítima</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Wilderness_Area_4</span></code></p></td>
+<td><p>Se conserva, en observación</p></td>
+<td><p>Proxy geográfico del álamo/sauce; se evalúa su efecto con validación por área</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Soil_Type_*</span></code></p></td>
+<td><p>Se conservan, en observación</p></td>
+<td><p>Algunas unidades ELU pueden incorporar información de vegetación en su definición</p></td>
+</tr>
+<tr class="row-even"><td><p>Variables descartadas</p></td>
+<td><p>Ninguna</p></td>
+<td><p>No hay identificadores, variables posteriores a la etiqueta ni derivadas del objetivo</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="componente-temporal">
+<h2>2.6 Componente temporal<a class="headerlink" href="#componente-temporal" title="Permalink to this heading">#</a></h2>
+<p>El conjunto <strong>no tiene componente temporal</strong>: no incluye fechas, horas ni periodos, y todas las celdas describen el estado del bosque en una misma fecha de referencia de la cartografía del USFS. Los índices de sombreado se refieren a horas del día (9 a. m., mediodía y 3 p. m.), pero son atributos geométricos del terreno calculados para el solsticio de verano, no mediciones en el tiempo.</p>
+<p>En consecuencia, no aplican la partición cronológica, las pruebas de estacionariedad (ADF y KPSS), la descomposición STL <span id="id2">[<a class="reference internal" href="bibliografia.html#id38" title="Robert B. Cleveland, William S. Cleveland, Jean E. McRae, and Irma Terpenning. STL: a seasonal-trend decomposition procedure based on loess. Journal of Official Statistics, 6(1):3–73, 1990.">Cleveland <em>et al.</em>, 1990</a>]</span> ni el análisis de autocorrelación temporal. La principal limitación temporal es la <strong>antigüedad de los datos</strong>: la cartografía es anterior a 1998, de modo que no refleja cambios posteriores de la cobertura por incendios, plagas (como el escarabajo del pino de montaña) o cambio climático. Un modelo entrenado con estos datos debe validarse con cartografía reciente antes de usarse para decisiones actuales.</p>
+</section>
+<section id="componente-espacial">
+<h2>2.7 Componente espacial<a class="headerlink" href="#componente-espacial" title="Permalink to this heading">#</a></h2>
+<p>El conjunto no incluye latitud ni longitud, ni coordenadas proyectadas. Por eso no es posible calcular el I de Moran, los indicadores LISA, los <em>hotspots</em> de Getis-Ord ni el semivariograma, ni construir bloques espaciales con celdas o <em>clusters</em> geográficos. Aun así, los datos tienen estructura espacial, y se analiza con la información disponible: el <strong>área silvestre</strong>, que funciona como una unidad geográfica gruesa.</p>
+<section id="heterogeneidad-espacial-entre-areas">
+<h3>Heterogeneidad espacial entre áreas<a class="headerlink" href="#heterogeneidad-espacial-entre-areas" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">orden_areas</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">WILD_NAMES</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">datos</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[[</span><span class="s2">"Elevation"</span><span class="p">]]</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">Area</span><span class="o">=</span><span class="n">area</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">Clase</span><span class="o">=</span><span class="n">y_train</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">CLASS_SHORT</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">muestra</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">60000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">"width_ratios"</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">muestra</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"Area"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"Elevation"</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">orden_areas</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#9cc3a8"</span><span class="p">,</span> <span class="n">fliersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Elevación por área silvestre"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Elevación (m)"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">muestra</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"Clase"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"Elevation"</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">"Area"</span><span class="p">,</span> <span class="n">hue_order</span><span class="o">=</span><span class="n">orden_areas</span><span class="p">,</span>
+            <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="n">CLASS_SHORT</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)],</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">fliersize</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Elevación por clase dentro de cada área silvestre"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">""</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Elevación (m)"</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Área"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">resumen_area</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">"Celdas"</span><span class="p">:</span> <span class="n">area</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span>
+        <span class="s2">"Elevación mediana (m)"</span><span class="p">:</span> <span class="n">X_train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">area</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="s2">"Elevation"</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span>
+        <span class="s2">"Clases presentes"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="n">a</span><span class="p">:</span> <span class="n">y_train</span><span class="p">[</span><span class="n">area</span> <span class="o">==</span> <span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">orden_areas</span><span class="p">}),</span>
+        <span class="s2">"Clase dominante"</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="n">a</span><span class="p">:</span> <span class="n">CLASS_SHORT</span><span class="p">[</span><span class="n">y_train</span><span class="p">[</span><span class="n">area</span> <span class="o">==</span> <span class="n">a</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">orden_areas</span><span class="p">}),</span>
+    <span class="p">}</span>
+<span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">orden_areas</span><span class="p">]</span>
+<span class="n">resumen_area</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/2191e8c4e136c0400a7e6e13fbb29347dbdc0d3f17a7d25bd9a5deea83da36b2.png" src="_images/2191e8c4e136c0400a7e6e13fbb29347dbdc0d3f17a7d25bd9a5deea83da36b2.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Celdas</th>
+      <th>Elevación mediana (m)</th>
+      <th>Clases presentes</th>
+      <th>Clase dominante</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Rawah</th>
+      <td>208521</td>
+      <td>3002.0</td>
+      <td>4</td>
+      <td>2 P. lodgepole</td>
+    </tr>
+    <tr>
+      <th>Neota</th>
+      <td>23870</td>
+      <td>3240.0</td>
+      <td>3</td>
+      <td>1 Abeto/pícea</td>
+    </tr>
+    <tr>
+      <th>Comanche Peak</th>
+      <td>202787</td>
+      <td>2997.0</td>
+      <td>6</td>
+      <td>2 P. lodgepole</td>
+    </tr>
+    <tr>
+      <th>Cache la Poudre</th>
+      <td>29631</td>
+      <td>2314.0</td>
+      <td>4</td>
+      <td>3 P. ponderosa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Interpretación:</strong></p>
+<ul class="simple">
+<li><p><strong>Las áreas difieren en su rango altitudinal.</strong> Cache la Poudre es mucho más baja que las otras tres (mediana de 2.314 m) y Neota es la más alta (3.240 m); Rawah y Comanche Peak están cerca de los 3.000 m. Parte de la asociación entre área y cobertura es, en realidad, la asociación entre elevación y cobertura.</p></li>
+<li><p><strong>La relación entre elevación y cobertura cambia según el área.</strong> Como muestra el panel derecho, la franja de altitud de una misma clase depende del área: el pino lodgepole tiene una elevación mediana cercana a 2.500 m en Cache la Poudre y a 3.200 m en Neota, y el pino ponderosa y el abeto de Douglas están unos 250 m más abajo en Cache la Poudre que en Comanche Peak. Una misma altitud, por tanto, no implica la misma cobertura en todas las áreas. Esto es heterogeneidad espacial: el efecto de una variable depende de la ubicación, lo que un modelo lineal global sin interacciones no puede capturar.</p></li>
+<li><p><strong>La diversidad de clases varía entre áreas.</strong> Comanche Peak tiene seis de las siete clases; Neota, solo tres.</p></li>
+<li><p><strong>Algunas clases están restringidas a un área.</strong> El álamo/sauce solo aparece en Cache la Poudre y el pino ponderosa, casi solo allí. Para esas clases, generalizar a zonas nuevas es difícil, porque el modelo nunca ha visto la clase en otro contexto.</p></li>
+</ul>
+</section>
+<section id="autocorrelacion-espacial-y-efecto-de-la-escala">
+<h3>Autocorrelación espacial y efecto de la escala<a class="headerlink" href="#autocorrelacion-espacial-y-efecto-de-la-escala" title="Permalink to this heading">#</a></h3>
+<p>En datos de cobertura vegetal a 30 m de resolución, es de esperar autocorrelación espacial: los rodales ocupan muchas celdas contiguas con condiciones parecidas y la misma cobertura. Sin coordenadas no se puede medir su alcance con el I de Moran, pero sí anticipar su efecto: <strong>con una partición aleatoria, la validación es optimista para zonas nuevas</strong>, porque el modelo se evalúa en celdas vecinas de las que usó para aprender.</p>
+<p>Respecto a la escala, la unidad de análisis es fija (celdas de 30 m) y la etiqueta corresponde a la cobertura dominante de cada celda. Agregar a rodales o a cuencas cambiaría las proporciones de clase y las relaciones con las variables (problema de la unidad de área modificable), lo que conviene tener presente al comparar estos resultados con estudios a otras escalas.</p>
+</section>
+<section id="prueba-de-vecindad-entre-prueba-y-entrenamiento">
+<h3>Prueba de vecindad entre prueba y entrenamiento<a class="headerlink" href="#prueba-de-vecindad-entre-prueba-y-entrenamiento" title="Permalink to this heading">#</a></h3>
+<p>Sin coordenadas, el I de Moran no se puede calcular, pero el optimismo que produce la
+autocorrelación espacial sí se puede cuantificar de otra forma: para cada celda de
+prueba se busca su <strong>vecino más cercano en el espacio de las variables cartográficas
+numéricas</strong> (estandarizadas) dentro del conjunto de entrenamiento, y se compara su clase
+con la de ese vecino. Dos celdas contiguas en el terreno comparten casi los mismos
+valores de elevación, distancias y sombreado, de modo que esta cercanía en el espacio de
+variables es el mejor sustituto disponible de la cercanía geográfica real.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">escalador</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">NUM_COLS</span><span class="p">])</span>
+<span class="n">Xtr_num</span> <span class="o">=</span> <span class="n">escalador</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">NUM_COLS</span><span class="p">])</span>
+<span class="n">Xte_num</span> <span class="o">=</span> <span class="n">escalador</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">NUM_COLS</span><span class="p">])</span>
+
+<span class="n">vecinos</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">"kd_tree"</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">Xtr_num</span><span class="p">)</span>
+<span class="n">dist_vecino</span><span class="p">,</span> <span class="n">idx_vecino</span> <span class="o">=</span> <span class="n">vecinos</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">Xte_num</span><span class="p">)</span>
+<span class="n">dist_vecino</span> <span class="o">=</span> <span class="n">dist_vecino</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">clase_vecino</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()[</span><span class="n">idx_vecino</span><span class="o">.</span><span class="n">ravel</span><span class="p">()]</span>
+<span class="n">misma_clase</span> <span class="o">=</span> <span class="n">clase_vecino</span> <span class="o">==</span> <span class="n">y_test</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">decil</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">dist_vecino</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">"D</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
+<span class="n">tabla_vecindad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"Distancia"</span><span class="p">:</span> <span class="n">dist_vecino</span><span class="p">,</span> <span class="s2">"Misma clase que el vecino"</span><span class="p">:</span> <span class="n">misma_clase</span><span class="p">,</span> <span class="s2">"Decil"</span><span class="p">:</span> <span class="n">decil</span><span class="p">})</span>
+<span class="n">resumen_vecindad</span> <span class="o">=</span> <span class="n">tabla_vecindad</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"Decil"</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">Distancia_media</span><span class="o">=</span><span class="p">(</span><span class="s2">"Distancia"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span>
+    <span class="n">Coincidencia_de_clase</span><span class="o">=</span><span class="p">(</span><span class="s2">"Misma clase que el vecino"</span><span class="p">,</span> <span class="s2">"mean"</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">resumen_vecindad</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Decil</th>
+      <th>Distancia_media</th>
+      <th>Coincidencia_de_clase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>D1</td>
+      <td>0.091</td>
+      <td>0.962</td>
+    </tr>
+    <tr>
+      <td>D2</td>
+      <td>0.141</td>
+      <td>0.947</td>
+    </tr>
+    <tr>
+      <td>D3</td>
+      <td>0.169</td>
+      <td>0.942</td>
+    </tr>
+    <tr>
+      <td>D4</td>
+      <td>0.192</td>
+      <td>0.936</td>
+    </tr>
+    <tr>
+      <td>D5</td>
+      <td>0.213</td>
+      <td>0.927</td>
+    </tr>
+    <tr>
+      <td>D6</td>
+      <td>0.236</td>
+      <td>0.913</td>
+    </tr>
+    <tr>
+      <td>D7</td>
+      <td>0.262</td>
+      <td>0.901</td>
+    </tr>
+    <tr>
+      <td>D8</td>
+      <td>0.295</td>
+      <td>0.883</td>
+    </tr>
+    <tr>
+      <td>D9</td>
+      <td>0.343</td>
+      <td>0.870</td>
+    </tr>
+    <tr>
+      <td>D10</td>
+      <td>0.469</td>
+      <td>0.840</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Coincidencia de clase con el vecino más cercano (global): </span><span class="si">{</span><span class="n">misma_clase</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Coincidencia en el decil más cercano (D1): </span><span class="si">{</span><span class="n">tabla_vecindad</span><span class="p">[</span><span class="n">tabla_vecindad</span><span class="p">[</span><span class="s1">'Decil'</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'D1'</span><span class="p">][</span><span class="s1">'Misma clase que el vecino'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Coincidencia en el decil más lejano (D10): </span><span class="si">{</span><span class="n">tabla_vecindad</span><span class="p">[</span><span class="n">tabla_vecindad</span><span class="p">[</span><span class="s1">'Decil'</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'D10'</span><span class="p">][</span><span class="s1">'Misma clase que el vecino'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coincidencia de clase con el vecino más cercano (global): 0.912
+Coincidencia en el decil más cercano (D1): 0.962
+Coincidencia en el decil más lejano (D10): 0.840
+</pre></div>
+</div>
+</div>
+</div>
+<p>La coincidencia de clase con el vecino más cercano de entrenamiento cae de forma
+monótona conforme aumenta la distancia: del 96,2 % en el decil más cercano al 84,0 % en
+el más lejano (91,2 % en conjunto). Esto confirma, sin necesidad de coordenadas, que las
+celdas de prueba más próximas en el espacio de variables a una celda de entrenamiento
+heredan buena parte de su etiqueta por simple cercanía —el mecanismo típico de la
+autocorrelación espacial—, mientras que las celdas más alejadas de cualquier punto de
+entrenamiento son, de entrada, más difíciles de acertar. La validación con partición
+aleatoria estratificada (capítulo 3) es, por tanto, optimista para el subconjunto de
+celdas de prueba que caen muy cerca de una celda de entrenamiento, y ese optimismo se
+suma al que ya identifica la validación por área del mismo capítulo.</p>
+</section>
+<section id="consecuencias-para-el-modelado">
+<h3>Consecuencias para el modelado<a class="headerlink" href="#consecuencias-para-el-modelado" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Pregunta de generalización.</strong> El objetivo principal del proyecto es predecir la cobertura de celdas no inventariadas <strong>dentro de las mismas áreas</strong> que cubre la muestra. Para ese objetivo, la partición estratificada aleatoria es adecuada, con la salvedad del leve optimismo por vecindad.</p></li>
+<li><p><strong>Prueba de sensibilidad.</strong> Para medir la capacidad de generalizar a <strong>zonas nuevas</strong>, en el capítulo 3 se evalúa el modelo con validación por grupos (<code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>), dejando fuera un área silvestre completa en cada pliegue. Es el análogo disponible de la validación por bloques espaciales.</p></li>
+<li><p><strong>Coordenadas crudas.</strong> No se dispone de coordenadas, de modo que no hay riesgo de que el modelo memorice la ubicación exacta. El área silvestre sí actúa como variable geográfica gruesa y se conserva por ser una delimitación administrativa conocida en el momento de la predicción.</p></li>
+</ol>
+</section>
+</section>
+<section id="componente-espacio-temporal">
+<h2>2.8 Componente espacio-temporal<a class="headerlink" href="#componente-espacio-temporal" title="Permalink to this heading">#</a></h2>
+<p>El conjunto no tiene componente temporal (sección 2.6), de modo que el análisis espacio-temporal no aplica: no hay mapas por periodo, series por zona, <em>hotspots</em> emergentes ni autocorrelación espacio-temporal que estudiar.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_eda.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">2. Análisis exploratorio de datos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02c_preprocesamiento.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">2.9 Preprocesamiento</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#auditoria-de-fuga-de-informacion">2.5 Auditoría de fuga de información</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#disponibilidad-de-las-variables-en-el-momento-de-la-prediccion">Disponibilidad de las variables en el momento de la predicción</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno-individual-de-cada-predictora">Desempeño individual de cada predictora</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#duplicados-y-entidades-repetidas-entre-particiones">Duplicados y entidades repetidas entre particiones</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-de-la-auditoria">Conclusión de la auditoría</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-temporal">2.6 Componente temporal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-espacial">2.7 Componente espacial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heterogeneidad-espacial-entre-areas">Heterogeneidad espacial entre áreas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autocorrelacion-espacial-y-efecto-de-la-escala">Autocorrelación espacial y efecto de la escala</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prueba-de-vecindad-entre-prueba-y-entrenamiento">Prueba de vecindad entre prueba y entrenamiento</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consecuencias-para-el-modelado">Consecuencias para el modelado</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#componente-espacio-temporal">2.8 Componente espacio-temporal</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Ana Galván, Valeria Oñate y María José Ruiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

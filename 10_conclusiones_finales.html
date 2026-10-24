@@ -1,0 +1,1242 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>9. Eficiencia computacional, reproducibilidad y conclusiones &#8212; Clasificación de la cobertura forestal (Covertype)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '10_conclusiones_finales';</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="10. Revisión de literatura y evidencia de novedad" href="e3_04_literatura.html" />
+    <link rel="prev" title="8. Interpretabilidad de XGBoost: SHAP frente a LIME" href="09_interpretabilidad.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_bosque.jpg" class="logo__image only-light" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>
+    <script>document.write(`<img src="_static/logo_bosque.jpg" class="logo__image only-dark" alt="Clasificación de la cobertura forestal (Covertype) - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Clasificación de la cobertura forestal a partir de variables cartográficas
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte I. Datos, análisis exploratorio y modelo base</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_base_datos.html">1. Base de datos</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="02_eda.html">2. Análisis exploratorio de datos</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="02b_fuga_estructura.html">2.5–2.8 Fuga de información y estructura de los datos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c_preprocesamiento.html">2.9 Preprocesamiento</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="03_modelo_base.html">3. Modelo base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_conclusiones.html">4. Conclusiones de la Parte I</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte II. Benchmark, optimización y evaluación</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06_benchmark_modelos.html">5. Benchmark combinatorio de modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_optimizacion.html">6. Comparación de los métodos de optimización de hiperparámetros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_comparacion_estadistica.html">7. Comparación estadística de los modelos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_interpretabilidad.html">8. Interpretabilidad de XGBoost: SHAP frente a LIME</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Eficiencia computacional, reproducibilidad y conclusiones</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Parte III. Modelo original</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="e3_04_literatura.html">10. Revisión de literatura y evidencia de novedad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_05_modelo_original.html">11. Modelo original: ensamble por competencia local y por clase (ECLC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_06_validacion.html">12. Validación estadística del modelo original</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_08_conclusiones.html">13. Conclusiones</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_09_reproducibilidad.html">14. Reproducibilidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndices</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05_apendice.html">Apéndice A. Reproducibilidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="e3_01_correcciones.html">Apéndice B. Registro de cambios del benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliografia.html">Bibliografía</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/10_conclusiones_finales.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="claro/oscuro" aria-label="claro/oscuro" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>9. Eficiencia computacional, reproducibilidad y conclusiones</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad-algoritmica-y-tiempo-empirico">9.1 Complejidad algorítmica y tiempo empírico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementaciones-estandar-frente-a-optimizadas">9.2 Implementaciones estándar frente a optimizadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#costo-de-la-optimizacion-de-hiperparametros-de-xgboost">Costo de la optimización de hiperparámetros de XGBoost</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-de-xgboost-a-la-semilla">Sensibilidad de XGBoost a la semilla</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelizacion-y-reproducibilidad">9.3 Paralelización y reproducibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-critica-del-desempeno">9.4 Revisión crítica del desempeño</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">9.5 Limitaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-del-benchmark">9.6 Conclusiones del benchmark</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="eficiencia-computacional-reproducibilidad-y-conclusiones">
+<h1>9. Eficiencia computacional, reproducibilidad y conclusiones<a class="headerlink" href="#eficiencia-computacional-reproducibilidad-y-conclusiones" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"scripts"</span><span class="p">))</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">configurar_tablas</span>
+
+<span class="n">configurar_tablas</span><span class="p">()</span>
+<span class="n">RESULTS3</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s2">"resultados"</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"whitegrid"</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">"notebook"</span><span class="p">)</span>
+<span class="n">tabla</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"tabla_maestra.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">aplic</span> <span class="o">=</span> <span class="n">tabla</span><span class="p">[</span><span class="n">tabla</span><span class="p">[</span><span class="s2">"aplicable"</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="complejidad-algoritmica-y-tiempo-empirico">
+<h2>9.1 Complejidad algorítmica y tiempo empírico<a class="headerlink" href="#complejidad-algoritmica-y-tiempo-empirico" title="Permalink to this heading">#</a></h2>
+<p>La tabla siguiente resume la complejidad asintótica de entrenamiento e inferencia de cada
+algoritmo en función del número de observaciones <span class="math notranslate nohighlight">\(n\)</span>, del número de predictoras <span class="math notranslate nohighlight">\(p\)</span>, del
+número de árboles <span class="math notranslate nohighlight">\(T\)</span>, de su profundidad <span class="math notranslate nohighlight">\(d\)</span> y del número de vectores de soporte <span class="math notranslate nohighlight">\(n_{sv}\)</span>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Algoritmo</p></th>
+<th class="head"><p>Entrenamiento</p></th>
+<th class="head"><p>Inferencia (por observación)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KNN (fuerza bruta)</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(1)\)</span>: solo almacena los datos</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n \cdot p)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Naive Bayes gaussiano</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n \cdot p)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(p \cdot K)\)</span>, con <span class="math notranslate nohighlight">\(K\)</span> clases</p></td>
+</tr>
+<tr class="row-even"><td><p>Regresión logística</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n \cdot p \cdot K)\)</span> por iteración (L-BFGS) o por época (SAGA)</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(p \cdot K)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Árbol de decisión</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n \cdot p \cdot \log n)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(d)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Random Forest</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(T \cdot n \cdot \sqrt{p} \cdot \log n)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(T \cdot d)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>XGBoost (<code class="docutils literal notranslate"><span class="pre">hist</span></code>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(T \cdot K \cdot n \cdot p)\)</span> con histogramas de 256 intervalos</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(T \cdot K \cdot d)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>SVM (núcleo RBF)</p></td>
+<td><p>Entre <span class="math notranslate nohighlight">\(O(n^2 \cdot p)\)</span> y <span class="math notranslate nohighlight">\(O(n^3)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n_{sv} \cdot p)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para contrastar la teoría con el comportamiento observado se midió el tiempo de
+entrenamiento (o de inferencia, en el caso de KNN) con submuestras crecientes de la misma
+partición y se estimó el <strong>exponente empírico de escalamiento</strong> <span class="math notranslate nohighlight">\(b\)</span> mediante la regresión
+<span class="math notranslate nohighlight">\(\log t = a + b \log n\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">esc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"escalamiento_tiempos.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">expo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"escalamiento_exponentes.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">esc</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"modelo"</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="s2">"n"</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="s2">"tiempo_s"</span><span class="p">],</span> <span class="s2">"o-"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">nombre</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xscale</span><span class="o">=</span><span class="s2">"log"</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s2">"log"</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">"Número de observaciones de entrenamiento (n)"</span><span class="p">,</span>
+       <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Tiempo (s)"</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Escalamiento empírico del costo computacional (escala log-log)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">expo</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Algoritmo"</span><span class="p">,</span> <span class="s2">"Fase medida"</span><span class="p">,</span> <span class="s2">"Exponente empírico b"</span><span class="p">]</span>
+<span class="n">expo</span><span class="p">[</span><span class="s2">"Fase medida"</span><span class="p">]</span> <span class="o">=</span> <span class="n">expo</span><span class="p">[</span><span class="s2">"Fase medida"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s2">"fit"</span><span class="p">:</span> <span class="s2">"entrenamiento"</span><span class="p">,</span> <span class="s2">"predict"</span><span class="p">:</span> <span class="s2">"inferencia"</span><span class="p">})</span>
+<span class="n">display</span><span class="p">(</span><span class="n">expo</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"Algoritmo"</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/d3c39ba5484f7385a65ad0085d8f78a039954928fbe676e1ef59b98a9826cdcd.png" src="_images/d3c39ba5484f7385a65ad0085d8f78a039954928fbe676e1ef59b98a9826cdcd.png" />
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Algoritmo</th>
+      <th>Fase medida</th>
+      <th>Exponente empírico b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Naive Bayes</td>
+      <td>entrenamiento</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <td>Regresión logística (L-BFGS)</td>
+      <td>entrenamiento</td>
+      <td>0.93</td>
+    </tr>
+    <tr>
+      <td>Árbol de decisión</td>
+      <td>entrenamiento</td>
+      <td>1.06</td>
+    </tr>
+    <tr>
+      <td>Random Forest (100 árboles)</td>
+      <td>entrenamiento</td>
+      <td>1.05</td>
+    </tr>
+    <tr>
+      <td>XGBoost hist (100 árboles)</td>
+      <td>entrenamiento</td>
+      <td>0.77</td>
+    </tr>
+    <tr>
+      <td>SVM RBF</td>
+      <td>entrenamiento</td>
+      <td>1.87</td>
+    </tr>
+    <tr>
+      <td>KNN (fuerza bruta, 5.000 consultas)</td>
+      <td>inferencia</td>
+      <td>0.58</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>Los exponentes son consistentes con la teoría:</p>
+<ul class="simple">
+<li><p><strong>SVM con núcleo RBF (<span class="math notranslate nohighlight">\(b = 1{,}87\)</span>)</strong> muestra el crecimiento casi cuadrático esperado: al
+duplicar <span class="math notranslate nohighlight">\(n\)</span>, el tiempo se multiplica por cerca de 3,7. Extrapolado a las 40.000 filas
+del benchmark, su entrenamiento sería unas 16 veces más costoso que con 9.000 filas, lo
+que justifica la submuestra separada de la sección 5.1.</p></li>
+<li><p><strong>El árbol de decisión y Random Forest (<span class="math notranslate nohighlight">\(b \approx 1{,}05\)</span>)</strong> escalan de forma
+ligeramente superlineal, como corresponde al término <span class="math notranslate nohighlight">\(n \log n\)</span> de la ordenación de los
+valores candidatos a corte.</p></li>
+<li><p><strong>Naive Bayes (<span class="math notranslate nohighlight">\(b = 1{,}00\)</span>)</strong> es exactamente lineal, porque su entrenamiento se reduce a
+calcular medias y varianzas por clase.</p></li>
+<li><p><strong>La regresión logística (<span class="math notranslate nohighlight">\(b = 0{,}93\)</span>) y XGBoost con histogramas (<span class="math notranslate nohighlight">\(b = 0{,}77\)</span>)</strong> escalan
+de forma sublineal en este rango porque una parte importante de su costo es fija o
+depende de la convergencia: el número de iteraciones de L-BFGS disminuye con más datos y
+XGBoost amortiza la construcción de los histogramas.</p></li>
+<li><p><strong>La inferencia de KNN (<span class="math notranslate nohighlight">\(b = 0{,}58\)</span>)</strong> crece menos que la <span class="math notranslate nohighlight">\(O(n)\)</span> teórica porque el
+cálculo de distancias por fuerza bruta se vectoriza con operaciones matriciales
+optimizadas (BLAS), cuyo rendimiento por operación aumenta con el tamaño del problema.</p></li>
+</ul>
+<p>En el benchmark, Random Forest acumuló el mayor tiempo total (34.323 s en 16
+combinaciones), seguido de XGBoost (23.085 s), y Naive Bayes el menor (5.258 s).</p>
+</section>
+<section id="implementaciones-estandar-frente-a-optimizadas">
+<h2>9.2 Implementaciones estándar frente a optimizadas<a class="headerlink" href="#implementaciones-estandar-frente-a-optimizadas" title="Permalink to this heading">#</a></h2>
+<p>Para cada algoritmo se comparó una implementación estándar con una alternativa diseñada
+para reducir el costo computacional. Todas las versiones se entrenaron con la submuestra
+de 40.000 filas del benchmark (9.000 en el caso de la SVM con núcleo RBF) y se evaluaron
+sobre la misma submuestra estratificada de 20.000 celdas de la prueba reservada. Los
+tiempos son de reloj de pared (mediana de tres repeticiones, excepto KNN, XGBoost y SVM,
+con una) y la memoria pico se midió con <code class="docutils literal notranslate"><span class="pre">tracemalloc</span></code>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">comp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"computacional_estandar_vs_optimizado.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"computacional_entorno.json"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">entorno</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">comp</span> <span class="o">=</span> <span class="n">comp</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"modelo"</span><span class="p">:</span> <span class="s2">"Algoritmo"</span><span class="p">,</span> <span class="s2">"versión"</span><span class="p">:</span> <span class="s2">"Versión"</span><span class="p">,</span> <span class="s2">"complejidad_teórica"</span><span class="p">:</span> <span class="s2">"Complejidad teórica"</span><span class="p">,</span>
+                            <span class="s2">"n_entrenamiento"</span><span class="p">:</span> <span class="s2">"n"</span><span class="p">,</span>
+                            <span class="s2">"tiempo_entrenamiento_s"</span><span class="p">:</span> <span class="s2">"Entrenamiento (s)"</span><span class="p">,</span> <span class="s2">"tiempo_inferencia_s"</span><span class="p">:</span> <span class="s2">"Inferencia (s)"</span><span class="p">,</span>
+                            <span class="s2">"memoria_pico_entrenamiento_MB"</span><span class="p">:</span> <span class="s2">"Memoria pico (MB)"</span><span class="p">,</span> <span class="s2">"F1_macro"</span><span class="p">:</span> <span class="s2">"F1 macro"</span><span class="p">})</span>
+<span class="n">comp</span><span class="p">[</span><span class="s2">"n"</span><span class="p">]</span> <span class="o">=</span> <span class="n">comp</span><span class="p">[</span><span class="s2">"n"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">"."</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">comp</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">hide</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"index"</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">"Entrenamiento (s)"</span><span class="p">:</span> <span class="s2">"</span><span class="si">{:.2f}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"Inferencia (s)"</span><span class="p">:</span> <span class="s2">"</span><span class="si">{:.3f}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"Memoria pico (MB)"</span><span class="p">:</span> <span class="s2">"</span><span class="si">{:.1f}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"F1 macro"</span><span class="p">:</span> <span class="s2">"</span><span class="si">{:.3f}</span><span class="s2">"</span><span class="p">}))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"* Solo en baja dimensión; con p alto la búsqueda degrada hacia O(n·p)."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Entorno de medición: Python </span><span class="si">{</span><span class="n">entorno</span><span class="p">[</span><span class="s1">'python'</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">entorno</span><span class="p">[</span><span class="s1">'nucleos_logicos'</span><span class="p">]</span><span class="si">}</span><span class="s2"> núcleos lógicos, "</span>
+      <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">entorno</span><span class="p">[</span><span class="s1">'n_prueba'</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> celdas de prueba"</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span> <span class="s2">"."</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_6f493">
+  <thead>
+    <tr>
+      <th id="T_6f493_level0_col0" class="col_heading level0 col0" >Algoritmo</th>
+      <th id="T_6f493_level0_col1" class="col_heading level0 col1" >Versión</th>
+      <th id="T_6f493_level0_col2" class="col_heading level0 col2" >Complejidad teórica</th>
+      <th id="T_6f493_level0_col3" class="col_heading level0 col3" >n</th>
+      <th id="T_6f493_level0_col4" class="col_heading level0 col4" >Entrenamiento (s)</th>
+      <th id="T_6f493_level0_col5" class="col_heading level0 col5" >Inferencia (s)</th>
+      <th id="T_6f493_level0_col6" class="col_heading level0 col6" >Memoria pico (MB)</th>
+      <th id="T_6f493_level0_col7" class="col_heading level0 col7" >F1 macro</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_6f493_row0_col0" class="data row0 col0" >KNN (k = 5)</td>
+      <td id="T_6f493_row0_col1" class="data row0 col1" >Estándar: fuerza bruta</td>
+      <td id="T_6f493_row0_col2" class="data row0 col2" >O(n·p) por consulta</td>
+      <td id="T_6f493_row0_col3" class="data row0 col3" >40.000</td>
+      <td id="T_6f493_row0_col4" class="data row0 col4" >0.02</td>
+      <td id="T_6f493_row0_col5" class="data row0 col5" >3.988</td>
+      <td id="T_6f493_row0_col6" class="data row0 col6" >20.2</td>
+      <td id="T_6f493_row0_col7" class="data row0 col7" >0.744</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row1_col0" class="data row1 col0" >KNN (k = 5)</td>
+      <td id="T_6f493_row1_col1" class="data row1 col1" >Optimizada: KD-Tree</td>
+      <td id="T_6f493_row1_col2" class="data row1 col2" >O(log n)* por consulta</td>
+      <td id="T_6f493_row1_col3" class="data row1 col3" >40.000</td>
+      <td id="T_6f493_row1_col4" class="data row1 col4" >0.57</td>
+      <td id="T_6f493_row1_col5" class="data row1 col5" >18.070</td>
+      <td id="T_6f493_row1_col6" class="data row1 col6" >20.8</td>
+      <td id="T_6f493_row1_col7" class="data row1 col7" >0.744</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row2_col0" class="data row2 col0" >KNN (k = 5)</td>
+      <td id="T_6f493_row2_col1" class="data row2 col1" >Optimizada: Ball Tree</td>
+      <td id="T_6f493_row2_col2" class="data row2 col2" >O(log n)* por consulta</td>
+      <td id="T_6f493_row2_col3" class="data row2 col3" >40.000</td>
+      <td id="T_6f493_row2_col4" class="data row2 col4" >0.35</td>
+      <td id="T_6f493_row2_col5" class="data row2 col5" >96.959</td>
+      <td id="T_6f493_row2_col6" class="data row2 col6" >20.2</td>
+      <td id="T_6f493_row2_col7" class="data row2 col7" >0.744</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row3_col0" class="data row3 col0" >Naive Bayes</td>
+      <td id="T_6f493_row3_col1" class="data row3 col1" >Estándar: fit en bloque</td>
+      <td id="T_6f493_row3_col2" class="data row3 col2" >O(n·p)</td>
+      <td id="T_6f493_row3_col3" class="data row3 col3" >40.000</td>
+      <td id="T_6f493_row3_col4" class="data row3 col4" >0.06</td>
+      <td id="T_6f493_row3_col5" class="data row3 col5" >0.051</td>
+      <td id="T_6f493_row3_col6" class="data row3 col6" >18.3</td>
+      <td id="T_6f493_row3_col7" class="data row3 col7" >0.135</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row4_col0" class="data row4 col0" >Naive Bayes</td>
+      <td id="T_6f493_row4_col1" class="data row4 col1" >Optimizada: partial_fit (lotes de 5.000)</td>
+      <td id="T_6f493_row4_col2" class="data row4 col2" >O(n·p); memoria O(b·p)</td>
+      <td id="T_6f493_row4_col3" class="data row4 col3" >40.000</td>
+      <td id="T_6f493_row4_col4" class="data row4 col4" >0.06</td>
+      <td id="T_6f493_row4_col5" class="data row4 col5" >0.047</td>
+      <td id="T_6f493_row4_col6" class="data row4 col6" >2.4</td>
+      <td id="T_6f493_row4_col7" class="data row4 col7" >0.136</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row5_col0" class="data row5 col0" >Regresión logística (L2)</td>
+      <td id="T_6f493_row5_col1" class="data row5 col1" >Estándar: L-BFGS (tol. 1e-4)</td>
+      <td id="T_6f493_row5_col2" class="data row5 col2" >O(n·p·K) por iteración</td>
+      <td id="T_6f493_row5_col3" class="data row5 col3" >40.000</td>
+      <td id="T_6f493_row5_col4" class="data row5 col4" >9.74</td>
+      <td id="T_6f493_row5_col5" class="data row5 col5" >0.009</td>
+      <td id="T_6f493_row5_col6" class="data row5 col6" >23.5</td>
+      <td id="T_6f493_row5_col7" class="data row5 col7" >0.577</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row6_col0" class="data row6 col0" >Regresión logística (L2)</td>
+      <td id="T_6f493_row6_col1" class="data row6 col1" >Optimizada: SAGA (tol. 1e-2)</td>
+      <td id="T_6f493_row6_col2" class="data row6 col2" >O(n·p·K) por época</td>
+      <td id="T_6f493_row6_col3" class="data row6 col3" >40.000</td>
+      <td id="T_6f493_row6_col4" class="data row6 col4" >2.37</td>
+      <td id="T_6f493_row6_col5" class="data row6 col5" >0.006</td>
+      <td id="T_6f493_row6_col6" class="data row6 col6" >21.8</td>
+      <td id="T_6f493_row6_col7" class="data row6 col7" >0.572</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row7_col0" class="data row7 col0" >XGBoost (200 árboles)</td>
+      <td id="T_6f493_row7_col1" class="data row7 col1" >Estándar: exact</td>
+      <td id="T_6f493_row7_col2" class="data row7 col2" >O(T·n·p·log n)</td>
+      <td id="T_6f493_row7_col3" class="data row7 col3" >40.000</td>
+      <td id="T_6f493_row7_col4" class="data row7 col4" >165.07</td>
+      <td id="T_6f493_row7_col5" class="data row7 col5" >1.071</td>
+      <td id="T_6f493_row7_col6" class="data row7 col6" >6.4</td>
+      <td id="T_6f493_row7_col7" class="data row7 col7" >0.839</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row8_col0" class="data row8 col0" >XGBoost (200 árboles)</td>
+      <td id="T_6f493_row8_col1" class="data row8 col1" >Optimizada: hist</td>
+      <td id="T_6f493_row8_col2" class="data row8 col2" >O(T·n·p)</td>
+      <td id="T_6f493_row8_col3" class="data row8 col3" >40.000</td>
+      <td id="T_6f493_row8_col4" class="data row8 col4" >14.13</td>
+      <td id="T_6f493_row8_col5" class="data row8 col5" >1.018</td>
+      <td id="T_6f493_row8_col6" class="data row8 col6" >6.6</td>
+      <td id="T_6f493_row8_col7" class="data row8 col7" >0.835</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row9_col0" class="data row9 col0" >XGBoost (200 árboles)</td>
+      <td id="T_6f493_row9_col1" class="data row9 col1" >Optimizada: hist + parada temprana</td>
+      <td id="T_6f493_row9_col2" class="data row9 col2" >O(T*·n·p), T* ≤ T</td>
+      <td id="T_6f493_row9_col3" class="data row9 col3" >34.000</td>
+      <td id="T_6f493_row9_col4" class="data row9 col4" >20.77</td>
+      <td id="T_6f493_row9_col5" class="data row9 col5" >1.487</td>
+      <td id="T_6f493_row9_col6" class="data row9 col6" >9.1</td>
+      <td id="T_6f493_row9_col7" class="data row9 col7" >0.828</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row10_col0" class="data row10 col0" >SVM</td>
+      <td id="T_6f493_row10_col1" class="data row10 col1" >Estándar: SVC RBF</td>
+      <td id="T_6f493_row10_col2" class="data row10 col2" >O(n²·p) a O(n³)</td>
+      <td id="T_6f493_row10_col3" class="data row10 col3" >9.000</td>
+      <td id="T_6f493_row10_col4" class="data row10 col4" >4.58</td>
+      <td id="T_6f493_row10_col5" class="data row10 col5" >10.738</td>
+      <td id="T_6f493_row10_col6" class="data row10 col6" >8.4</td>
+      <td id="T_6f493_row10_col7" class="data row10 col7" >0.653</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row11_col0" class="data row11 col0" >SVM</td>
+      <td id="T_6f493_row11_col1" class="data row11 col1" >Optimizada: LinearSVC</td>
+      <td id="T_6f493_row11_col2" class="data row11 col2" >O(n·p) por época</td>
+      <td id="T_6f493_row11_col3" class="data row11 col3" >40.000</td>
+      <td id="T_6f493_row11_col4" class="data row11 col4" >1.88</td>
+      <td id="T_6f493_row11_col5" class="data row11 col5" >0.006</td>
+      <td id="T_6f493_row11_col6" class="data row11 col6" >19.9</td>
+      <td id="T_6f493_row11_col7" class="data row11 col7" >0.498</td>
+    </tr>
+    <tr>
+      <td id="T_6f493_row12_col0" class="data row12 col0" >SVM</td>
+      <td id="T_6f493_row12_col1" class="data row12 col1" >Optimizada: SGD (bisagra)</td>
+      <td id="T_6f493_row12_col2" class="data row12 col2" >O(n·p) por época</td>
+      <td id="T_6f493_row12_col3" class="data row12 col3" >40.000</td>
+      <td id="T_6f493_row12_col4" class="data row12 col4" >2.43</td>
+      <td id="T_6f493_row12_col5" class="data row12 col5" >0.006</td>
+      <td id="T_6f493_row12_col6" class="data row12 col6" >19.2</td>
+      <td id="T_6f493_row12_col7" class="data row12 col7" >0.501</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>* Solo en baja dimensión; con p alto la búsqueda degrada hacia O(n·p).
+Entorno de medición: Python 3.10.20. 2 núcleos lógicos. 20.000 celdas de prueba
+</pre></div>
+</div>
+</div>
+</div>
+<p>Los resultados muestran que la optimización computacional depende de la estructura del
+problema, y no solo del algoritmo:</p>
+<ul class="simple">
+<li><p><strong>XGBoost: el método <code class="docutils literal notranslate"><span class="pre">hist</span></code> reduce el tiempo de entrenamiento 11,7 veces</strong> (de 165 s a
+14 s) con una pérdida de F1 macro de 0,005. Al discretizar cada variable en un máximo
+de 256 intervalos, la búsqueda del mejor corte deja de depender del número de valores
+distintos. La parada temprana con un conjunto de validación interno (15 % del
+entrenamiento, 20 rondas de paciencia) no redujo el costo en esta configuración: el
+tiempo indica que el criterio se activó después de las 200 iteraciones fijadas en la
+configuración evaluada. Su utilidad es evitar fijar a priori el número de árboles.</p></li>
+<li><p><strong>KNN: las estructuras de indexación son contraproducentes con 57 dimensiones.</strong> El
+KD-Tree multiplicó el tiempo de inferencia por 4,5 y el Ball Tree por 24 respecto de la
+búsqueda exhaustiva, con el mismo F1. En alta dimensión, las cajas y esferas que estas
+estructuras usan para descartar regiones dejan de excluir puntos (maldición de la
+dimensionalidad), y el recorrido del árbol añade sobrecarga a una búsqueda que termina
+siendo casi exhaustiva. La búsqueda aproximada de vecinos (por ejemplo, FAISS) es la
+alternativa adecuada para este régimen: sacrifica exactitud en la identificación de los
+vecinos a cambio de un costo sublineal por consulta.</p></li>
+<li><p><strong>Naive Bayes: <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> reduce la memoria pico 7,6 veces</strong> (de 18,3 MB a 2,4 MB)
+con el mismo tiempo y el mismo F1, porque solo mantiene en memoria un lote de 5.000
+filas y las estadísticas suficientes acumuladas. Es la opción adecuada cuando el
+conjunto de datos no cabe en memoria.</p></li>
+<li><p><strong>Regresión logística: SAGA con tolerancia relajada es 4,1 veces más rápido</strong> que
+L-BFGS llevado a convergencia, con una pérdida de F1 de 0,005. SAGA recorre los datos
+por épocas con costo lineal en <span class="math notranslate nohighlight">\(n\)</span>, y en problemas grandes alcanza una solución útil con
+pocas épocas.</p></li>
+<li><p><strong>SVM: las formulaciones lineales reducen el costo pero no son una alternativa
+válida en este problema.</strong> LinearSVC y el descenso de gradiente estocástico entrenan con
+40.000 filas en el 41 % y el 53 % del tiempo que requiere el núcleo RBF con 9.000, y
+predicen unas 1.800 veces más rápido, pero su F1 macro cae de 0,653 a 0,50. Las fronteras entre
+clases son no lineales, y eliminar el núcleo elimina justamente la capacidad del modelo
+para representarlas.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p><code class="docutils literal notranslate"><span class="pre">tracemalloc</span></code> registra las asignaciones de memoria realizadas a través del intérprete de
+Python, incluidas las de NumPy, pero no las que hacen directamente las bibliotecas
+nativas como XGBoost. Las cifras de memoria de XGBoost subestiman, por tanto, su consumo
+real; son comparables entre sus versiones, pero no con las de otros algoritmos.</p>
+</div>
+<section id="costo-de-la-optimizacion-de-hiperparametros-de-xgboost">
+<h3>Costo de la optimización de hiperparámetros de XGBoost<a class="headerlink" href="#costo-de-la-optimizacion-de-hiperparametros-de-xgboost" title="Permalink to this heading">#</a></h3>
+<p>La comparación siguiente contrasta un XGBoost con los hiperparámetros por defecto de la librería (100 árboles,
+profundidad 6, tasa de aprendizaje 0,3) con su mejor configuración del benchmark (150 árboles, profundidad 6, tasa
+0,1), ambos entrenados con las 464.809 filas y evaluados en la prueba reservada completa, con todos los núcleos
+de la estación de trabajo.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">perfil</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"xgb_perfilamiento.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">perfil</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Versión"</span><span class="p">,</span> <span class="s2">"Entrenamiento (s)"</span><span class="p">,</span> <span class="s2">"Inferencia (s)"</span><span class="p">,</span> <span class="s2">"Memoria pico de entrenamiento (MB)"</span><span class="p">,</span>
+                  <span class="s2">"Memoria pico de inferencia (MB)"</span><span class="p">,</span> <span class="s2">"F1 macro en prueba"</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">perfil</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"Versión"</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Versión</th>
+      <th>Entrenamiento (s)</th>
+      <th>Inferencia (s)</th>
+      <th>Memoria pico de entrenamiento (MB)</th>
+      <th>Memoria pico de inferencia (MB)</th>
+      <th>F1 macro en prueba</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>por defecto (100 árboles, profundidad 6, tasa 0,3)</td>
+      <td>5.258</td>
+      <td>0.114</td>
+      <td>639.630</td>
+      <td>374.708</td>
+      <td>0.866</td>
+    </tr>
+    <tr>
+      <td>espacio común (150 árboles, profundidad 6, tasa 0,1)</td>
+      <td>7.450</td>
+      <td>0.165</td>
+      <td>639.623</td>
+      <td>374.712</td>
+      <td>0.787</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>Con el conjunto completo, <strong>la configuración por defecto supera a la elegida en el benchmark</strong> (F1 macro de
+0,866 frente a 0,787) y además entrena más rápido (5 s frente a 7 s). La configuración del benchmark se eligió
+con la submuestra de 40.000 celdas, donde una tasa de aprendizaje baja evita el sobreajuste. Con 11,6 veces más
+datos, en cambio, 150 árboles con tasa 0,1 se quedan cortos y el modelo no alcanza a ajustar las fronteras
+finas entre clases. Los hiperparámetros óptimos dependen del tamaño del entrenamiento, una limitación que se
+discute en la sección 9.5. El consumo de memoria es prácticamente idéntico en ambas versiones (≈ 640 MB en el
+entrenamiento), porque está dominado por la matriz de datos y no por el tamaño del modelo.</p>
+</section>
+<section id="sensibilidad-de-xgboost-a-la-semilla">
+<h3>Sensibilidad de XGBoost a la semilla<a class="headerlink" href="#sensibilidad-de-xgboost-a-la-semilla" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">semillas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"xgb_sensibilidad_semilla.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">semillas</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Semilla"</span><span class="p">,</span> <span class="s2">"F1 macro"</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">semillas</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"Semilla"</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Media: </span><span class="si">{</span><span class="n">semillas</span><span class="p">[</span><span class="s1">'F1 macro'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> · Desviación estándar: </span><span class="si">{</span><span class="n">semillas</span><span class="p">[</span><span class="s1">'F1 macro'</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Semilla</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>F1 macro</th>
+      <td>0.7976</td>
+      <td>0.7943</td>
+      <td>0.7961</td>
+      <td>0.7945</td>
+      <td>0.7972</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Media: 0.7959 · Desviación estándar: 0.0015
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con <code class="docutils literal notranslate"><span class="pre">subsample</span> <span class="pre">=</span> <span class="pre">1</span></code> y <code class="docutils literal notranslate"><span class="pre">colsample_bytree</span> <span class="pre">=</span> <span class="pre">1</span></code> (los valores por defecto), el entrenamiento de XGBoost es
+determinista y cinco semillas producirían el mismo modelo. Para que la prueba tuviera una fuente real de
+aleatoriedad, este experimento fija <code class="docutils literal notranslate"><span class="pre">subsample</span> <span class="pre">=</span> <span class="pre">0,8</span></code> y <code class="docutils literal notranslate"><span class="pre">colsample_bytree</span> <span class="pre">=</span> <span class="pre">0,8</span></code>, de modo que cada árbol usa una
+muestra aleatoria del 80 % de las filas y de las columnas. Con esa aleatoriedad, la desviación estándar entre
+semillas es de 0,0015 sobre un F1 macro medio de 0,796, un orden de magnitud menor que las diferencias entre
+familias de algoritmos (capítulo 7). Junto con la estabilidad del TPE ante la semilla (sección 6.4), este
+resultado indica que las conclusiones del estudio no dependen de la semilla elegida.</p>
+</section>
+</section>
+<section id="paralelizacion-y-reproducibilidad">
+<h2>9.3 Paralelización y reproducibilidad<a class="headerlink" href="#paralelizacion-y-reproducibilidad" title="Permalink to this heading">#</a></h2>
+<p><strong>Paralelización.</strong> Las 112 combinaciones se distribuyeron <strong>entre algoritmos</strong>: cada uno
+de los siete se ejecutó en un proceso independiente de Python en una estación de trabajo
+con 12 hilos lógicos, mientras que cada estimador se entrenó con <code class="docutils literal notranslate"><span class="pre">n_jobs</span> <span class="pre">=</span> <span class="pre">1</span></code>. En una
+prueba preliminar, la paralelización interna de cada ajuste (<code class="docutils literal notranslate"><span class="pre">n_jobs</span> <span class="pre">=</span> <span class="pre">-1</span></code> en
+<code class="docutils literal notranslate"><span class="pre">RandomForestClassifier</span></code> o <code class="docutils literal notranslate"><span class="pre">XGBClassifier</span></code>) resultó más lenta, porque el costo fijo de
+crear un conjunto de procesos de <code class="docutils literal notranslate"><span class="pre">joblib</span></code> en cada uno de los miles de ajustes pequeños de
+la validación anidada superaba el ahorro obtenido. Paralelizar al nivel de algoritmo
+mantiene ocupados los núcleos durante toda la ejecución sin pagar ese costo de forma
+repetida. El paso natural para escalar el benchmark sería distribuir las combinaciones,
+y no los ajustes, con un planificador como Dask o Ray; la aceleración por GPU de XGBoost
+(<code class="docutils literal notranslate"><span class="pre">device=&quot;cuda&quot;</span></code>) no se evaluó porque la estación de trabajo no dispone de una GPU
+compatible.</p>
+<p><strong>Registro estructurado de experimentos.</strong> Cada una de las 112 combinaciones queda
+registrada en <code class="docutils literal notranslate"><span class="pre">resultados/benchmark_log_&lt;MODELO&gt;.jsonl</span></code> con los
+hiperparámetros elegidos en cada pliegue externo, el F1 macro y la <em>accuracy</em> de cada
+pliegue, el tiempo de cada pliegue, el número de evaluaciones y, en el algoritmo
+genético, la diversidad de la población por generación. El archivo <code class="docutils literal notranslate"><span class="pre">tabla_maestra.csv</span></code>
+consolida esos registros y es la fuente de los capítulos 5 a 9. El registro incremental
+permitió reanudar la ejecución tras interrupciones sin repetir combinaciones ya
+completadas.</p>
+<p><strong>Espacio de búsqueda y presupuesto comunes.</strong> Para que la comparación entre combinaciones sea válida, las 112
+comparten el mismo espacio de búsqueda por algoritmo (tabla de la sección 5.2), el mismo presupuesto por método
+(rejilla completa; 6 configuraciones en Random Search; 6 ensayos en la optimización bayesiana; 4 individuos durante
+2 generaciones en el genético), los mismos pliegues y la misma semilla. Los espacios se acotaron tras medir que
+algunas combinaciones con árboles de profundidad ilimitada o con 300 árboles tardaban entre 20 y 30 minutos por
+combinación en la validación anidada.</p>
+<p><strong>Semillas y entorno.</strong> La semilla global (<code class="docutils literal notranslate"><span class="pre">RANDOM_STATE</span> <span class="pre">=</span> <span class="pre">42</span></code>) se propaga a todas las
+fuentes de aleatoriedad, y las versiones de las librerías están fijadas en
+<code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> (apéndice A). Los experimentos complementarios de las secciones 6.4,
+8.1, 8.2, 9.1, 9.2 y 9.4 se ejecutaron con las mismas versiones de las librerías en un entorno Linux
+de dos núcleos; sus tiempos absolutos no son comparables con los del benchmark, pero sí
+las comparaciones internas de cada experimento.</p>
+</section>
+<section id="revision-critica-del-desempeno">
+<h2>9.4 Revisión crítica del desempeño<a class="headerlink" href="#revision-critica-del-desempeno" title="Permalink to this heading">#</a></h2>
+<p>Un desempeño alto obliga a descartar fuga de información, a compararlo con la línea base y a verificar que la
+validación respete la estructura de los datos (sección 3.11). Las tres verificaciones se aplican al finalista
+del benchmark, Random Forest con SMOTE (F1 macro de 0,866 con el conjunto completo), y al modelo original del
+capítulo 11, que supera 0,9 con el conjunto completo.</p>
+<ol class="arabic simple">
+<li><p><strong>Fuga de información.</strong> Todos los modelos usan exactamente las 57 predictoras auditadas en
+la sección 2.5, sin identificadores ni variables derivadas de la cobertura. Su variable
+más importante es la elevación (capítulo 8), cuya relación con la cobertura es el
+gradiente altitudinal de la vegetación de montaña, no una fuga.</p></li>
+<li><p><strong>Comparación con la línea base trivial.</strong> El clasificador de la clase más frecuente
+obtiene 0,488 de <em>accuracy</em> y 0,094 de F1 macro (sección 3.2); el finalista lo supera
+ampliamente en ambas métricas (sección 5.5). Con clases desbalanceadas, la mejora en F1
+macro descarta que el <em>accuracy</em> refleje solo la proporción de las clases
+mayoritarias.</p></li>
+<li><p><strong>Estructura espacial.</strong> La validación con partición aleatoria es optimista para zonas
+no muestreadas (sección 2.7). Por ello se repitió con XGBoost (su mejor configuración del benchmark) la prueba de la
+sección 3.8: validación con <code class="docutils literal notranslate"><span class="pre">GroupKFold</span></code>, dejando fuera un área silvestre completa en
+cada pliegue, sobre la misma submuestra de 60.000 celdas.</p></li>
+</ol>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Mostrar código</span>
+<span class="expanded">Ocultar código</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">areas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">RESULTS3</span> <span class="o">/</span> <span class="s2">"finalista_areas_no_vistas.csv"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8-sig"</span><span class="p">)</span>
+<span class="n">tab_areas</span> <span class="o">=</span> <span class="n">areas</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">"área_no_vista"</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"modelo"</span><span class="p">,</span>
+                              <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">"accuracy"</span><span class="p">,</span> <span class="s2">"f1_macro_clases_presentes"</span><span class="p">])</span>
+<span class="n">tab_areas</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'Accuracy'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s1">'accuracy'</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'F1 macro (clases presentes)'</span><span class="si">}</span><span class="s2"> · </span><span class="si">{</span><span class="n">mod</span><span class="si">}</span><span class="s2">"</span>
+                     <span class="k">for</span> <span class="n">m</span><span class="p">,</span> <span class="n">mod</span> <span class="ow">in</span> <span class="n">tab_areas</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">tab_areas</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"Promedio"</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab_areas</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">tab_areas</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Área no vista"</span>
+<span class="n">display</span><span class="p">(</span><span class="n">tab_areas</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Área no vista</th>
+      <th>Accuracy · Regresión logística</th>
+      <th>Accuracy · XGBoost</th>
+      <th>F1 macro (clases presentes) · Regresión logística</th>
+      <th>F1 macro (clases presentes) · XGBoost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cache la Poudre</td>
+      <td>0.534</td>
+      <td>0.438</td>
+      <td>0.389</td>
+      <td>0.305</td>
+    </tr>
+    <tr>
+      <td>Comanche Peak</td>
+      <td>0.571</td>
+      <td>0.592</td>
+      <td>0.374</td>
+      <td>0.265</td>
+    </tr>
+    <tr>
+      <td>Neota</td>
+      <td>0.562</td>
+      <td>0.530</td>
+      <td>0.431</td>
+      <td>0.451</td>
+    </tr>
+    <tr>
+      <td>Rawah</td>
+      <td>0.577</td>
+      <td>0.616</td>
+      <td>0.369</td>
+      <td>0.402</td>
+    </tr>
+    <tr>
+      <td>Promedio</td>
+      <td>0.561</td>
+      <td>0.544</td>
+      <td>0.391</td>
+      <td>0.356</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>El resultado es concluyente: <strong>un modelo de árboles no generaliza mejor que el modelo lineal a un área no
+vista.</strong> Al predecir un área silvestre completa, XGBoost obtiene una <em>accuracy</em> media de 0,54 y un F1 macro de
+0,36 sobre las clases presentes, por debajo de la regresión logística (0,56 y 0,39). La diferencia es máxima en
+Cache la Poudre (0,44 frente a 0,53), el área con la composición más distinta y la única con álamo/sauce. En las
+dos áreas grandes, Rawah y Comanche Peak, XGBoost es algo mejor en <em>accuracy</em> (0,62 frente a 0,58 y 0,59 frente
+a 0,57). El modelo de <em>boosting</em> aprende interacciones finas entre elevación, suelo y área que son válidas dentro
+de cada área, pero que no se transfieren a un área con otra composición; el modelo lineal, más rígido, extrapola
+algo mejor. Los valores de la regresión logística reproducen, con diferencias menores a 0,01, los de la
+sección 3.8.</p>
+<p>Esta prueba no indica fuga de información, sino que delimita el dominio de validez del
+modelo: el desempeño reportado en la prueba reservada corresponde a
+celdas no vistas <strong>dentro</strong> de las áreas muestreadas, que es el uso previsto del modelo
+(sección 2.7), y no a regiones nuevas.</p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Complejidad del problema.</strong> El problema no es trivial: el mejor modelo lineal se
+queda en un F1 macro de 0,56, las dos clases mayoritarias se solapan en todas las
+variables y la mejora de los modelos de árboles se explica por su capacidad de modelar
+interacciones no lineales, como muestran los análisis SHAP de los capítulos 8 y 11.</p></li>
+</ol>
+</section>
+<section id="limitaciones">
+<h2>9.5 Limitaciones<a class="headerlink" href="#limitaciones" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Generalización geográfica.</strong> El desempeño reportado corresponde a celdas no vistas
+dentro de las cuatro áreas silvestres muestreadas. Al predecir un área completa no
+incluida en el entrenamiento, la <em>accuracy</em> de XGBoost cae a 0,54, por debajo de la
+regresión logística (sección 9.4), y el modelo no debe aplicarse a otras regiones sin
+datos locales.</p></li>
+<li><p><strong>Benchmark sobre una submuestra.</strong> Las 112 combinaciones se evaluaron con 40.000 filas
+(9.000 para la SVM). El orden entre familias podría cambiar con el conjunto completo,
+en particular para algoritmos que se benefician más del volumen de datos, aunque el
+finalista sí se reentrenó con las 464.809 filas.</p></li>
+<li><p><strong>Espacios de búsqueda acotados.</strong> El espacio común es pequeño y discreto. Una búsqueda más amplia para todos
+los algoritmos (por ejemplo, árboles más profundos en XGBoost) podría mejorar a cualquiera de ellos y cambiar
+el finalista.</p></li>
+<li><p><strong>Potencia estadística.</strong> Tres pliegues externos son insuficientes para que la prueba de
+Nemenyi discrimine entre las combinaciones, y solo permiten declarar significativa la
+diferencia entre la mejor y la peor familia. El capítulo 12 usa 30 pliegues para el modelo original.</p></li>
+<li><p><strong>Ausencia de coordenadas.</strong> Sin latitud ni longitud no es posible medir la
+autocorrelación espacial de los residuos ni construir bloques espaciales finos. La
+validación por área silvestre, aplicada a XGBoost y a la regresión logística, es una aproximación gruesa a
+la validación espacial.</p></li>
+<li><p><strong>Antigüedad y calidad de las etiquetas.</strong> La cartografía es anterior a 1998 y las
+etiquetas provienen de un sistema de información del USFS, no de un inventario de campo
+celda por celda.</p></li>
+</ul>
+</section>
+<section id="conclusiones-del-benchmark">
+<h2>9.6 Conclusiones del benchmark<a class="headerlink" href="#conclusiones-del-benchmark" title="Permalink to this heading">#</a></h2>
+<p>Las conclusiones del proyecto completo, incluido el modelo original, están en el capítulo 13.</p>
+<ol class="arabic simple">
+<li><p><strong>Las variables cartográficas permiten predecir la cobertura forestal con buena precisión dentro de las
+áreas muestreadas.</strong> El finalista del benchmark, Random Forest con SMOTE, alcanza en la prueba
+reservada un F1 macro de 0,866 al reentrenarse con el conjunto completo, frente a 0,557 de la regresión
+logística. Supera al modelo lineal en las siete clases según la prueba de DeLong con corrección de Holm.</p></li>
+<li><p><strong>Con el mismo espacio y presupuesto para todas las combinaciones</strong>, Random Forest con SMOTE lidera (0,783),
+seguido de K vecinos y XGBoost, prácticamente empatados (0,746).</p></li>
+<li><p><strong>Los métodos de conjunto basados en árboles y los vecinos son las familias más fuertes.</strong> El balanceo
+<strong>sí</strong> mejora a Random Forest (+0,033 con SMOTE o ADASYN), pero empeora a XGBoost. El efecto del
+desbalance depende del algoritmo y no puede generalizarse.</p></li>
+<li><p><strong>La eficacia de los métodos de optimización depende del espacio de búsqueda.</strong> En espacios discretos y
+pequeños, Grid Search y Random Search fueron más eficaces y eficientes que los métodos dirigidos. En un
+espacio de cinco dimensiones con 30 evaluaciones, la optimización bayesiana alcanzó la mejor solución, con
+la menor variabilidad entre semillas. <em>Successive Halving</em> redujo el costo en un 92 % sin pérdida de calidad.</p></li>
+<li><p><strong>La elevación es el determinante principal de la cobertura</strong> en la regresión logística, XGBoost, Random
+Forest y el modelo original, seguida del tipo de suelo, el área silvestre y las distancias a carreteras y a
+puntos de incendio.</p></li>
+<li><p><strong>El dominio de validez de los modelos son las áreas muestreadas.</strong> Al predecir un área silvestre completa
+no vista, un modelo de árboles pierde su ventaja frente a la regresión logística.</p></li>
+<li><p><strong>La eficiencia computacional depende de la estructura del problema.</strong> El método <code class="docutils literal notranslate"><span class="pre">hist</span></code> de XGBoost redujo el
+tiempo de entrenamiento en un orden de magnitud sin pérdida apreciable de desempeño, mientras que las
+estructuras de indexación de KNN resultaron contraproducentes con 57 dimensiones.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="09_interpretabilidad.html"
+       title="página anterior">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">8. Interpretabilidad de XGBoost: SHAP frente a LIME</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="e3_04_literatura.html"
+       title="siguiente página">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">10. Revisión de literatura y evidencia de novedad</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complejidad-algoritmica-y-tiempo-empirico">9.1 Complejidad algorítmica y tiempo empírico</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementaciones-estandar-frente-a-optimizadas">9.2 Implementaciones estándar frente a optimizadas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#costo-de-la-optimizacion-de-hiperparametros-de-xgboost">Costo de la optimización de hiperparámetros de XGBoost</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensibilidad-de-xgboost-a-la-semilla">Sensibilidad de XGBoost a la semilla</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paralelizacion-y-reproducibilidad">9.3 Paralelización y reproducibilidad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#revision-critica-del-desempeno">9.4 Revisión crítica del desempeño</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitaciones">9.5 Limitaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-del-benchmark">9.6 Conclusiones del benchmark</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Ana Galván, Valeria Oñate y María José Ruiz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
