@@ -513,17 +513,26 @@ DIFERENCIAS = [
 ]
 
 
+ETIQ_ABLACION = {"sin nucleo de distancia": "sin núcleo de distancia", "sin vecindario (tau = inf)": "sin vecindario (τ = ∞)",
+                 "sin contraccion (tau = 0)": "sin contracción (τ = 0)", "promedio simple (beta = 0)": "promedio simple (β = 0)"}
+
+
 def fig_ablacion():
     a = D.EST_ABLACION.sort_values("f1_media")
     eclc = D.EST_RESUMEN.set_index("metodo").loc["ECLC", "f1_media"]
-    fig = go.Figure(go.Bar(x=a["f1_media"], y=a["variante"], orientation="h", error_x=dict(type="data", array=a["f1_sd"]),
+    # El valor va junto al nombre (eje y) para no chocar con la barra de error ni con la línea del ECLC
+    etiquetas = [f"{ETIQ_ABLACION.get(v, v)}  <b>{f:.4f}</b>" for v, f in zip(a["variante"], a["f1_media"])]
+    fig = go.Figure(go.Bar(x=a["f1_media"], y=etiquetas, orientation="h",
+                           error_x=dict(type="data", array=a["f1_sd"], color="#37474f", thickness=1.5),
                            marker_color=["#5b6fb3" if v.startswith("sin") else "#9e9e9e" for v in a["variante"]],
-                           text=[f"{v:.4f}" for v in a["f1_media"]], textposition="outside",
-                           hovertemplate="<b>%{y}</b><br>F1 macro %{x:.4f}<extra></extra>"))
-    fig.add_vline(x=eclc, line_dash="dash", line_color="#b0413e", annotation_text=f"ECLC completo {eclc:.4f}")
-    fig.update_layout(height=430, title="Ablación (azul) y reglas de combinación estándar (gris), 30 pliegues",
-                      xaxis=dict(title="F1 macro medio", range=[a["f1_media"].min() - 0.02, max(a["f1_media"].max(), eclc) + 0.015]),
-                      yaxis=dict(showgrid=False))
+                           hovertemplate="<b>%{y}</b><br>F1 macro %{x:.4f} ± %{error_x.array:.4f}<extra></extra>"))
+    fig.add_vline(x=eclc, line_dash="dash", line_color="#b0413e")
+    fig.add_annotation(x=eclc, y=1.0, yref="paper", yanchor="bottom", showarrow=False,
+                       text=f"<b>ECLC completo {eclc:.4f}</b>", font=dict(color="#b0413e"))
+    fig.update_layout(height=450, title="Ablación (azul) y reglas de combinación estándar (gris), 30 pliegues",
+                      xaxis=dict(title="F1 macro medio (± desviación estándar)",
+                                 range=[a["f1_media"].min() - 0.02, max(a["f1_media"].max(), eclc) + 0.015]),
+                      yaxis=dict(showgrid=False), margin=dict(t=70))
     return fig
 
 
