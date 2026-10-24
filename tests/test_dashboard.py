@@ -65,11 +65,12 @@ def test_callbacks_eda(cliente):
             ("f-elevacion", "value", [1859, 1860])])
 
 
+@pytest.mark.parametrize("entrenamiento", ["completo", "submuestra"])
 @pytest.mark.parametrize("modelo", ["ECLC", "RF", "KNN", "XGB", "SVM", "NB", "LR", "DT"])
-def test_diagnostico(cliente, modelo):
+def test_diagnostico(cliente, modelo, entrenamiento):
     llamar(cliente, "..kpis-diag.children...fig-cm-diag.figure...nota-cm-diag.children...fig-roc-diag.figure..."
                     "fig-pr-diag.figure...fig-cal-diag.figure...nota-cal-diag.children...fig-shap-diag.figure..."
-                    "nota-shap-diag.children..", [("modelo-diag", "value", modelo)])
+                    "nota-shap-diag.children..", [("modelo-diag", "value", modelo), ("entrenamiento-diag", "value", entrenamiento)])
 
 
 def _estados(valores):

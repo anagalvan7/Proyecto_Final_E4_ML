@@ -11,7 +11,7 @@ import shutil
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import auc, average_precision_score, f1_score, precision_recall_curve, precision_score, \
+from sklearn.metrics import auc, average_precision_score, confusion_matrix, f1_score, precision_recall_curve, precision_score, \
     recall_score, roc_curve
 
 import _e3 as e3
@@ -38,30 +38,35 @@ def diagnosticos():
     for m in MODELOS:
         P = h[m].astype(float)
         P = P / P.sum(1, keepdims=True)
-        pred = e3.CLASES[P.argmax(1)]
-        cm = pd.read_csv(e3.RES_E3 / f"holdout_confusion_{m}.csv", index_col=0).to_numpy()
-        roc, pr = {}, {}
-        for i, c in enumerate(e3.CLASES):
-            yb = (y == c).astype(int)
-            fpr, tpr, _ = roc_curve(yb, P[:, i])
-            pre, rec, _ = precision_recall_curve(yb, P[:, i])
-            roc[int(c)] = {"fpr": _curva(fpr, tpr)[0], "tpr": _curva(fpr, tpr)[1], "auc": float(auc(fpr, tpr))}
-            pr[int(c)] = {"recall": _curva(rec[::-1], pre[::-1])[0], "precision": _curva(rec[::-1], pre[::-1])[1],
-                          "ap": float(average_precision_score(yb, P[:, i]))}
-        conf = P.max(1)
-        acierto = (pred == y)
-        bins = np.linspace(0, 1, 11)
-        idx = np.clip(np.digitize(conf, bins) - 1, 0, 9)
-        calib = [{"confianza": float(conf[idx == b].mean()), "exactitud": float(acierto[idx == b].mean()),
-                  "n": int((idx == b).sum())} for b in range(10) if (idx == b).sum() > 0]
-        ece = sum(r["n"] * abs(r["confianza"] - r["exactitud"]) for r in calib) / len(y)
-        Y = np.eye(7)[np.searchsorted(e3.CLASES, y)]
-        salida[m] = {"confusion": cm.tolist(), "roc": roc, "pr": pr, "calibracion": calib, "ece": float(ece),
-                     "brier": float(((P - Y) ** 2).sum(1).mean()),
-                     "f1_clase": f1_score(y, pred, labels=e3.CLASES, average=None).tolist(),
-                     "precision_clase": precision_score(y, pred, labels=e3.CLASES, average=None).tolist(),
-                     "recall_clase": recall_score(y, pred, labels=e3.CLASES, average=None).tolist()}
+        salida[m] = diagnostico_de(y, P)
     json.dump(salida, open(DEST / "diagnosticos.json", "w", encoding="utf-8"))
+
+
+def diagnostico_de(y, P):
+    """Confusion, ROC, precision-recall, calibracion, ECE, Brier y metricas por clase de unas probabilidades (n, 7)."""
+    pred = e3.CLASES[P.argmax(1)]
+    cm = confusion_matrix(y, pred, labels=e3.CLASES)
+    roc, pr = {}, {}
+    for i, c in enumerate(e3.CLASES):
+        yb = (y == c).astype(int)
+        fpr, tpr, _ = roc_curve(yb, P[:, i])
+        pre, rec, _ = precision_recall_curve(yb, P[:, i])
+        roc[int(c)] = {"fpr": _curva(fpr, tpr)[0], "tpr": _curva(fpr, tpr)[1], "auc": float(auc(fpr, tpr))}
+        pr[int(c)] = {"recall": _curva(rec[::-1], pre[::-1])[0], "precision": _curva(rec[::-1], pre[::-1])[1],
+                      "ap": float(average_precision_score(yb, P[:, i]))}
+    conf = P.max(1)
+    acierto = (pred == y)
+    bins = np.linspace(0, 1, 11)
+    idx = np.clip(np.digitize(conf, bins) - 1, 0, 9)
+    calib = [{"confianza": float(conf[idx == b].mean()), "exactitud": float(acierto[idx == b].mean()),
+              "n": int((idx == b).sum())} for b in range(10) if (idx == b).sum() > 0]
+    ece = sum(r["n"] * abs(r["confianza"] - r["exactitud"]) for r in calib) / len(y)
+    Y = np.eye(7)[np.searchsorted(e3.CLASES, y)]
+    return {"confusion": cm.tolist(), "roc": roc, "pr": pr, "calibracion": calib, "ece": float(ece),
+            "brier": float(((P - Y) ** 2).sum(1).mean()),
+            "f1_clase": f1_score(y, pred, labels=e3.CLASES, average=None).tolist(),
+            "precision_clase": precision_score(y, pred, labels=e3.CLASES, average=None).tolist(),
+            "recall_clase": recall_score(y, pred, labels=e3.CLASES, average=None).tolist()}
 
 
 def celdas_shap():

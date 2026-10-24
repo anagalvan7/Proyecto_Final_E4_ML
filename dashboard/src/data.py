@@ -167,6 +167,11 @@ EST_RESUMEN_COMPLETO = pd.read_csv(E3 / "estadistica_resumen_completo.csv", enco
 EST_PAREADAS_COMPLETO = pd.read_csv(E3 / "estadistica_pareadas_completo.csv", encoding="utf-8-sig")
 with open(E3 / "diagnosticos.json", encoding="utf-8") as f:
     DIAG = json.load(f)
+# Diagnosticos de los modelos entrenados con el conjunto completo (precalculados: no caben en la memoria de Render)
+DIAG_COMPLETO = {}
+if (E3 / "diagnosticos_completo.json").exists():
+    with open(E3 / "diagnosticos_completo.json", encoding="utf-8") as f:
+        DIAG_COMPLETO = json.load(f)
 with open(E3 / "shap_global.json", encoding="utf-8") as f:
     SHAP_GLOBAL = json.load(f)
 CONVERGENCIA = pd.read_csv(E3 / "convergencia_optuna.csv", encoding="utf-8-sig")

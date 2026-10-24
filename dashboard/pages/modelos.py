@@ -12,7 +12,7 @@ from src import modelos as MOD
 from src import seccion_e2 as E2
 from src.data import CLASES, COLOR, CORTO, ETIQ, LIBRO, fmt, vacio
 from src.preprocesamiento import NUM_COLS
-from src.ui import control, grafica, intro, kpi, nota, tarjeta
+from src.ui import control, grafica, intro, kpi, nota, radio, tarjeta
 
 dash.register_page(__name__, path="/modelos", name="Modelos", title="Modelos · Covertype")
 
@@ -30,23 +30,26 @@ V = D.VEREDICTO
 # ======================================================================== tabla de lideres
 def tabla_lideres():
     est = D.EST_RESUMEN.set_index("metodo")
+    est_c = D.EST_RESUMEN_COMPLETO.set_index("metodo")
     filas = []
     for m in ORDEN + ["HGB"]:
         h = D.HOLDOUT[m]
         e = est.loc[CLAVE_EST[m]]
+        ec = est_c.loc[CLAVE_EST[m]]
         filas.append({
             "Modelo": NOMBRES[m], "Balanceo": D.BALANCEOS.get(h.get("balanceo"), h.get("balanceo") or "—"),
             "Optimizador": D.OPTIMIZADORES.get(h.get("optimizacion"), "Random Search" if m == "HGB" else "—"),
             "F1 anidada 3×3": f"{fmt(h['f1_cv_media'])} ± {fmt(h['f1_cv_sd'])}"
             if h.get("f1_cv_media") is not None else "—",
             "F1 30 pliegues": f"{fmt(e['f1_media'])} ± {fmt(e['f1_sd'])}",
-            "f1_30": round(float(e["f1_media"]), 4),
-            "F1 prueba reservada": round(h["prueba_reservada"]["f1_macro"], 4),
-            "Accuracy prueba": round(h["prueba_reservada"]["accuracy"], 4),
+            "F1 prueba reservada (40.000)": round(h["prueba_reservada"]["f1_macro"], 4),
+            "F1 completo 10 pliegues": f"{fmt(ec['f1_media'])} ± {fmt(ec['f1_sd'])}",
+            "f1_c": round(float(ec["f1_media"]), 4),
+            "F1 completo prueba reservada": round(float(ec["f1_prueba_reservada"]), 4),
             "Inferencia (ms / 1.000 celdas)": round(1000 * h["tiempo_inferencia_s_por_1000"], 1)
             if h.get("tiempo_inferencia_s_por_1000") else None,
         })
-    df = pd.DataFrame(filas).sort_values("f1_30", ascending=False).drop(columns="f1_30")
+    df = pd.DataFrame(filas).sort_values("f1_c", ascending=False).drop(columns="f1_c")
     return dash_table.DataTable(
         data=df.to_dict("records"), columns=[{"name": c, "id": c} for c in df.columns],
         sort_action="native", filter_action="native", style_table={"overflowX": "auto"},
@@ -67,7 +70,9 @@ def sub_lideres():
             tabla_lideres(),
             nota("«F1 anidada 3×3» es la estimación del benchmark corregido (3 pliegues externos). «F1 30 pliegues» repite la "
                  "evaluación en 10 particiones de 3 pliegues, las mismas para todos los modelos, y alimenta las pruebas de "
-                 "hipótesis. La prueba reservada (116.203 celdas) se usó una sola vez.", "06_benchmark_modelos.html", "5.4"),
+                 "hipótesis. Las columnas «completo» repiten la evaluación entrenando con las 464.809 celdas (5 × 2 pliegues y "
+                 "prueba reservada); la tabla se ordena por ellas. La prueba reservada (116.203 celdas) se usó una sola vez. "
+                 "La predicción en vivo usa los modelos de la submuestra, que caben en la memoria del servidor.", "06_benchmark_modelos.html", "5.4"),
         ], "mb-3"),
     ])
 
@@ -178,8 +183,13 @@ def sub_diagnostico():
     return html.Div([
         intro(html.B("Diagnóstico en la prueba reservada. "), "Elige un modelo para ver su matriz de confusión, sus curvas ROC "
               "y de precisión-recall por clase, su calibración y su interpretabilidad global (SHAP)."),
-        control("🤖 Modelo", dcc.Dropdown(id="modelo-diag", clearable=False, value="ECLC",
-                                         options=[{"label": NOMBRES[m], "value": m} for m in ORDEN]), "mb-2"),
+        dbc.Row([
+            dbc.Col(control("🤖 Modelo", dcc.Dropdown(id="modelo-diag", clearable=False, value="ECLC",
+                                                     options=[{"label": NOMBRES[m], "value": m} for m in ORDEN])), md=5),
+            dbc.Col(control("🗂️ Modelos entrenados con", radio("entrenamiento-diag", [
+                ("completo", "el conjunto completo (464.809 celdas)"),
+                ("submuestra", "la submuestra de 40.000 celdas (los de la predicción en vivo)")], "completo")), md=7),
+        ], className="mb-2"),
         html.Div(id="kpis-diag", className="mb-2"),
         dbc.Row([
             dbc.Col(tarjeta("Matriz de confusión (recall por fila)", "mdi:grid", "cab-azul", [grafica("fig-cm-diag"),
@@ -206,13 +216,18 @@ def sub_diagnostico():
 @callback(Output("kpis-diag", "children"), Output("fig-cm-diag", "figure"), Output("nota-cm-diag", "children"),
           Output("fig-roc-diag", "figure"), Output("fig-pr-diag", "figure"), Output("fig-cal-diag", "figure"),
           Output("nota-cal-diag", "children"), Output("fig-shap-diag", "figure"), Output("nota-shap-diag", "children"),
-          Input("modelo-diag", "value"))
-def cb_diagnostico(m):
-    d = D.DIAG[m]
-    h = D.HOLDOUT[m]["prueba_reservada"]
+          Input("modelo-diag", "value"), Input("entrenamiento-diag", "value"))
+def cb_diagnostico(m, entrenamiento):
+    completo = entrenamiento == "completo" and m in D.DIAG_COMPLETO
+    if completo:
+        d = h = D.DIAG_COMPLETO[m]
+        detalle = "prueba reservada · entrenamiento completo"
+    else:
+        d, h = D.DIAG[m], D.HOLDOUT[m]["prueba_reservada"]
+        detalle = "prueba reservada · submuestra de 40.000"
     kpis = dbc.Row([
-        dbc.Col(kpi("F1 macro", fmt(h["f1_macro"]), "prueba reservada", 1), md=3, xs=6),
-        dbc.Col(kpi("Accuracy", fmt(h["accuracy"]), "prueba reservada", 2), md=3, xs=6),
+        dbc.Col(kpi("F1 macro", fmt(h["f1_macro"]), detalle, 1), md=3, xs=6),
+        dbc.Col(kpi("Accuracy", fmt(h["accuracy"]), detalle, 2), md=3, xs=6),
         dbc.Col(kpi("Brier", fmt(d["brier"]), "menor es mejor", 3), md=3, xs=6),
         dbc.Col(kpi("ECE", fmt(d["ece"]), "error de calibración", 4), md=3, xs=6),
     ], className="g-2")
@@ -259,6 +274,7 @@ def cb_diagnostico(m):
                         xaxis=dict(title="Aporte medio absoluto a la probabilidad"), yaxis=dict(showgrid=False))
     nota_s = [html.B("💡 Interpretación: "), f"Para {NOMBRES[m]} la variable que más mueve la probabilidad es "
               f"{GRUPO_ETIQ[imp.index[-1]].lower()}, seguida de {GRUPO_ETIQ[imp.index[-2]].lower()}. ",
+              "(El SHAP global se calculó con los modelos de la submuestra, que son los que carga el dashboard.) " if completo else "",
               html.A("Comparación SHAP del ECLC y del mejor benchmark en la sección 11.9 →", href=LIBRO + "e3_05_modelo_original.html",
                      target="_blank")]
     return kpis, fig_cm, nota_cm, fig_roc, fig_pr, fig_cal, nota_cal, fig_s, nota_s
