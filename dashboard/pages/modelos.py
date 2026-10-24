@@ -482,7 +482,7 @@ máximo $\log(7)/\beta$ por encima.
 **Proposición 3 (complejidad).** Ajustar la combinación cuesta $O(nMC)$; predecir $n_q$ celdas,
 $O(n_q\,n\,p + n_q\,k\,M\,C)$, dominado por la búsqueda exacta de vecinos (medido: el tiempo crece linealmente con $n$).
 
-Las proposiciones 1 y 2 se verifican numéricamente en las pruebas unitarias (`tests/test_original_model.py`).
+Las proposiciones 1 y 2 se verifican numéricamente en las pruebas unitarias del modelo.
 """
 
 PSEUDO = r"""
