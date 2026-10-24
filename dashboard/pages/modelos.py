@@ -160,9 +160,12 @@ def cb_predecir(_, modelo, area, suelo, *valores):
     fig_s = go.Figure(go.Bar(x=e["shap"], y=e["etq"], orientation="h",
                              marker_color=["#0f9d58" if v > 0 else "#d9643a" for v in e["shap"]],
                              text=[f"{v:+.3f}" for v in e["shap"]], textposition="outside",
-                             hovertemplate="<b>%{y}</b><br>Aporte: %{x:+.3f}<extra></extra>"))
+                             hovertemplate="<b>%{y}</b><br>Aporte: %{x:+.3f}<extra></extra>", cliponaxis=False))
+    lo, hi = min(float(e["shap"].min()), 0.0), max(float(e["shap"].max()), 0.0)
+    margen = 0.22 * (hi - lo or 1.0)                     # espacio para que las etiquetas no se corten
     fig_s.update_layout(height=320, title=f"¿Por qué {CORTO[c]}? (SHAP local, P = {fx:.2f}; base = {base:.2f})",
-                        xaxis=dict(title="Aporte a la probabilidad (verde sube, terracota baja)"),
+                        xaxis=dict(title="Aporte a la probabilidad (verde sube, terracota baja)",
+                                   range=[lo - (margen if lo < 0 else 0), hi + margen]),
                         yaxis=dict(showgrid=False), margin=dict(t=40))
     hijos = [html.H4([f"{ETIQ[c]}", dbc.Badge(f"{100 * p[c - 1]:.1f} %", color="success", className="ms-2")]),
              grafica(figura=fig_p), grafica(figura=fig_s),
