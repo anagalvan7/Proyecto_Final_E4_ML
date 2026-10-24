@@ -43,9 +43,14 @@ def _proba_base(modelo, X):
     return salida
 
 
+TAM_LOTE = 64  # filas por lote: acota la memoria pico (KernelSHAP evalua miles de filas a la vez)
+
+
 def predecir_proba(modelo, X):
     """Probabilidades (n, 7) de un modelo base o del ECLC para un DataFrame con las 54 columnas."""
     X = X[FEATURES]
+    if len(X) > TAM_LOTE:
+        return np.vstack([predecir_proba(modelo, X.iloc[i:i + TAM_LOTE]) for i in range(0, len(X), TAM_LOTE)])
     if modelo != "ECLC":
         return _proba_base(modelo, X)
     eclc = cargar("ECLC")
