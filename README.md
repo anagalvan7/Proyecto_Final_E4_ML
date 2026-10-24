@@ -16,10 +16,12 @@ validación estadística, y un dashboard en Dash desplegable en Render.
 ```
 datos/                    covertype.csv (UCI Covertype, CC BY 4.0)
 Entregable4_Covertype.ipynb  todos los capítulos del libro en un solo cuaderno, con salidas
+sustentacion_en_vivo.ipynb   modificaciones en vivo del ECLC y de las pruebas estadísticas
 docs/                     Jupyter Book (fuentes .md MyST, _config.yml, _toc.yml, references.bib)
-scripts/                  benchmark, corrección del protocolo y experimentos del Entregable 3 (e3_*.py)
+scripts/                  benchmark, corrección del protocolo y experimentos del modelo original (e3*_*.py)
 resultados/               registros y tablas; entregable2_original/ guarda los registros sin corregir
-resultados/e3/            pliegues, pruebas, literatura y tabla maestra del modelo original. Las probabilidades
+resultados/e3/            pliegues, pruebas y literatura; tabla_maestra_e3.csv reúne las 112 combinaciones, el
+                          ECLC y HistGradientBoosting (métricas del bucle externo, tiempos y semillas). Las probabilidades
                           intermedias por pliegue (*.npz, ~800 MB) no se versionan: se regeneran con scripts/e3*_probas*.py
 dashboard/                aplicación Dash (app.py, pages/, src/, artifacts/, datos/, assets/, render.yaml)
 artifacts_completos/      Random Forest de 200 árboles (el desplegado usa 80 por la memoria de Render)
@@ -33,7 +35,7 @@ El modelo original está en `dashboard/src/original_model.py` (clase `EnsambleCo
 ```bash
 conda create -p ./env python=3.10 && conda activate ./env
 pip install -r docs/requirements.txt pytest dash==2.18.2 dash-bootstrap-components==1.6.0 dash-iconify==0.1.2 plotly==5.24.1
-python -m pytest tests                 # 32 pruebas
+python -m pytest tests                 # 40 pruebas
 jupyter-book build docs                # libro en docs/_build/html/index.html
 cd dashboard && python app.py          # dashboard en http://127.0.0.1:8050
 ```
