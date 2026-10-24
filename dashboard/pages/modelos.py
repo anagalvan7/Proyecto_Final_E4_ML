@@ -343,6 +343,19 @@ def veredicto():
     ], color="success" if ok else "warning")
 
 
+def veredicto_submuestra():
+    """Veredicto con la submuestra de 40.000 celdas (30 pliegues), reportado como complemento."""
+    ok = V["R3"]
+    pruebas = [html.Li([("✅ " if v else "❌ ") + k]) for k, v in V["pruebas_vs_mejor"].items()]
+    return dbc.Alert([
+        html.H6("R3 se cumple también en la submuestra" if ok else
+                "En la submuestra la ventaja es menor y R3 no alcanza las tres pruebas"),
+        html.P(f"F1 macro medio en {V['n_pliegues']} pliegues: ECLC {fmt(V['f1_eclc'])} frente a {fmt(V['f1_mejor_benchmark'])} "
+               f"del mejor benchmark ({V['mejor_benchmark']}); gana en 27 de 30 pliegues; δ de Cliff = {fmt(V['cliff_vs_mejor'], 2)}."),
+        html.P("Pruebas frente al mejor benchmark (p ajustado por Holm sobre 8 comparaciones):"), html.Ul(pruebas, className="mb-0"),
+    ], color="success" if ok else "secondary")
+
+
 NOMBRE_EST = {"ECLC": "ECLC (original)", "HGB (estado del arte)": "HistGradientBoosting", "stacking lineal": "Stacking lineal",
               **{f"base:{m}": NOMBRES[m] for m in MOD.BASES}}
 
@@ -384,7 +397,7 @@ def sub_estadistica():
               "y además con el entrenamiento completo (tarjeta verde)."),
         tarjeta_completo(),
         html.H5("Con la submuestra de 40.000 celdas del benchmark", className="seccion-titulo mt-2"),
-        veredicto(),
+        veredicto_submuestra(),
         dbc.Row([
             dbc.Col(tarjeta("Diagrama de diferencia crítica (Friedman → Nemenyi)", "mdi:ruler", "cab-azul", [
                 grafica(figura=fig_cd()),
