@@ -311,13 +311,51 @@ y las reglas de combinación estándar.
 vc = json.load(open(C / "estadistica_veredicto_completo.json", encoding="utf-8"))
 pc = pd.read_csv(C / "estadistica_pareadas_completo.csv", encoding="utf-8-sig")
 display(pc[["competidor", "dif_media_f1", "dif_ic95_inf", "dif_ic95_sup", "ecl_gana_pliegues", "wilcoxon_p_holm",
-            "nb_p_holm", "mcnemar_p_holm", "bayes_p_eclc_mejor", "cliff_delta", "magnitud_cliff"]].round(4))
+            "nb_p_holm", "mcnemar_p_holm", "bayes_p_eclc_mejor", "cliff_delta", "magnitud_cliff"]].style.format(
+    {"dif_media_f1": "{:.4f}", "dif_ic95_inf": "{:.4f}", "dif_ic95_sup": "{:.4f}", "wilcoxon_p_holm": "{:.2e}",
+     "nb_p_holm": "{:.2e}", "mcnemar_p_holm": "{:.2e}", "bayes_p_eclc_mejor": "{:.3f}", "cliff_delta": "{:.2f}"}))
 display(Image(filename=str(C / "diagrama_cd_completo.png")))
 print(f"Mejor benchmark: {vc['mejor_benchmark']} ({vc['f1_mejor_benchmark']:.4f}); ECLC: {vc['f1_eclc']:.4f} "
-      f"(prueba reservada: {vc['f1_eclc_prueba_reservada']:.4f})")
-for k_, ok in vc["pruebas_vs_mejor"].items():
-    print(f"   - {k_}: {'rechaza H0' if ok else 'no rechaza H0'}")
-print(f"Superioridad estadística con datos completos = {vc['R3']}")
+      f"(prueba reservada: {vc['f1_eclc_prueba_reservada']:.4f}). Superioridad estadística con datos completos = {vc['R3']}")
+```
+
+La tabla siguiente reúne, frente al mejor benchmark con datos completos, el estadístico de cada prueba, su
+p-valor crudo y el ajustado por Holm sobre las 8 comparaciones, el tamaño del efecto y la decisión con
+$\alpha = 0{,}05$.
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+fc, mb = vc["friedman"], vc["mejor_benchmark"]
+fila_c = pc[pc.competidor == mb].iloc[0]
+tabla_c = pd.DataFrame([
+    {"Prueba": "Friedman (ómnibus, 9 modelos)", "H0": "Todos los modelos tienen el mismo rango esperado",
+     "Estadístico": f"χ² = {fc['estadistico']:.2f}", "p crudo": fc["p_valor"], "p ajustado (Holm)": fc["p_valor"],
+     "Efecto": "—", "Conclusión": "Rechaza" if fc["p_valor"] < 0.05 else "No rechaza"},
+    {"Prueba": "Nemenyi (post hoc)", "H0": f"Rango ECLC = rango de {mb}",
+     "Estadístico": f"Δ rango = {fc['rangos'][mb] - fc['rangos']['ECLC (original)']:.2f} (CD = {fc['cd']:.2f})",
+     "p crudo": np.nan, "p ajustado (Holm)": np.nan, "Efecto": "—",
+     "Conclusión": "Rechaza" if vc["pruebas_vs_mejor"]["Nemenyi (rango ECLC vs mejor benchmark > CD)"] else "No rechaza"},
+    {"Prueba": "Wilcoxon de rangos con signo", "H0": f"Mediana de (ECLC − {mb}) ≤ 0",
+     "Estadístico": f"W = {fila_c['wilcoxon_W']:.0f}", "p crudo": fila_c["wilcoxon_p"],
+     "p ajustado (Holm)": fila_c["wilcoxon_p_holm"],
+     "Efecto": f"δ Cliff = {fila_c['cliff_delta']:.2f} ({fila_c['magnitud_cliff']})",
+     "Conclusión": "Rechaza" if fila_c["wilcoxon_p_holm"] < 0.05 else "No rechaza"},
+    {"Prueba": "t corregida de Nadeau-Bengio", "H0": f"E[ECLC − {mb}] ≤ 0", "Estadístico": f"t = {fila_c['nb_t']:.2f}",
+     "p crudo": fila_c["nb_p"], "p ajustado (Holm)": fila_c["nb_p_holm"],
+     "Efecto": f"d de Cohen (pareada) = {fila_c['cohen_dz']:.2f}",
+     "Conclusión": "Rechaza" if fila_c["nb_p_holm"] < 0.05 else "No rechaza"},
+    {"Prueba": "McNemar (prueba reservada)", "H0": f"P(ECLC acierta, {mb} falla) ≤ P(ECLC falla, {mb} acierta)",
+     "Estadístico": f"χ² = {fila_c['mcnemar_chi2']:.1f} (b01 = {fila_c['mcnemar_b01']}, b10 = {fila_c['mcnemar_b10']})",
+     "p crudo": fila_c["mcnemar_p"], "p ajustado (Holm)": fila_c["mcnemar_p_holm"], "Efecto": "—",
+     "Conclusión": "Rechaza" if fila_c["mcnemar_p_holm"] < 0.05 else "No rechaza"},
+    {"Prueba": "Bayesiana de rangos con signo", "H0": "—  (ROPE = ±0,01)",
+     "Estadístico": f"P(ECLC mejor) = {fila_c['bayes_p_eclc_mejor']:.3f}; P(ROPE) = {fila_c['bayes_p_rope']:.3f}",
+     "p crudo": np.nan, "p ajustado (Holm)": np.nan, "Efecto": "—",
+     "Conclusión": "ECLC mejor" if fila_c["bayes_p_eclc_mejor"] > 0.95 else
+                   "Equivalencia práctica" if fila_c["bayes_p_rope"] > 0.95 else "Indeterminada"},
+])
+tabla_c.style.format({"p crudo": "{:.2e}", "p ajustado (Holm)": "{:.2e}"}, na_rep="—")
 ```
 
 Con 10 pliegues, la prueba de Wilcoxon solo puede alcanzar un p-valor unilateral de $1/1024$ si el ECLC gana en

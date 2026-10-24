@@ -306,8 +306,8 @@ def fig_cd():
     return fig
 
 
-def tabla_pruebas():
-    p = D.EST_PAREADAS
+def tabla_pruebas(p=None):
+    p = D.EST_PAREADAS if p is None else p
     df = pd.DataFrame({
         "Competidor": p["competidor"], "Δ F1 (ECLC − comp.)": p["dif_media_f1"].round(4),
         "IC 95 % BCa": [f"[{a:.4f}, {b:.4f}]" for a, b in zip(p["dif_ic95_inf"], p["dif_ic95_sup"])],
@@ -327,7 +327,6 @@ def veredicto():
     """Veredicto principal: protocolo de datos completos. El de la submuestra se reporta como complemento."""
     vc = D.VEREDICTO_COMPLETO
     ok = vc["R3"]
-    pruebas = [html.Li([("✅ " if v else "❌ ") + k]) for k, v in vc["pruebas_vs_mejor"].items()]
     gana = int(D.EST_PAREADAS_COMPLETO.set_index("competidor").loc[vc["mejor_benchmark"], "ecl_gana_pliegues"])
     return dbc.Alert([
         html.H5(("✅ Superioridad estadística verificada (R3)" if ok else "⚠️ Superioridad no verificada (R3 no se cumple)")),
@@ -335,7 +334,8 @@ def veredicto():
                 html.B(f"ECLC {fmt(vc['f1_eclc'])}"), f" frente a {fmt(vc['f1_mejor_benchmark'])} del mejor benchmark "
                 f"({vc['mejor_benchmark']}); prueba reservada {fmt(vc['f1_eclc_prueba_reservada'])}. El ECLC gana en {gana} de "
                 f"{vc['n_pliegues']} pliegues; δ de Cliff = {fmt(vc['cliff_vs_mejor'], 2)} (grande)."]),
-        html.P("Pruebas frente al mejor benchmark (p ajustado por Holm sobre 8 comparaciones):"), html.Ul(pruebas),
+        html.P("Pruebas frente al mejor benchmark (α = 0,05; Holm ajusta por las 8 comparaciones):"),
+        lista_pruebas(vc, D.EST_PAREADAS_COMPLETO),
         html.P(["Con la submuestra de 40.000 celdas (30 pliegues) la ventaja es menor: ECLC ", fmt(V["f1_eclc"]), " frente a ",
                 fmt(V["f1_mejor_benchmark"]), f" ({V['mejor_benchmark']}); gana en 27 de 30 pliegues y la confirman Friedman y "
                 "Wilcoxon-Holm. Detalle de ambos protocolos en la pestaña de comparación estadística."],
@@ -343,16 +343,38 @@ def veredicto():
     ], color="success" if ok else "warning")
 
 
+def lista_pruebas(v, pareadas):
+    """Cada prueba frente al mejor benchmark con su estadístico y su p-valor (crudo y ajustado por Holm)."""
+    f, mb = v["friedman"], v["mejor_benchmark"]
+    fila = pareadas.set_index("competidor").loc[mb]
+    ok = v["pruebas_vs_mejor"]
+    pe = lambda x: f"{x:.2e}" if x < 0.001 else f"{x:.3f}"
+    textos = {
+        "Friedman (global)": f"Friedman (global): χ² = {f['estadistico']:.1f}, p = {pe(f['p_valor'])}",
+        "Nemenyi (rango ECLC vs mejor benchmark > CD)":
+            f"Nemenyi: diferencia de rangos {f['rangos'][mb] - f['rangos']['ECLC (original)']:.2f} frente a CD = {f['cd']:.2f}",
+        "Wilcoxon-Holm": f"Wilcoxon de rangos con signo: p = {pe(fila['wilcoxon_p'])}; p ajustado (Holm) = {pe(fila['wilcoxon_p_holm'])}",
+        "t corregida Nadeau-Bengio (Holm)":
+            f"t corregida de Nadeau-Bengio: t = {fila['nb_t']:.2f}, p = {pe(fila['nb_p'])}; p ajustado (Holm) = {pe(fila['nb_p_holm'])}",
+        "McNemar en prueba reservada (Holm)":
+            f"McNemar (prueba reservada): p = {pe(fila['mcnemar_p'])}; p ajustado (Holm) = {pe(fila['mcnemar_p_holm'])}",
+        "Bayesiana (P(ECLC mejor) > 0,95)":
+            f"Bayesiana (ROPE ±0,01): P(ECLC mejor) = {fila['bayes_p_eclc_mejor']:.3f}; P(equivalencia práctica) = "
+            f"{fila['bayes_p_rope']:.3f}",
+    }
+    return html.Ul([html.Li(("✅ " if ok[k] else "❌ ") + textos.get(k, k)) for k in ok], className="mb-1")
+
+
 def veredicto_submuestra():
     """Veredicto con la submuestra de 40.000 celdas (30 pliegues), reportado como complemento."""
     ok = V["R3"]
-    pruebas = [html.Li([("✅ " if v else "❌ ") + k]) for k, v in V["pruebas_vs_mejor"].items()]
     return dbc.Alert([
         html.H6("R3 se cumple también en la submuestra" if ok else
                 "En la submuestra la ventaja es menor y R3 no alcanza las tres pruebas"),
         html.P(f"F1 macro medio en {V['n_pliegues']} pliegues: ECLC {fmt(V['f1_eclc'])} frente a {fmt(V['f1_mejor_benchmark'])} "
                f"del mejor benchmark ({V['mejor_benchmark']}); gana en 27 de 30 pliegues; δ de Cliff = {fmt(V['cliff_vs_mejor'], 2)}."),
-        html.P("Pruebas frente al mejor benchmark (p ajustado por Holm sobre 8 comparaciones):"), html.Ul(pruebas, className="mb-0"),
+        html.P("Pruebas frente al mejor benchmark (α = 0,05; Holm ajusta por las 8 comparaciones):"),
+        lista_pruebas(V, D.EST_PAREADAS),
     ], color="success" if ok else "secondary")
 
 
@@ -374,16 +396,17 @@ def tarjeta_completo():
         style_header={"backgroundColor": "#1b6f5c", "color": "white", "fontWeight": "bold"},
         style_data_conditional=[{"if": {"filter_query": '{Modelo} contains "ECLC"'}, "backgroundColor": "#fdecea",
                                  "fontWeight": "bold"}])
-    pruebas = [html.Li(("✅ " if ok else "❌ ") + k) for k, ok in vc["pruebas_vs_mejor"].items()]
     return tarjeta("Con el entrenamiento completo (464.809 celdas)", "mdi:database-check", "cab-verde", [
         html.P(["Misma comparación, pero entrenando a todos los modelos con el conjunto de entrenamiento completo "
                 "(validación cruzada 5 × 2 y prueba reservada). El ECLC alcanza ", html.B(f"{fmt(vc['f1_eclc'])}"),
                 " de F1 macro en 10 pliegues y ", html.B(fmt(vc["f1_eclc_prueba_reservada"])), " en la prueba reservada, frente a ",
                 f"{fmt(vc['f1_mejor_benchmark'])} del mejor benchmark ({vc['mejor_benchmark']})."]),
         dbc.Alert([html.B("✅ R3 se cumple con datos completos " if vc["R3"] else "⚠️ R3 no se cumple con datos completos "),
-                   f"(δ de Cliff = {fmt(vc['cliff_vs_mejor'], 2)}):", html.Ul(pruebas)],
+                   f"(δ de Cliff = {fmt(vc['cliff_vs_mejor'], 2)}):", lista_pruebas(vc, D.EST_PAREADAS_COMPLETO)],
                   color="success" if vc["R3"] else "warning"),
         tabla,
+        html.H6("Pruebas pareadas con datos completos: ECLC frente a cada competidor (p ajustados por Holm)", className="mt-3"),
+        tabla_pruebas(D.EST_PAREADAS_COMPLETO),
         nota("Los modelos desplegados en este dashboard (pestaña de predicción) están entrenados con 40.000 celdas para "
              "caber en la memoria de Render; las cifras de esta tarjeta corresponden al entrenamiento completo.",
              "e3_06_validacion.html", "12.8"),
@@ -414,6 +437,54 @@ def sub_estadistica():
 
 
 # ======================================================================== modelo original
+MATEMATICA = r"""
+**1. Pérdida de cada modelo por clase.** Con predicciones fuera de pliegue $\hat p_{mc}(x_j)$ (ningún modelo se evalúa
+sobre celdas que vio), la pérdida logarítmica binaria del modelo $m$ en la clase $c$ y la celda $j$ es
+
+$$\ell_{mc}(j) = -\,\mathbb{1}[y_j=c]\log \hat p_{mc}(x_j) - \mathbb{1}[y_j\neq c]\log\bigl(1-\hat p_{mc}(x_j)\bigr).$$
+
+Vale casi 0 si el modelo acertó con seguridad y crece sin límite si se equivocó estando seguro.
+
+**2. Competencia local con contracción.** Para una celda nueva $x$ con vecinos $j \in N_k(x)$ a distancias
+$d_1 \le \dots \le d_k$:
+
+$$a_j = s_{y_j}\,e^{-(d_j/d_k)^2},\quad s_c = \frac{n}{C\,n_c},\qquad
+L_{mc}(x) = \frac{\sum_j a_j\,\ell_{mc}(j) + \tau\,\bar L_{mc}}{\sum_j a_j + \tau}.$$
+
+El núcleo gaussiano da más peso a los vecinos cercanos y $s_c$ a los de clases raras. $\tau$ actúa como $\tau$
+«vecinos imaginarios» con la pérdida global $\bar L_{mc}$: si la vecindad aporta poca evidencia, manda el historial global.
+
+**3. Pesos de Gibbs y combinación.**
+
+$$w_{mc}(x) = \frac{e^{-\beta L_{mc}(x)}}{\sum_{m'} e^{-\beta L_{m'c}(x)}},\qquad
+p(c\mid x) \propto \sum_m w_{mc}(x)\,\hat p_{mc}(x).$$
+
+**Proposición 1 (de dónde sale la regla).** $w_{\cdot c}(x)$ es el **único** minimizador en el símplex
+$\{w \ge 0, \sum_m w_m = 1\}$ de
+
+$$F(w) = \sum_m w_m L_{mc}(x) + \frac{1}{\beta}\sum_m w_m \log w_m .$$
+
+*Idea de la prueba:* $F$ es lineal más $\tfrac1\beta$ veces la entropía negativa, estrictamente convexa, así que el
+mínimo es único. Con el multiplicador de Lagrange de $\sum_m w_m = 1$:
+$L_{mc} + \tfrac1\beta(1+\log w_m) + \lambda = 0 \Rightarrow w_m \propto e^{-\beta L_{mc}}$. La entropía impide poner todo el
+peso en un modelo con poca evidencia. Casos límite: $\beta = 0$ da el promedio simple; $\beta\to\infty$, la selección del
+mejor modelo local (OLA); $\tau\to\infty$, pesos globales por clase.
+
+**Proposición 2 (garantía).** En la vecindad de $x$ y para cada clase,
+
+$$\tilde L_c(q) \;\le\; \sum_m w_{mc}\,L_{mc}(x) \;\le\; \min_m L_{mc}(x) + \frac{\log M}{\beta}.$$
+
+*Idea de la prueba:* la pérdida logarítmica es convexa, así que por la desigualdad de Jensen la pérdida de la mezcla es
+a lo sumo la mezcla de las pérdidas (primera desigualdad). Como $F(w) \le F(e_{m^\star}) = \min_m L_{mc}$ y la entropía es
+a lo sumo $\log M$, se obtiene la segunda. **El ensamble nunca es mucho peor que el mejor modelo de la zona:** como
+máximo $\log(7)/\beta$ por encima.
+
+**Proposición 3 (complejidad).** Ajustar la combinación cuesta $O(nMC)$; predecir $n_q$ celdas,
+$O(n_q\,n\,p + n_q\,k\,M\,C)$, dominado por la búsqueda exacta de vecinos (medido: el tiempo crece linealmente con $n$).
+
+Las proposiciones 1 y 2 se verifican numéricamente en las pruebas unitarias (`tests/test_original_model.py`).
+"""
+
 PSEUDO = r"""
 **Entrada:** entrenamiento $(X, y)$; modelos base $f_1,\dots,f_M$; hiperparámetros $k, \beta, \tau$.
 
@@ -504,6 +575,11 @@ def sub_original():
                      "e3_04_literatura.html", "10"),
             ]), lg=6, className="mb-3"),
         ]),
+        tarjeta("Fundamento matemático: formulación y propiedades demostradas", "mdi:sigma", "cab-azul", [
+            dcc.Markdown(MATEMATICA, mathjax=True),
+            nota("Formulación completa, demostraciones y verificación numérica en las secciones 11.2 y 11.3 del Jupyter Book.",
+                 "e3_05_modelo_original.html", "11.3"),
+        ], "mb-3"),
         dbc.Row([
             dbc.Col(tarjeta("Curva de convergencia", "mdi:chart-timeline-variant", "cab-ocre", [
                 grafica(figura=fig_convergencia()),
