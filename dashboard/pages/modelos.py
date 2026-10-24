@@ -321,13 +321,22 @@ def tabla_pruebas():
 
 
 def veredicto():
-    ok = V["R3"]
-    pruebas = [html.Li([("✅ " if v else "❌ ") + k]) for k, v in V["pruebas_vs_mejor"].items()]
+    """Veredicto principal: protocolo de datos completos. El de la submuestra se reporta como complemento."""
+    vc = D.VEREDICTO_COMPLETO
+    ok = vc["R3"]
+    pruebas = [html.Li([("✅ " if v else "❌ ") + k]) for k, v in vc["pruebas_vs_mejor"].items()]
+    gana = int(D.EST_PAREADAS_COMPLETO.set_index("competidor").loc[vc["mejor_benchmark"], "ecl_gana_pliegues"])
     return dbc.Alert([
         html.H5(("✅ Superioridad estadística verificada (R3)" if ok else "⚠️ Superioridad no verificada (R3 no se cumple)")),
-        html.P(f"F1 macro medio en {V['n_pliegues']} pliegues: ECLC {fmt(V['f1_eclc'])} frente a {fmt(V['f1_mejor_benchmark'])} "
-               f"del mejor benchmark ({V['mejor_benchmark']}); δ de Cliff = {fmt(V['cliff_vs_mejor'], 2)}."),
+        html.P([f"Entrenamiento completo (464.809 celdas): F1 macro medio en {vc['n_pliegues']} pliegues ",
+                html.B(f"ECLC {fmt(vc['f1_eclc'])}"), f" frente a {fmt(vc['f1_mejor_benchmark'])} del mejor benchmark "
+                f"({vc['mejor_benchmark']}); prueba reservada {fmt(vc['f1_eclc_prueba_reservada'])}. El ECLC gana en {gana} de "
+                f"{vc['n_pliegues']} pliegues; δ de Cliff = {fmt(vc['cliff_vs_mejor'], 2)} (grande)."]),
         html.P("Pruebas frente al mejor benchmark (p ajustado por Holm sobre 8 comparaciones):"), html.Ul(pruebas),
+        html.P(["Con la submuestra de 40.000 celdas (30 pliegues) la ventaja es menor: ECLC ", fmt(V["f1_eclc"]), " frente a ",
+                fmt(V["f1_mejor_benchmark"]), f" ({V['mejor_benchmark']}); gana en 27 de 30 pliegues y la confirman Friedman y "
+                "Wilcoxon-Holm. Detalle de ambos protocolos en la pestaña de comparación estadística."],
+               className="mb-0 small"),
     ], color="success" if ok else "warning")
 
 
